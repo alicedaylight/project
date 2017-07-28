@@ -1,12 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/website/{{model.wid}}/page">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/website/{{model.wid}}/page/{{model.pid}}/widget">
             Widgets
         </a>
-        <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+        <a href="#!/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </div>
@@ -31,12 +31,6 @@
 
     <div ng-switch-when="TEXT">
         <ng-include src="'/views/widget/templates/widget-text.view.client.html'"></ng-include>
-        <!--<div ng-if="widget.formatted" text-angular ta-toolbar="..."></div>-->
-        <!--<input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"-->
-               <!--placeholder="{{widget.textInput.placeholder}}" class="form-control"/>-->
-        <!--<textarea ng-if="!widget.formatted && (widget.rows > 1)"-->
-                  <!--rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"-->
-                  <!--class="form-control">{{widget.text}}</textarea>-->
     </div>
 
     <div ng-switch-when="YOUTUBE" class="youtube-widget">

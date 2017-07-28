@@ -5,12 +5,9 @@
         .controller("NewWebsiteController", NewWebsiteController)
         .controller("EditWebsiteController", EditWebsiteController);
 
-    function WebsiteListController($routeParams, WebsiteService, currentUser) {
+    function WebsiteListController(WebsiteService, currentUser) {
         var vm = this;
 
-        // vm.uid = $routeParams.uid;
-        // vm.wid = $routeParams.wid;
-        // vm.pid = $routeParams.pid;
         vm.uid = currentUser._id;
 
 
@@ -23,11 +20,11 @@
             }
     }
 
-    function NewWebsiteController($routeParams, WebsiteService, $location) {
+    function NewWebsiteController(WebsiteService, $location, currentUser) {
         var vm = this;
-        vm.uid = $routeParams.uid;
-        vm.wid = $routeParams.wid;
-        vm.pid = $routeParams.pid;
+        vm.uid = currentUser._id;
+        // vm.wid = $routeParams.wid;
+        // vm.pid = $routeParams.pid;
         vm.newWebsite = newWebsite;
 
         function newWebsite(name, description) {
@@ -39,7 +36,7 @@
                         return WebsiteService
                             .createWebsite(vm.uid, newWebsite)
                             .then (function (website) {
-                    $location.url("/user/" + vm.uid + "/website");
+                                $location.url("/website");
                 });
         }
     }

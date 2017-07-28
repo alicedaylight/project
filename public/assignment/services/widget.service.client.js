@@ -22,8 +22,6 @@
             var url = "/api/widget/" + widgetId;
             return $http.get(url)
                 .then(function (response) {
-                    // console.log("********************")
-                    // console.log(response.data);
                     return response.data;
                 });
         }

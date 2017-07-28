@@ -33,7 +33,7 @@
     // this is what I should inject into the view "ng-view"
     function Config($routeProvider) {
         $routeProvider
-            .when("/login", { //1
+            .when("/login", {
                 templateUrl: "views/user/templates/login.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
@@ -41,14 +41,14 @@
                 // we are telling the view who it's controller is instead of having
                 // the view choose it's controller
             })
-            .when("/register", { //2
+            .when("/register", {
                 templateUrl: "views/user/templates/register.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
                 // internally you are going to refer to this controller as the variable
                 // "model"
             })
-            .when("/profile", { //3
+            .when("/profile", {
                 templateUrl: "views/user/templates/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model",
@@ -71,10 +71,14 @@
                     currentUser : checkLoggedIn
                 }
             })
-            .when("/user/:uid/website/new", {
+            .when("/website/new", {
                 templateUrl:"views/website/templates/website-new.view.client.html",
                 controller: "NewWebsiteController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkLoggedIn
+                }
+
             })
             .when("/website/:wid", {
                 templateUrl: "views/website/templates/website-edit.view.client.html",
@@ -84,76 +88,71 @@
                     currentUser : checkLoggedIn
                 }
             })
-            .when("/user/:uid/website/:wid/page", {
+            .when("/website/:wid/page", {
                 templateUrl: "views/page/templates/page-list.view.client.html",
                 controller: "PageListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkLoggedIn
+                }
             })
-            .when("/user/:uid/website/:wid/page/new", {
+            .when("/website/:wid/page/new", {
                 templateUrl: "views/page/templates/page-new.view.client.html",
                 controller: "NewPageController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkLoggedIn
+                }
             })
-            .when("/user/:uid/website/:wid/page/:pid", {
+            .when("/website/:wid/page/:pid", {
                 templateUrl: "views/page/templates/page-edit.view.client.html",
                 controller: "EditPageController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkLoggedIn
+                }
             })
             // see all of the widgets from a certain page of a certain user
-            .when("/user/:uid/website/:wid/page/:pid/widget", {
+            .when("/website/:wid/page/:pid/widget", {
                 templateUrl: "views/widget/templates/widget-list.view.client.html",
                 controller: "WidgetListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkLoggedIn
+                }
             })
-            .when("/user/:uid/website/:wid/page/:pid/widget/new", {
+            .when("/website/:wid/page/:pid/widget/new", {
                 templateUrl: "views/widget/templates/widget-chooser.view.client.html",
                 controller: "NewWidgetController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkLoggedIn
+                }
             })
 
-            .when('/user/:uid/website/:wid/page/:pid/widget/create/:wtype', {
+            .when('/website/:wid/page/:pid/widget/create/:wtype', {
                 templateUrl : "views/widget/templates/widget-new.view.client.html",
                 controller: "CreateWidgetController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkLoggedIn
+                }
             })
 
-            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
+            .when("/website/:wid/page/:pid/widget/:wgid", {
                 templateUrl: "views/widget/templates/widget-edit.view.client.html",
                 controller: "EditWidgetController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkLoggedIn
+                }
             })
-            // .when('/', {
-            //     templateUrl : "views/user/templates/login.view.client.html",
-            //     // resolve: {
-            //     //     currentUser : checkCurrentUser
-            //     // }
-            // });
 
             .otherwise({
                 redirectTo : "/login"
             });
     }
 
-    // // if i get 0, i'm going to kick you to login page
-    // function checkLoggedIn($q, $http, $location, $rootScope) {
-    //
-    //     var deferred = $q.defer();
-    //
-    //     $http.get('/api/user/loggedin').success(function(user) {
-    //         // console.log("Receiving user from server");
-    //
-    //         $rootScope.errorMessage = null;
-    //         if (user !== '0') {
-    //             $rootScope.user = user;
-    //             deferred.resolve(user);
-    //             // $location.url('/profile');
-    //         } else {
-    //             deferred.reject();
-    //             $location.url('/');
-    //         }
-    //     });
-    //     return deferred.promise;
-    // }
 
     function checkLoggedIn(UserService, $q, $location) {
         var deferred = $q.defer();
@@ -166,8 +165,6 @@
 
             }, function() {
                 deferred.reject();
-                console.log('checkLoggedIn failure')
-
                 $location.url('/login');
             });
         return deferred.promise;
@@ -188,24 +185,6 @@
 
         return deferred.promise;
     }
-
-
-    // var checkLoggedIn = function($q, $http, $location, $rootScope) {
-    //     var deferred = $q.defer();
-    //
-    //     $http.get('/api/loggedin').then(function(user) {
-    //         $rootScope.errorMessage = null;
-    //         if(user !== '0') {
-    //             $rootScope.currentUser = user;
-    //             deferred.resolve();
-    //         } else {
-    //             $rootScope.erro = "You need to log in.";
-    //             deferred.reject();
-    //             $location.url('/login');
-    //         }
-    //     });
-    //     return deferred.promise;
-    // }
 
     // var adminLoggedIn
     //write another api ./api/adminLoggedIn

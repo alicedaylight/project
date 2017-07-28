@@ -5,10 +5,10 @@
         .controller("NewPageController", NewPageController)
         .controller("EditPageController", EditPageController);
 
-    function PageListController($routeParams, PageService) {
+    function PageListController($routeParams, PageService, currentUser) {
         var vm = this;
 
-        vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
 
@@ -20,16 +20,12 @@
             vm.pages = pages;
 
         }
-        // // vm.pages = PageService.findPageById(vm.pid);
-        // vm.pages = PageService.findPageByWebsiteId(vm.wid);
-        // console.log(vm.pages);
-        // // vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
     }
 
 
-    function NewPageController($routeParams, PageService, $location) {
+    function NewPageController($routeParams, PageService, $location, currentUser) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
         vm.newPage = newPage;
@@ -48,12 +44,11 @@
         function newPage(name, description) {
             if(name === null || name === undefined || name === " ") {
                 vm.error = "Page name cannot be empty";
-                $timeout(function() {
-                    vm.error = null;
-                }, 3500);
+                // $timeout(function() {
+                //     vm.error = null;
+                // }, 3500);
                 return;
             }
-            console.log("new Page Controller");
             var newPage = {
                 name: name,
                 description : description
@@ -61,15 +56,15 @@
             PageService
                 .createPage(vm.wid, newPage)
                 .then(function (page) {
-                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                    $location.url("/website/" + vm.wid + "/page");
                 });
         }
     }
 
 
-    function EditPageController($routeParams, PageService, $location, $timeout) {
+    function EditPageController($routeParams, PageService, $location, $timeout, currentUser) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
 
@@ -102,7 +97,7 @@
             PageService
                 .updatePage(page._id, page)
                 .then(function() {
-                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/");
+                    $location.url("/website/" + vm.wid + "/page/");
                     vm.updated = "Page update was successful";
                     $timeout(function() {
                         vm.updated = null;
@@ -115,8 +110,7 @@
             PageService
                 .deletePageFromWebsite(vm.wid, vm.pid)
                 .then(function() {
-                    console.log("aaa");
-                    $location.url("/user/" +vm.uid+ "/website/" + vm.wid + "/page");
+                    $location.url("/website/" + vm.wid + "/page");
                 }, function() {
                     vm.error = "Unable to delete page";
                 });
