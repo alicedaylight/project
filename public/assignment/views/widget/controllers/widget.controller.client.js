@@ -45,6 +45,11 @@
         vm.createWidget = createWidget;
 
         function createWidget(widget) {
+            if (widget.name === undefined || widget.name === null || widget.name === "") {
+                vm.error = "Name cannot be empty.";
+                return;
+            }
+
             WidgetService
                 .createWidget(widget);
         }
@@ -61,6 +66,11 @@
 
 
         function createWidget() {
+            if (widget.name === undefined || widget.name === null || widget.name === "") {
+                vm.error = "Name cannot be empty.";
+                return;
+            }
+
             if (vm.widgetType === 'IMAGE' || vm.widgetType === 'YOUTUBE') {
                 if (vm.widgetUrl === null || vm.widgetUrl === undefined) {
                     vm.createError = "Url is required for Image/Youtube";
@@ -147,6 +157,10 @@
 
 
         function updateWidget() {
+            if (widget.name === undefined || widget.name === null || widget.name === "") {
+                vm.error = "Name cannot be empty.";
+                return;
+            }
                 var updatedWidget = {
                     // inside heading edit is model.widget.name
                     name: vm.widget.name,
@@ -161,8 +175,6 @@
                     url: vm.widget.url
                 };
 
-
-            console.log(updatedWidget);
 
             WidgetService
                 .updateWidget(vm.wgid, updatedWidget)

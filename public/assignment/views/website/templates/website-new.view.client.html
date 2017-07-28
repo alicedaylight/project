@@ -21,11 +21,12 @@
 
         <!--check url-->
         <div class="col-sm-8">
+            <!--<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>-->
+
             <div class="navbar-text pull-left cl-text-white no-margin-left">
             </div>
             <div class="navbar-text pull-right thirty-margin-right">
                 <a ng-click="model.newWebsite(model.user.name, model.user.description)" a href="#!/website" class="cl-text-white">
-                <!--<a href="#!/user/{{model.uid}}/website" class="cl-text-white">-->
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -54,10 +55,10 @@
 
             <ul class="list-group borderless">
                 <li class="list-group-item">
-                    <a href="#!/user/{{model.uid}}/website/{{model.wid}}">
+                    <a href="#!/website/{{model.wid}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
-                    <a href="#!/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>
+                    <a href="#!/website/{{website._id}}/page">{{website.name}}</a>
                 </li>
 
             </ul>
@@ -66,6 +67,8 @@
     </div>
 
     <div class="col-xs-12 col-sm-8 pull-right">
+        <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+
         <form>
             <div class="form-group">
                 <label for="exampleInputName">Name</label>

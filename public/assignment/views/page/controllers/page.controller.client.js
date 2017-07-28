@@ -44,9 +44,6 @@
         function newPage(name, description) {
             if(name === null || name === undefined || name === " ") {
                 vm.error = "Page name cannot be empty";
-                // $timeout(function() {
-                //     vm.error = null;
-                // }, 3500);
                 return;
             }
             var newPage = {

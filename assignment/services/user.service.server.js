@@ -3,14 +3,16 @@ module.exports = function(app){
     var userModel = require('../model/user/user.model.server');
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
+    var FacebookStrategy = require('passport-facebook').Strategy;
 
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser); // choose what to put in cookie
     passport.deserializeUser(deserializeUser); // when cookie comes back from client to unwrap cookie to get id
-    // var bcrypt = require("bcrypt-nodejs");
+    var bcrypt = require("bcrypt-nodejs");
 
     app.post("/api/user", createUser);
     app.get("/api/user", findUserByUsername);
+    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
     // app.get("/api/user", findUserByCredentials);
 
@@ -27,7 +29,7 @@ module.exports = function(app){
 
     function register(req, res) {
         var user = req.body;
-        // user.password = bcrypt.hashSync(user.password)
+        user.password = bcrypt.hashSync(user.password);
         userModel
             .createUser(user)
             .then(function (user) {
@@ -83,6 +85,13 @@ module.exports = function(app){
     }
 
     function login(req, res) {
+
+        // if(user && bcrypt.compareSync(password, user.password)) {
+        //     return done(null, user);
+        // } else {
+        //     return done(null, false);
+        // }
+
         res.json(req.user);
     }
 
@@ -116,16 +125,39 @@ module.exports = function(app){
 
     function findUserByUsername(req, res) {
         var username = req.query.username;
-        userModel
-            .findUserByUsername(username)
-            .then(function (user) {
-                if(user) {
-                    res.json(user);
-                    return;
-                } else {
-                    res.sendStatus(404);
-                }
-            });
+        var password = req.query.password;
+        if (username && password) {
+            username
+                .findUserByUsername(username)
+                .then(function(user) {
+                    if (user) {
+                        if (bcrypt.compareSync(passport, user.password)) {
+                            res.json(user);
+                        } else {
+                            res.status(404).send("Incorrect Password");
+                        }
+                    } else {
+                        res.send(404).send("Incorrect Username/Password");
+                    }
+                }, function(err) {
+                    res.send(404).send("Incorrect Username/Password");
+                })
+        }
+        // if(user && bcrypt.compareSync(password, user.password)) {
+        //     return done(null, user);
+        // } else {
+        //     return done(null, false);
+        // }
+        // userModel
+        //     .findUserByUsername(username)
+        //     .then(function (user) {
+        //         if(user) {
+        //             res.json(user);
+        //             return;
+        //         } else {
+        //             res.sendStatus(404);
+        //         }
+        //     });
     }
 
     function findUserByCredentials(req, res) {

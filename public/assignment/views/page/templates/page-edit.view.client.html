@@ -13,16 +13,9 @@
     </div>
 </nav>
 
-<!--model.deletePage(model.page._id)-->
-
-<!--#!/user/{{model.uid}}/website/{{model.wid}}/page-->
-
-
-<!--pages[index].name = page.name;-->
-<!--pages[index].websiteId = page.websiteId;-->
-<!--pages[index].description = page.description;-->
 
 <div class="container">
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
     <form class="cl-form-bottom-padding">
         <label for="name">Name</label>
         <input ng-model="model.page.name"

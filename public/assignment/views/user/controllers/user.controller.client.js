@@ -14,6 +14,11 @@
         vm.login = login;
 
         function login(username, password) {
+            if (username === undefined || username === null || username === "" || password === undefined || password === "") {
+                vm.error = "Username and Passwords cannot be empty.";
+                return;
+            }
+
             UserService
                 .login(username, password)
                 // found is the user object
@@ -82,16 +87,19 @@
                 });
         }
 
-        //
-        // UserService
-        //     .findUserById(vm.uid)
-        //     .then(renderUser, userError);
         function init() {
             renderUser(currentUser);
         }
         init();
 
+        function renderUser(user) {
+            vm.user = user;
+        }
+
         function updateUser(user) {
+            vm.error = null;
+            vm.message = null;
+
             UserService
                 .updateUser(user._id, user)
                 // id of entity you are updating and actual instance of obj
@@ -104,9 +112,6 @@
                 });
         }
 
-        function renderUser(user) {
-            vm.user = user;
-        }
 
         function userError(error) {
             vm.error = "User not found";

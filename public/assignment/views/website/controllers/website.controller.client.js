@@ -28,15 +28,18 @@
         vm.newWebsite = newWebsite;
 
         function newWebsite(name, description) {
-                        var newWebsite = {
-                            name: name,
-                            desc: description
-
-                        };
-                        return WebsiteService
-                            .createWebsite(vm.uid, newWebsite)
-                            .then (function (website) {
-                                $location.url("/website");
+            if (name === undefined || name === null || name === "") {
+                vm.error = "Name cannot be empty.";
+                return;
+            }
+            var newWebsite = {
+                name: name,
+                desc: description
+            };
+            return WebsiteService
+                .createWebsite(vm.uid, newWebsite)
+                .then (function (website) {
+                    $location.url("/website");
                 });
         }
     }
@@ -71,11 +74,15 @@
         }
 
         function updateWebsite(website) {
+            if (website.name === undefined || website.name === null || website.name === "") {
+                vm.error = "Name cannot be empty.";
+                return;
+            }
             WebsiteService
                 .updateWebsite(website._id, website)
 
                 .then(function(website) {
-                    $location.url("/user/" + vm.uid + "/website");
+                    $location.url("/website");
                 });
 
         }

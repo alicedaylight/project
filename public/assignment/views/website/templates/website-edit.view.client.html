@@ -60,7 +60,9 @@
     </div>
 
     <div class="col-xs-12 col-sm-8 pull-right">
-        <div ng-show="model.updated" class="alert alert-success" role="alert">{{model.updated}}</div>
+        <!--<div ng-show="model.updated" class="alert alert-success" role="alert">{{model.updated}}</div>-->
+        <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+
         <form>
             <div class="form-group">
                 <label for="exampleInputName">Website Name</label>
