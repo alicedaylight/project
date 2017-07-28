@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+            New Youtube Widget
+        </a>
+        <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <form>
+        <div class="form-group">
+            <label for="widget-youtube-name">Name</label>
+            <input ng-model="model.widgetName" type="text" class="form-control" id="widget-youtube-name" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label for="widget-youtube-text">Text</label>
+            <input ng-model="model.widgetText" type="text" class="form-control" id="widget-youtube-text" placeholder="Text">
+        </div>
+        <div class="form-group">
+            <label for="widget-youtube-url">URL</label>
+            <input ng-model="model.widgetUrl" type="text" class="form-control" id="widget-youtube-url"
+                   placeholder="https://www.youtube.com/">
+        </div>
+        <div class="form-group">
+            <label for="widget-youtube-width">Width</label>
+            <input  ng-model="model.widgetWidth" type="text" class="form-control" id="widget-youtube-width" placeholder="100%">
+        </div>
+        <a ng-click="model.createWidget()" class="btn btn-primary btn-block" id="widget-youtube-create-btn">Create</a>
+    </form>
+    <div ng-show="model.createError" class="alert alert-danger padded-alert" role="alert">{{model.createError}}</div>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fuild">
+        <a href="#/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="cl-text-blue glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>

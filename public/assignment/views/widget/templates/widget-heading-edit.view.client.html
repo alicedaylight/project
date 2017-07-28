@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}">
+            Heading Edit
+        </a>
+        <div ng-click="model.updateWidget()" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding hand">
+            <span class="glyphicon glyphicon-ok"></span>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <form class="cl-form-bottom-padding">
+        <label for="name">Name</label>
+        <input ng-model="model.widget.name" type="text" class="form-control" id="name" required>
+
+        <label for="text">Text</label>
+        <input ng-model="model.widget.text" type="text" class="form-control" placeholder="US Senate Reaches Compromise on Emergency" id="text" required>
+
+        <label for="number">Size</label>
+        <input ng-model="model.widget.size" type="number" class="form-control" placeholder="3" id="number" required>
+
+        <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
+
+    </form>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fuild">
+        <a href="#!/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="cl-text-blue glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>

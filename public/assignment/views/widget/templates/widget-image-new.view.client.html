@@ -1,0 +1,67 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+            New Image Widget
+        </a>
+        <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <form>
+        <div class="form-group">
+            <label for="widget-image-name">Name</label>
+            <input ng-model="model.widgetName" type="text" class="form-control" id="widget-image-name"
+                   placeholder="Name">
+        </div>
+
+
+        <div class="form-group">
+            <label for="widget-image-text">Text</label>
+            <input ng-model="model.widgetText" type="text" class="form-control" id="widget-image-text"
+                   placeholder="Text">
+        </div>
+        <div class="form-group">
+            <label for="widget-image-url">URL</label>
+            <input ng-model="model.widgetUrl" type="text" class="form-control" id="widget-image-url"
+                   placeholder="http://www.google.com/image">
+        </div>
+        <div class="form-group">
+            <label for="widget-image-width">Width</label>
+            <input ng-model="model.widgetWidth" type="text" class="form-control" id="widget-image-width"
+                   placeholder="100%">
+        </div>
+
+        <a ng-click="model.createWidget()" class="btn btn-primary btn-block" id="widget-heading-create-btn">Create</a>
+    </form>
+
+    <form action="/api/upload"   method="post" enctype="multipart/form-data">
+        <input  name="myFile"    type="file" class="form-control"/>
+        <input  name="width"     value="{{model.widgetWidth}}" style="display: none"/>
+        <input  name="userId"    value="{{model.uid}}"   style="display: none"/>
+        <input  name="websiteId" value="{{model.wid}}"   style="display: none"/>
+        <input  name="pageId"    value="{{model.pid}}"   style="display: none"/>
+        <input  name="widgetId"  value="{{model.wgid}}"   style="display: none"/>
+        <input  name="text"      value="{{model.widgetText}}" type="hidden" />
+        <input  name="name"      value="{{model.widgetName}}" type="hidden" />
+        <input  name="width"     value="{{model.widgetWidth}}" type="hidden"/>
+
+        <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
+    </form>
+
+    <div ng-show="model.createError" class="alert alert-danger padded-alert" role="alert">{{model.createError}}</div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fuild">
+        <a href="#/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="cl-text-blue glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>

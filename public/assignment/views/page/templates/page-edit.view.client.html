@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}">
+            Edit Page
+        </a>
+        <a ng-click="model.updatePage(model.page)" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
+
+<!--model.deletePage(model.page._id)-->
+
+<!--#!/user/{{model.uid}}/website/{{model.wid}}/page-->
+
+
+<!--pages[index].name = page.name;-->
+<!--pages[index].websiteId = page.websiteId;-->
+<!--pages[index].description = page.description;-->
+
+<div class="container">
+    <form class="cl-form-bottom-padding">
+        <label for="name">Name</label>
+        <input ng-model="model.page.name"
+               type="text" class="form-control" placeholder="Blog Post" id="name" required>
+
+        <label for="title">Title</label>
+        <input ng-model="model.page.description"
+                type="text" class="form-control" placeholder="Page Title" id="title" required>
+        <!--<button ng-click="model.deletePage(model.page._id)" class="btn btn-danger btn-block">Delete</button>-->
+        <button ng-click="model.deletePage()" class="btn btn-danger btn-block">Delete</button>
+
+    </form>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fuild">
+        <a href="#!/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="cl-text-blue glyphicon glyphicon-user"></span>
+        </a>
+
+    </div>
+</nav>
+

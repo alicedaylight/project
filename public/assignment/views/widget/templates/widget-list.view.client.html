@@ -1,0 +1,68 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget">
+            Widgets
+        </a>
+        <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div wbdv-sortable callback="sortItems(start,end)">
+<div ng-repeat="widget in model.widgets"
+     ng-switch="widget.widgetType" class="container-fluid padded-widget-list">
+    <div ng-switch-when="HEADING">
+        <ng-include src="'/views/widget/templates/widget-heading.view.client.html'"></ng-include>
+    </div>
+    <div ng-switch-when="IMAGE">
+        <ng-include src="'/views/widget/templates/widget-image.view.client.html'"></ng-include>
+    </div>
+    <div ng-switch-when="HTML">
+        <ng-include src="'/views/widget/templates/widget-html.view.client.html'"></ng-include>
+    </div>
+    <!--<div ng-switch-when="TEXT">-->
+        <!--<ng-include src="'/views/widget/templates/widget-text.view.client.html'"></ng-include>-->
+    <!--</div>-->
+
+    <div ng-switch-when="TEXT">
+        <ng-include src="'/views/widget/templates/widget-text.view.client.html'"></ng-include>
+        <!--<div ng-if="widget.formatted" text-angular ta-toolbar="..."></div>-->
+        <!--<input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"-->
+               <!--placeholder="{{widget.textInput.placeholder}}" class="form-control"/>-->
+        <!--<textarea ng-if="!widget.formatted && (widget.rows > 1)"-->
+                  <!--rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"-->
+                  <!--class="form-control">{{widget.text}}</textarea>-->
+    </div>
+
+    <div ng-switch-when="YOUTUBE" class="youtube-widget">
+
+        <ng-include src="'/views/widget/templates/widget-youtube.view.client.html'"></ng-include>
+    </div>
+</div>
+    </div>
+</div>
+
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fuild">
+        <a href="#!/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="cl-text-blue glyphicon glyphicon-user"></span>
+        </a>
+
+        <a class="navbar-link navbar-text pull-left cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-play pull-left cl-icon-padding"></span>
+            <span class="glyphicon glyphicon-eye-open pull-left"></span>
+
+        </a>
+    </div>
+</nav>
+
+

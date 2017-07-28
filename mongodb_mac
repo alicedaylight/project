@@ -1,0 +1,11 @@
+$sudo su
+// changes yourself to root user
+
+$cd ../ // go to root to check if you have data/db folder
+
+$ls /data/db
+
+$mongod
+
+// mogodb .. is database type
+// in heruko will install amerk? ... works as a docker

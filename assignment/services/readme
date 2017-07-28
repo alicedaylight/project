@@ -1,0 +1,32 @@
+
+
+Alice Day's Project Proof of Concept
+
+I want to create a purposeful sap that I can see myself using and updating outside of my webDev project.
+I am drawing my inspiration from https://shophrh.co/ which is a website that sells handmade jewelery in
+addition to lifestyle-blogging from the jewelery designer.
+
+
+My project is a sap that sells new or gently used makeup. The two types of users are seller(admin) and buyers.
+Anonymous users will be able to view products that are being sold and search the websites by makeup category like
+base, eyes, lips, cheeks, hair. To make purchases, read reviews, or follow other users, they will need to make an
+account.
+
+Buyers can follow other buyers and will be notified if the other buyer makes a purchase or writes a review.
+Buyers will also have in inbox and be alerted of make products that are going on sale for a discounted price. Discount
+codes will be given out to new users and can be applied to a buyer's first purchase. Once a buyer has added a
+product to their cart, it will remain in the cart until they proceed to check out.
+
+Seller(s) will have total access to the site; they can remove a product, update the price or a product, and add
+new products. Sellers can also delete users who have violated the sites policy.
+
+I plan on using the creative or stylish portfolio template and also font awesome.
+
+The problem I am trying to solve is: I have a lot of makeup that I have never used or used one time and not have
+a purpose for. Many second online stores that sell second hand or new products charge a large fee (up to 20%) of
+the price of the item and a shipping fee. As a result, sellers barely make a profit and buyers end up paying a
+larger fee than they need to. By creating my own site to allow other users to purchase my makeup produts, I have
+a lot of control over my profit.
+
+I plan on using the API's of the various social media sites such as Twitter, Facebook, Instagram, and Youtube so that
+buyers can connect with each other

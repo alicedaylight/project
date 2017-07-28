@@ -1,0 +1,166 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+input.form-control {
+    margin-bottom: 5px;
+}
+
+.cl-form-bottom-padding{
+    margin-bottom: 2em;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.cl-container-padding {
+    padding-top: 5%;
+    padding-bottom: 10%;
+}
+
+.cl-low-padding {
+    padding-bottom: 5%;
+}
+
+.cl-blue-navbar{
+    background-color: #337ab7;
+}
+
+.cl-text-white{
+    color: #fff;
+}
+
+.cl-text-black{
+    color: #000000;
+}
+
+.cl-text-bold{
+    font-weight: bold;
+}
+
+.cl-text-blue{
+    color: #337ab7;
+}
+
+.cl-icon-padding {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.cl-header-padding{
+    padding-left: 5%;
+}
+
+.cl-full-width{
+    width: 100%;
+}
+
+.cl-widget-list-item{
+    padding-bottom: 20px;
+}
+
+.cl-v-divider{
+    border-right: 1px solid #808080;
+    height: 100%;
+}
+
+.cl-widget-heading{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.cl-widget-paragraph{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.cl-height{
+    height: 100%;
+    min-height: 100%;
+}
+
+.cl-relative-position{
+    position: relative;
+}
+.cl-absolute-position{
+    position: absolute;
+}
+.cl-widget-list-icons{
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+    background-color: white;
+}
+.cl-zero-right-padding{
+    padding-right: 0px;
+}
+
+.borderless .list-group-item{
+    border:none;
+}
+
+.no-margin-left {
+    margin-left: 0;
+}
+
+.thirty-margin-right {
+    margin-right: 30px;
+}
+
+.overflow {
+    /*overflow-y: scroll;*/
+    top: 0px;bottom: 0px;position: absolute;
+    left: 0px;margin-top: 50px;padding-top: 15px;margin-bottom: 50px;
+    border:1px solid #cecece;
+}
+
+.overflow-y {
+    overflow-y: scroll;
+    top: 0px;
+    bottom: 0px;
+    position: absolute;
+    left: 0px;
+    padding-top: 70px;
+    border:1px solid #cecece;
+
+}
+
+.cl-widget-item {
+    margin: 1.5em 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cl-widget-item h1 {
+    margin: 0;
+}
+
+.cl-widget-header {
+    font-size: 36px;
+    text-align: center;
+}
+
+.cl-subHeading {
+    font-size: 26px;
+    text-align: center;
+}
+
+.hand {
+    cursor: pointer;
+}
+
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+

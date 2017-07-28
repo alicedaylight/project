@@ -1,0 +1,37 @@
+{
+  "name": "cs5610",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alicedaylight/cs5610.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alicedaylight/cs5610/issues"
+  },
+  "homepage": "https://github.com/alicedaylight/cs5610#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "bootstrap": "^3.3.7",
+    "cookie-parser": "^1.4.3",
+    "cookies": "^0.7.0",
+    "express": "^4.15.2",
+    "express-session": "^1.15.4",
+    "jquery": "^3.2.1",
+    "mongoose": "^4.11.1",
+    "multer": "^1.3.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "q": "^1.5.0",
+    "sessions": "0.0.2-7",
+    "textangular": "^1.5.16"
+  }
+}

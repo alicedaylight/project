@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}">
+            Image Edit
+        </a>
+        <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+    <form class="cl-form-bottom-padding">
+        <label for="name">Name</label>
+        <input ng-model="model.widget.name" type="text" class="form-control" id="name" required>
+
+        <label for="text">Text</label>
+        <input ng-model="model.widget.text" type="text" class="form-control" id="text" required>
+
+        <label for="url">URL</label>
+        <input ng-model="model.widget.url" type="url" class="form-control" placeholder="https://i.kinja-img.com/gawker-media/image" id="url" required>
+
+
+        <label for="width">Width</label>
+        <input ng-model="model.widget.width" type="text" class="form-control" placeholder="100%" id="width" required>
+
+    </form>
+
+    <form action="/api/upload"   method="post" enctype="multipart/form-data">
+        <input  name="myFile"    type="file" class="form-control"/>
+        <input  name="userId"    value="{{model.uid}}"   style="display: none"/>
+        <input  name="websiteId" value="{{model.wid}}"   style="display: none"/>
+        <input  name="pageId"    value="{{model.pid}}"   style="display: none"/>
+        <input  name="widgetId"  value="{{model.wgid}}"   style="display: none"/>
+        <input  name="text"      value="{{model.widgetText}}" type="hidden" />
+        <input  name="name"      value="{{model.widgetName}}" type="hidden" />
+        <input  name="width"     value="{{model.widgetWidth}}" type="hidden"/>
+
+        <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
+    </form>
+
+    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fuild">
+        <a href="#!/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="cl-text-blue glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>

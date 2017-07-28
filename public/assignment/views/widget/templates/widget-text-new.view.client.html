@@ -1,0 +1,53 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+            New Text Widget
+        </a>
+        <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div ng-show="model.error"
+         class="alert alert-danger"
+         role="alert">{{model.error}}
+    </div>
+
+    <label for="name">Name</label>
+    <input id="name"
+           ng-model="model.widgetName"
+           class="form-control"/>
+
+    Text
+    <input ng-model="model.widgetText" class="form-control"/>
+    Rows
+    <input ng-model="model.widgetRows" class="form-control" type="number"/>
+    Placeholder
+    <input ng-model="model.widgetPlaceholder" class="form-control"/>
+    Formatted
+    <input ng-model="model.widgetFormatted" type="checkbox"/>
+
+
+    <a ng-click="model.createWidget()"
+       class="btn btn-success btn-block">
+        Create
+    </a>
+</div>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fuild">
+        <a href="#/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="cl-text-blue glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>
