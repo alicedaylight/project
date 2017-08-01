@@ -27,17 +27,17 @@
         };
         return services;
 
-        function getNextId() {
-            function getMaxId(maxId, currentId) {
-                var current = parseInt(currentId._id);
-                if (maxId > current) {
-                    return maxId;
-                } else {
-                    return current + 1;
-                }
-            }
-            return websites.reduce(getMaxId, 0).toString();
-        }
+        // function getNextId() {
+        //     function getMaxId(maxId, currentId) {
+        //         var current = parseInt(currentId._id);
+        //         if (maxId > current) {
+        //             return maxId;
+        //         } else {
+        //             return current + 1;
+        //         }
+        //     }
+        //     return websites.reduce(getMaxId, 0).toString();
+        // }
 
 
         function createWebsite(userId, website) {

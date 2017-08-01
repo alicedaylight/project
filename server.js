@@ -39,7 +39,10 @@ app.use(express.static(__dirname+'/public/assignment'));
 
 
 var connectionString = process.env.MONGODB_URI || 'mongodb://localhost:27017/cs5610';
-mongoose.connect(connectionString);
+mongoose.connect(connectionString, {
+    useMongoClient : true
+});
+
 
 
 app.post('/api/createuser',function (req, res) {

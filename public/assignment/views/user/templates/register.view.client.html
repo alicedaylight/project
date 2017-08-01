@@ -1,23 +1,61 @@
 <div class="container">
     <h1>Register</h1>
-    <!--Inside of register controller, the register controller displays alerts if incorrect combination of information
-     is entered. Here we make room by having a ng-repeat "model.error"-->
-    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
-    <input type="text"
-           class="form-control cl-form-control-margin"
-           placeholder="username"
-           ng-model="model.username"/>
-    <input type="password"
-           class="form-control cl-form-control-margin"
-           placeholder="password"
-           ng-model="model.password"/>
-    <input type="password"
-           class="form-control cl-form-control-margin"
-           placeholder="verify password"
-           ng-model="model.vpassword"/>
-    <a class="btn btn-primary btn-block cl-btn-top-margin"
-       ng-click="model.register(model.username, model.password, model.vpassword)">Register</a>
-    <a class="btn btn-danger btn-block"
-       href="#!/login">Cancel</a>
-</div>
 
+    <!--fullname info is not needed in register page is in profile-->
+    <div class="form-group row">
+
+        <!--<input id="input-id" type="text" class="rating" data-size="lg" >-->
+
+        <!--$("#input-id").rating();-->
+
+        <!--$("#input-id").rating({'size':'lg'});-->
+
+        <div class="col-xs-4">
+            <label for="name">Full Name</label>
+            <input class="form-control" placeholder="First Name" id="name" type="text">
+        </div>
+        <div class="col-xs-4">
+            <label for="last"> __ </label>
+            <input class="form-control" placeholder="Last Name" id="last" type="text">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-3">
+            <label for="age">Age</label>
+            <!--<input class="form-control" placeholder="Age" id= "age" type="text">-->
+            <select multiple class="form-control" id="age">
+                <option> 18 - 25</option>
+                <option> 25 - 29</option>
+                <option> 30 - 35</option>
+                <option> 35 - 43</option>
+                <option> 44 - 55</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-4">
+            <label for="username">Username</label>
+            <input class="form-control" type="text" id="username" ng-model="model.username">
+        </div>
+
+        <div class="col-xs-4">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" id="password" ng-model="model.password">
+        </div>
+        <div class="col-xs-4">
+            <label for="verify">Verify Password</label>
+            <input class="form-control" type="password"  id="verify" ng-model="model.vpassword">
+        </div>
+
+    </div>
+    <div class="form-group row">
+
+    <a class="btn btn-primary btn-block cl-btn-top-margin"
+    ng-click="model.register(model.username, model.password, model.vpassword)">Register</a>
+    <a class="btn btn-danger btn-block"
+    href="#!/login">Cancel</a>
+
+    </div>
+
+
+</div>

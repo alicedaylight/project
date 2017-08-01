@@ -1,23 +1,7 @@
-<!--&lt;!&ndash;// need to define user.id in your controller&ndash;&gt;-->
-<!--&lt;!&ndash;when you login .. need to check if this user is there&ndash;&gt;-->
-<!--&lt;!&ndash;and compare user name and password == and then say &ndash;&gt;-->
-<!--&lt;!&ndash;go to this link&ndash;&gt;-->
 
-<!--lost capability of living by itself.. it can only live inside as a little piece-->
-<!--of something bigger... index.html has all of the scripts, controllers, bootstrap-->
-<!--and css so login page does not need this-->
-
-<!--write now div is the one declaring the controller.. right now we-->
-<!--are giving the view a little too much power .. the view is choosing it's own congtoller-->
-<!--if we are linking <div ng-controller></div>-->
-<!--we want to make this paramizable instead of making it hardcoded into the view-->
-
-<!--inside config.js we declared a variable as "model" so inside of this view-->
-<!--this "model" matches and is used to refer to the controller inside this view-->
-<!--the model.error-->
 <div class="container">
     <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
-    <h1>Login</h1>
+    <h1>Makeup Diary</h1>
     <input type="text"
            class="form-control"
            placeholder="username"
@@ -36,14 +20,9 @@
         <span class="fa fa-facebook"></span>
         Facebook
     </a>
+    <!--<a href="/auth/google" class="btn btn-primary btn-block">-->
+        <!--<span class="fa fa-google"></span>-->
+        <!--Google-->
+    <!--</a>-->
 
 </div>
-
-<!--model.login... uses the login function inside of login controller-->
-<!--model.login.. can only use functions after vm.   something-->
-<!--need to add an ng-view-->
-
-<!--model.aliceEats-->
-
-<!--model. something points to controller's login function... if you click the login button-->
-<!--it will look for the login function inside it's controller to find the login function-->

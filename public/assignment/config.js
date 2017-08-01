@@ -56,9 +56,17 @@
                     // my own function goes out to server is user logged in?
                     // no: reject, yes: resolve go through
                     currentUser : checkLoggedIn
-
                 }
             })
+
+            // .when('#!/user/{{model.uid}}/review/new', {
+            //     templateUrl: "views/review/templates/review-new.view.client.html" ,
+            //     controller: "ReviewController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         currentUser : checkLoggedIn
+            //     }
+            // })
             // collen says it's not a literal string
             // it's a placeholder and we're giving it the name uid
             // whatever is mapped there will be availible through
@@ -138,6 +146,7 @@
                     currentUser : checkLoggedIn
                 }
             })
+
 
             .when("/website/:wid/page/:pid/widget/:wgid", {
                 templateUrl: "views/widget/templates/widget-edit.view.client.html",

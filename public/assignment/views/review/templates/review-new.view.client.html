@@ -1,0 +1,98 @@
+<nav class="navbar navbar-fixed-top cl-blue-navbar">
+    <div class="row container-fluid">
+
+        <div class="col-sm-4 hidden-xs">
+            <div class="navbar-text pull-left cl-text-white no-margin-left" >
+                <a href="#!/user/{{model.uid}}/review" class="cl-text-white">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/review/new">
+                    Review
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a ng-click="model.createWebsite(model.name, model.description)" class="cl-text-white">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+        </div>
+
+        <!--check url-->
+        <div class="col-sm-8">
+            <!--<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>-->
+
+            <div class="navbar-text pull-left cl-text-white no-margin-left">
+            </div>
+            <div class="navbar-text pull-right thirty-margin-right">
+                <a ng-click="model.newWebsite(model.user.name, model.user.description)" a href="#!/website" class="cl-text-white">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+            <div class="navbar-text pull-left cl-text-white no-margin-left visible-xs">
+                <a href="#!/user/:uid/website" class="cl-text-white">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/new">
+                    New Website
+                </a>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<!--// ng-repeat of new website that you created-->
+<!--// same as website list-->
+<div class="row container-fluid">
+    <div class="col-sm-4 hidden-xs overflow-y">
+
+        <div ng-repeat="website in model.websites" class="container">
+
+
+            <ul class="list-group borderless">
+                <li class="list-group-item">
+                    <a href="#!/website/{{model.wid}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                    <a href="#!/website/{{website._id}}/page">{{website.name}}</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-8 pull-right">
+        <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+
+        <form>
+            <div class="form-group">
+                <label for="exampleInputName">Name</label>
+                <input ng-model="model.user.name"
+                       type="text" class="form-control" id="exampleInputName" placeholder="Name">
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputDescription">Description</label>
+                <textarea input ng-model="model.user.description"
+                          type="text" class="form-control" id="exampleInputDescription" placeholder="Description" rows="5"></textarea>
+
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+<nav class="navbar navbar-fixed-bottom cl-blue-navbar">
+    <div class="container-fuild">
+        <a href="#!/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>
+
