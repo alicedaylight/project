@@ -1,38 +1,22 @@
-// following snippet of code binds the /login route
-// to its template login.view.client.html
-// config allows you to config your modules
-// like navigation
-// give it name of some function that implements your configuration notice that
-// Config and function Config is the same
-
 (function() {
     angular
         .module("WebAppMaker")
         .config(Config);
 
-    // defines how we navigate
-    // centralizing all of the navigation in one central place
-    // Config is going to ask for various things to configure
-    // ask service to pass from the framework is $routeProvider
-    // objects that are used for configinugin .. first they start with
-    // what you are configuring and all end with provider
-    // $routeProvider is given to us from ngRoute which is the dependency
-    // on our app/index.html page ( iforget which)
-
-
-
-    // if you see the following routes on the url.. I would like you to display
-    // the following template
-    // angular uses whatever comes after the # and not the begining of the url
-
-    // #! sign loads the file.. and uses whatever comes afterwards to jump
-    // to different sections in the same page
-    // angular listens for changes after the # in the url
-    // if it changes.. #/
-    // #! bootstrap 6 needs #!
-    // this is what I should inject into the view "ng-view"
     function Config($routeProvider) {
         $routeProvider
+            .when("/home", {
+                templateUrl: "views/user/templates/home.view.client.html",
+                controller: "HomeController",
+                controllerAs: "model"
+            })
+
+            .when("/makeup/search", {
+                templateUrl: "views/makeup/templates/makeup-search.view.client.html",
+                controller: "MakeupSearchController",
+                controllerAs: "model"
+            })
+
             .when("/login", {
                 templateUrl: "views/user/templates/login.view.client.html",
                 controller: "LoginController",
@@ -59,18 +43,18 @@
                 }
             })
 
-            // .when('#!/user/{{model.uid}}/review/new', {
-            //     templateUrl: "views/review/templates/review-new.view.client.html" ,
-            //     controller: "ReviewController",
-            //     controllerAs: "model",
-            //     resolve: {
-            //         currentUser : checkLoggedIn
-            //     }
-            // })
-            // collen says it's not a literal string
-            // it's a placeholder and we're giving it the name uid
-            // whatever is mapped there will be availible through
-            // some variable called 'uid'
+            .when("/profile/:uid", {
+                templateUrl: "views/user/templates/profile.public.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {
+                    // my own function goes out to server is user logged in?
+                    // no: reject, yes: resolve go through
+                    currentUser : checkLoggedIn
+                }
+            })
+
+
             .when("/website", { //4
                 templateUrl: "views/website/templates/website-list.view.client.html",
                 controller: "WebsiteListController",
@@ -158,7 +142,9 @@
             })
 
             .otherwise({
-                redirectTo : "/login"
+                // redirectTo : "/login"
+                redirectTo : "/home"
+
             });
     }
 

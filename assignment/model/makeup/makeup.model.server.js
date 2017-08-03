@@ -1,75 +1,79 @@
 var mongoose = require("mongoose");
-var makeupSchema = require('./makeup.schema.server.js');
-var makeupModel = mongoose.model('MakeupModel', makeupSchema);
+var makeupSchema = require('./makeup.schema.server');
+var makeupModel = mongoose.model('Makeup', makeupSchema);
+var websiteModel = require('../website/website.model.server');
 
 module.exports = makeupModel;
 
-// makeupModel.createUser = createUser;
-// makeupModel.findUserById = findUserById;
-// makeupModel.findAllUsers = findAllUsers;
-// makeupModel.findUserByUsername = findUserByUsername;
-// makeupModel.findUserByCredentials = findUserByCredentials;
-// makeupModel.updateUser = updateUser;
-// makeupModel.deleteUser = deleteUser;
-// makeupModel.addWebsite = addWebsite;
-// makeupModel.deleteWebsite = deleteWebsite;
-// makeupModel.findUserByFacebookId = findUserByFacebookId;
-//
-// module.exports = makeupModel;
-//
-// function findUserByFacebookId(facebookId) {
-//     return User.findOne({'facebook.id': facebookId});
-// }
-//
-//
-// function createUser(user) {
-//     return userModel.create(user);
-// }
-//
-// function findUserById(userId) {
-//     return userModel.findById(userId);
-// }
-//
-// function findAllUsers() {
-//     return userModel.find();
-// }
-//
-// function findUserByUsername(username) {
-//     return userModel.findOne({username: username});
-// }
-//
-// function findUserByCredentials(username, password) {
-//     return userModel.findOne({username: username, password: password});
-// }
-//
-// function updateUser(userId, newUser) {
-//     delete  newUser.username;
-//     delete  newUser.password;
-//     return userModel.update({_id: userId}, {$set: newUser});
-// }
-//
-// function deleteUser(userId) {
-//
-//     return userModel
-//         .remove({_id: userId});
-// }
-//
-// function addWebsite(userId, websiteId) {
-//     return userModel
-//         .findById(userId)
-//         .then(function (user) {
-//             user.websites.push(websiteId);
-//             return user.save();
-//         });
-// }
-//
-// function deleteWebsite(userId, websiteId) {
-//     return userModel
-//         .findById(userId)
-//         .then(function (user) {
-//             var index = user.websites.indexOf(websiteId);
-//             user.websites.splice(index, 1);
-//             return user.save();
-//         });
-// }
+makeupModel.createMakeup = createMakeup;
+makeupModel.findAllMakeupsForWebsite = findAllMakeupsForWebsite;
+makeupModel.findMakeupById = findMakeupById;
+makeupModel.updateMakeup = updateMakeup;
+makeupModel.deleteMakeupFromWebsite = deleteMakeupFromWebsite;
+makeupModel.deleteMakeupsByWebsite = deleteMakeupsByWebsite;
+makeupModel.addWidget = addWidget;
+makeupModel.deleteWidget = deleteWidget;
+
+function createMakeup(websiteId, makeup) {
+    makeup._website = websiteId;
+    return makeupModel
+        .create(makeup)
+        .then(function (makeup) {
+            return websiteModel
+                .addMakeupToWebsite(websiteId, makeup._id);
+        });
+}
+
+function findAllMakeupsForWebsite(websiteId) {
+    return makeupModel
+        .find({_website: websiteId})
+        .populate('_website')
+        .exec();
+}
+
+function findMakeupById(makeupId) {
+    return makeupModel
+        .findById(makeupId);
+}
+
+function updateMakeup(makeupId, makeup) {
+    delete  makeup._website;
+    return makeupModel
+        .update({_id: makeupId}, {$set: makeup});
+}
+
+function deleteWidget(makeupId, widgetId) {
+    return makeupModel
+        .findById(makeupId)
+        .then(function (makeup) {
+            var index = makeup.widgets.indexOf(widgetId);
+            makeup.widgets.splice(index, 1);
+            return makeup.save();
+        });
+}
+
+function addWidget(makeupId, widgetId) {
+    return makeupModel
+        .findById(makeupId)
+        .then(function (makeup) {
+            makeup.widgets.push(widgetId);
+            return makeup.save();
+        });
+}
+
+
+function deleteMakeupFromWebsite(websiteId, makeupId) {
+    return makeupModel
+        .remove({_id: makeupId})
+        .then(function (status) {
+            return websiteModel
+                .deleteMakeup(websiteId, makeupId);
+        });
+}
+
+function deleteMakeupsByWebsite(websiteId) {
+    return makeupModel
+        .remove({_website: websiteId});
+
+}
 

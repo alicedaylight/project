@@ -1,5 +1,6 @@
 module.exports = function (app) {
     var pageModel = require('../model/page/page.model.server');
+    var http = require('http');
 
     app.post("/api/website/:websiteId/page", createPage);
     app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
@@ -8,6 +9,42 @@ module.exports = function (app) {
     app.delete("/api/website/:websiteId/page/:pageId", deletePageFromWebsite);
     app.delete("/api/website/:websiteId/page", deletePagesByWebsite);
 
+    app.get("/api/makeupSearchBrand",searchByBrand );
+    // app.get("/api/makeupSearchType",searchByType );
+    //
+    // app.get("/api/makeupSearchTag",searchByType );
+
+
+
+    function searchByBrand(req, res) {
+        console.log("search by brand")
+        var brand = req.params.brand;
+
+        var options = {
+            host: 'http://makeup-api.herokuapp.com/',
+            path: '/api/v1/products.json?brand=' + brand
+        };
+
+        var query = "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + brand;
+
+        callback = function(response) {
+            var str = "";
+
+            response.on('data', function(chunk) {
+                str += chunk;
+            });
+
+            reponse.on('end', function() {
+                console.log(str);
+            });
+
+            console.log(response)
+
+        };
+
+        http.request(options, callback).end();
+
+    }
 
     function createPage(req, res) {
         var websiteId = req.params.websiteId;

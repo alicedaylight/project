@@ -5,32 +5,36 @@
             MyProfile
         </a>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#services">Services</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="/#!/website">Product Reviews</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#about">About</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#team">Community</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Login</a>
-                </li>
-            </ul>
-        </div>
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!--<li class="hidden">-->
+                    <!--<a href="#page-top"></a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a class="page-scroll" href="#services">Services</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a class="page-scroll" href="/#!/website">Product Reviews</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a class="page-scroll" href="#about">About</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a class="page-scroll" href="#team">Community</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a class="page-scroll" href="#contact">Login</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
 
-        <!--<a ng-click="model.updateUser()" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">-->
-            <!--<span class="glyphicon glyphicon-ok"></span>-->
-        <!--</a>-->
+        <a href="/#!/profile" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-eye-open"></span>
+        </a>
+
+        <a href="/#!/website/new" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
     </div>
 </nav>
 
@@ -41,7 +45,7 @@
     <div ng-show="model.updated" class="alert alert-success" role="alert">{{model.updated}}</div>
 
     <form class="cl-form-bottom-padding">
-
+        <div class="col-lg-6">
 
         <div class="form-group row">
             <div class="col-xs-5">
@@ -56,8 +60,17 @@
             <div class="col-sm-6">
                 <div class="team-member">
                     <img src="img/team/kim.jpg" class="img-responsive img-circle" alt="">
-                    <h4>Kim K</h4>
-                    <p class="text-muted">Makeup Connoisseur</p>
+                    <h4>{{model.user.username}}</h4>
+                    <p class="text-muted">{{model.user.firstName}}</p>
+
+                    <div class="form-group row">
+                        <div class="col-xs-5">
+                            <!--<a ng-click="model.updateUser(model.user)"-->
+                               <a class="btn btn-success btn-block">Change Photo</a>
+
+                        </div>
+                    </div>
+
                     <ul class="list-inline social-buttons">
                         <li><a href="#"><i class="fa fa-twitter"></i></a>
                         </li>
@@ -66,6 +79,21 @@
                         <li><a href="#"><i class="fa fa-linkedin"></i></a>
                         </li>
                     </ul>
+
+                    <!--website list-->
+
+                    <div ng-repeat="website in model.websites" class="container">
+
+                        <ul class="list-group borderless">
+                            <li class="list-group-item">
+                                <a href="#!/website/{{website._id}}">
+                                    <span class="glyphicon glyphicon-pencil pull-left"></span>
+                                </a>
+                                <a href="#!/website/{{website._id}}/page">{{website.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
 
@@ -74,80 +102,79 @@
         <div class="form-group row">
             <div class="col-xs-5">
                 <label for="email">Email</label>
-                <input ng-model="model.user.email"
-                       type="email"
-                       class="form-control"
-                       placeholder="alicedaylight@gmail.com"
-                       id="email" required>
+                <input ng-model="model.user.email" type="email" class="form-control" placeholder="alicedaylight@gmail.com" id="email" required>
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-xs-5">
                 <label for="fName">First Name</label>
-                <input ng-model="model.user.firstName"
-                       type="text"
-                       class="form-control"
-                       placeholder="Alice"
-                       id="fName" required>
+                <input ng-model="model.user.firstName" type="text" class="form-control" placeholder="Alice" id="fName" required>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-xs-5">
                 <label for="lName">Last Name</label>
-                <input ng-model="model.user.lastName"
-                       type="text"
-                       class="form-control"
-                       placeholder="Day"
-                       id="lName" required>
+                <input ng-model="model.user.lastName" type="text" class="form-control" placeholder="Day" id="lName" required>
+            </div>
+        </div>
 
+        <div class="form-group row">
+            <div class="col-xs-5"><a ng-click="model.updateUser(model.user)" class="btn btn-success btn-block">Update</a>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-5"><a ng-click="model.deleteUser(model.user)" class="btn btn-danger btn-block">Unregister</a>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-5"><a class="btn btn-primary btn-block" href="#!/website">Websites</a>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-xs-5">
-                <label for="age">Age</label>
-                <input ng-model="model.user.age"
-                       type="text"
-                       class="form-control"
-                       placeholder="Age"
-                       id="age" required>
-
+                <a class="btn btn-danger btn-block" ng-click="model.logout()">Logout</a>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-xs-5">
-                <a ng-click="model.updateUser(model.user)"
-                   class="btn btn-success btn-block">Update</a>
-
+                <a class="btn btn-primary btn-block" href="#!/review">My Reviews</a>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-xs-5">
-                <a ng-click="model.deleteUser(model.user)"
-                   class="btn btn-danger btn-block">Unregister</a>
 
-            </div>
         </div>
-        <div class="form-group row">
-            <div class="col-xs-5">
-                <a class="btn btn-primary btn-block"
-                   href="#!/website">Websites</a>
 
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-xs-5">
-                <a class="btn btn-danger btn-block"
-                   ng-click="model.logout()">Logout</a>
+        <div class="col-lg-6">
 
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-xs-5">
-                <a class="btn btn-primary btn-block"
-                   href="#!/review">My Reviews</a>
+            <!--<div class="col-sm-6">-->
+            <!--<div class="team-member">-->
+            <!--<img src="img/team/kim.jpg" class="img-responsive img-circle" alt="">-->
+            <!--<h4>Kim K</h4>-->
+            <!--<p class="text-muted">Makeup Connoisseur</p>-->
 
-            </div>
+            <!--<div class="form-group row">-->
+            <!--<div class="col-xs-5">-->
+            <!--&lt;!&ndash;<a ng-click="model.updateUser(model.user)"&ndash;&gt;-->
+            <!--<a class="btn btn-success btn-block">Change Photo</a>-->
+
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--<ul class="list-inline social-buttons">-->
+            <!--<li><a href="#"><i class="fa fa-twitter"></i></a>-->
+            <!--</li>-->
+            <!--<li><a href="#"><i class="fa fa-facebook"></i></a>-->
+            <!--</li>-->
+            <!--<li><a href="#"><i class="fa fa-linkedin"></i></a>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</div>-->
+
+
+
+
+
         </div>
 
     </form>

@@ -3,7 +3,38 @@
         .module("WebAppMaker")
         .controller("LoginController", LoginController)
         .controller("RegisterController", RegisterController)
-        .controller("ProfileController", ProfileController);
+        .controller("ProfileController", ProfileController)
+        .controller("HomeController", HomeController);
+
+    // same as login
+    function HomeController($location, UserService) {
+        console.log("inside home controller");
+        // vm is a variable bound to the controller instance that allow controllers and views to exchange data and events
+        var vm = this;
+        // declares a variable named "login" on the left hand side of the assignment
+        // assigns the function login (below) to this variable
+        vm.login = login;
+
+        function login(username, password) {
+            if (username === undefined || username === null || username === "" || password === undefined || password === "") {
+                vm.error = "Username and Passwords cannot be empty.";
+                return;
+            }
+
+            UserService
+                .login(username, password)
+                // found is the user object
+                .then(function(found) {
+                    console.log(found);
+                    if(found !== null) {
+                        $location.url('/profile');
+                    } else {
+                        vm.message = "sorry," + username + " not found. please try again";
+                    }
+                });
+        }
+
+    }
 
     function LoginController($location, UserService) {
         console.log("inside login controller");
@@ -71,7 +102,7 @@
 
     // routeParams.. allow us to declare all of the 'when's' in config ngRoute
     //routeParams allow you to retrieve params from the route
-    function ProfileController($timeout, UserService, $location, currentUser) {
+    function ProfileController($timeout, UserService, $location, currentUser, WebsiteService) {
         var vm = this;
         //vm.uid = $routeParams.uid;
         vm.userId = currentUser._id;
@@ -126,6 +157,14 @@
                 }, function () {
                     vm.error = "Unable to unregister you";
                 });
+        }
+
+        WebsiteService
+            .findWebsitesByUser(vm.userId)
+            .then(renderWebsites);
+
+        function renderWebsites(websites) {
+            vm.websites = websites;
         }
 
     }
