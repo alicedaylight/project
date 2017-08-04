@@ -64,14 +64,35 @@
         <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 
         <form>
+            <!--<div class="adjusted-li">-->
+                <!--<div class="relative-position">-->
+                    <!--<div class="row">-->
+                        <!--<img class="img-responsive" alt="Responsive image" ng-src="{{widget.url}}"/>-->
+
+                        <!--<div class="pull-right cl-icon-padding">-->
+                            <!--<a href="#!/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">-->
+                                <!--<span class="glyphicon glyphicon-cog"></span>-->
+                            <!--</a>-->
+                            <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
+
             <div class="form-group">
-                <label for="exampleInputName">Website Name</label>
+                <label for="exampleInputName">Product Name</label>
                 <input ng-model="model.website.name"
                          class="form-control" id="exampleInputName">
+            </div>
+            <div class="form-group">
+                <label for="productCategory">Product Category</label>
+                <textarea input ng-model="model.user.description"
+                          type="text" class="form-control" id="productCategory" rows="5"></textarea>
 
             </div>
             <div class="form-group">
-                <label for="exampleInputDescription">Website Description</label>
+                <label for="exampleInputDescription">Product Description</label>
                 <textarea input ng-model="model.website.desc" class="form-control" id="exampleInputDescription" rows="5"></textarea>
             </div>
             <!--<a href="#!/user/:uid/website" class="btn btn-danger btn-block">Delete</a>-->

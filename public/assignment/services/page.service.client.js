@@ -12,10 +12,37 @@
             "updatePage" : updatePage,
             "deletePage" : deletePage,
             "deletePageFromWebsite": deletePageFromWebsite,
-            "deletePagesByWebsite" : deletePagesByWebsite
+            "deletePagesByWebsite" : deletePagesByWebsite,
+            "searchByBrand" : searchByBrand,
+            "searchByType" : searchByType
+            // "searchByTag" : searchByTag
         };
 
         return services;
+
+        function searchByBrand(brand) {
+            // var url = "/api/makeupSearchBrand";
+            var url =  "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + brand;
+
+            return $http.get(url, brand)
+            // "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + brand
+                .then(function(response) {
+                    console.log(response);
+                    return response.data;
+                });
+        }
+
+        function searchByType(type) {
+            var url =  "http://makeup-api.herokuapp.com/api/v1/products.json?product_type=" + type;
+
+            return $http.get(url, type)
+            // "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + brand
+                .then(function(response) {
+                    console.log(response);
+                    return response.data;
+                });
+        }
+
 
 
         function createPage(websiteId, page) {

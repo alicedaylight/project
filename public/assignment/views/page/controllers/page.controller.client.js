@@ -24,38 +24,67 @@
 
 
     function NewPageController($routeParams, PageService, $location, currentUser) {
+        // console.log("inside makeupsearch")
         var vm = this;
-        vm.uid = currentUser._id;
-        vm.wid = $routeParams.wid;
-        vm.pid = $routeParams.pid;
-        vm.newPage = newPage;
+        vm.search = search;
 
-        init();
+        function search(brand, type) {
 
-        // need to update the page-new-view to add a ng-repeat for page in model.pages
-        function init() {
+            // if ((brand === undefined || brand === null || brand === "") &&
+            //     (type === undefined || type === null || type === "") )  {
+            //     vm.error = "search fields cannot be empty.";
+            //     return;
+            // }
+
             PageService
-                .findAllPagesForWebsite(vm.wid)
+                .searchByBrand(brand)
                 .then(function(pages) {
                     vm.pages = pages;
                 });
+
+            PageService
+                .searchByType(type)
+                .then(function(pages) {
+                    vm.pages = pages;
+                });
+
+
+            console.log("brand" + brand);
+
+            // var vm = this;
+            // vm.uid = currentUser._id;
+            // vm.wid = $routeParams.wid;
+            // vm.pid = $routeParams.pid;
+            // vm.newPage = newPage;
+            //
+            // init();
+            //
+            // // need to update the page-new-view to add a ng-repeat for page in model.pages
+            // function init() {
+            //     PageService
+            //         .findAllPagesForWebsite(vm.wid)
+            //         .then(function(pages) {
+            //             vm.pages = pages;
+            //         });
+            // }
+            //
+            // function newPage(name, description) {
+            //     if(name === null || name === undefined || name === " ") {
+            //         vm.error = "Page name cannot be empty";
+            //         return;
+            //     }
+            //     var newPage = {
+            //         name: name,
+            //         description : description
+            //     };
+            //     PageService
+            //         .createPage(vm.wid, newPage)
+            //         .then(function (page) {
+            //             $location.url("/website/" + vm.wid + "/page");
+            //         });
+            // }
         }
 
-        function newPage(name, description) {
-            if(name === null || name === undefined || name === " ") {
-                vm.error = "Page name cannot be empty";
-                return;
-            }
-            var newPage = {
-                name: name,
-                description : description
-            };
-            PageService
-                .createPage(vm.wid, newPage)
-                .then(function (page) {
-                    $location.url("/website/" + vm.wid + "/page");
-                });
-        }
     }
 
 

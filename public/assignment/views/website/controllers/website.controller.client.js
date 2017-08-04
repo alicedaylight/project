@@ -20,27 +20,55 @@
             }
     }
 
-    function NewWebsiteController(WebsiteService, $location, currentUser) {
+    function NewWebsiteController(WebsiteService, MakeupService, $location, currentUser) {
         var vm = this;
-        vm.uid = currentUser._id;
-        // vm.wid = $routeParams.wid;
-        // vm.pid = $routeParams.pid;
-        vm.newWebsite = newWebsite;
+        vm.search = search;
 
-        function newWebsite(name, description) {
-            if (name === undefined || name === null || name === "") {
-                vm.error = "Name cannot be empty.";
-                return;
-            }
-            var newWebsite = {
-                name: name,
-                desc: description
-            };
-            return WebsiteService
-                .createWebsite(vm.uid, newWebsite)
-                .then (function (website) {
-                    $location.url("/website");
+        function search(brand, type) {
+            //     if (brand === undefined || brand === null || brand === "") {
+            //         vm.error = "Brand cannot be empty.";
+            //         return;
+            //     }
+
+            //     if (type === undefined || type === null || type === "") {
+            //         vm.error = "Type cannot be empty.";
+            //         return;
+            //     }
+
+
+            MakeupService
+                .searchByBrand(brand)
+                .then(function(makeups) {
+                    vm.makeups = makeups;
                 });
+
+            MakeupService
+                .searchByType(type)
+                .then(function(makeups) {
+                    vm.makeups = makeups;
+                });
+
+            MakeupService
+                .searchByBrandType(brand, type)
+                .then(function(makeups) {
+                    vm.makeups = makeups;
+                });
+
+
+            console.log("brand" + brand);
+            console.log("type" + type);
+
+
+        }
+
+
+        // to load left side of the view
+        WebsiteService
+            .findWebsitesByUser(vm.uid)
+            .then(renderWebsites);
+
+        function renderWebsites(websites) {
+            vm.websites = websites;
         }
     }
 
@@ -96,6 +124,14 @@
                     vm.error = "Unable to delete you";
                 });
         }
+
+        // WebsiteService
+        //     .findWebsitesByUser(vm.uid)
+        //     .then(renderWebsites);
+        //
+        // function renderWebsites(websites) {
+        //     vm.websites = websites;
+        // }
     }
 
 })();
