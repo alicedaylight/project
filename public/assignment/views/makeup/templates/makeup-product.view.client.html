@@ -1,8 +1,6 @@
 <nav class="navbar navbar-fixed-top cl-blue-navbar">
     <div class="row container-fluid">
 
-        MAKEUP PRODUCT PAGE
-        <!--check url-->
         <div class="col-sm-8">
             <!--<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>-->
 
@@ -20,7 +18,8 @@
             </div>
             <div class="navbar-header">
                 <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/new">
-                    New Website (Create Review)
+                    <!--Product Detail for {{model.makeup.name}}-->
+                    Product Details
                 </a>
             </div>
         </div>
@@ -32,28 +31,32 @@
 <!--// same as website list-->
 <div class="row container-fluid">
 
+    <div class="container">
+        <!--<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>-->
+        <form class="cl-form-bottom-padding">
+            <h1>{{model.makeup.name}}</h1>
+            <h4>Brand: {{model.makeup.brand}}</h4>
+            <h5>{{model.makeup.price}}</h5>
+            <h5>{{model.makeup.rating}}</h5>
+            <h5>{{model.makeup.category}}</h5>
 
-{{makeup.description}}
-
-    {{model.makeup.id}}
-    {{model.makeup.brand}}
-    {{model.makeup.name}}
-    {{model.makeup.price}}
-    <img class="img-responsive" src="{{model.makeup.image_link}}" />
-    {{model.makeup.description}}
-    {{model.makeup.rating}}
-    {{model.makeup.category}}
+            <img class="img-responsive" src="{{model.makeup.image_link}}"/>
+            <h6>Product Description: </h6>
+            {{model.makeup.description}}
 
 
+            <h5>Enter Your Review Below</h5>
 
-
-    <label for="exampleInputDescription">Product Description</label>
+    <label for="exampleInputDescription"></label>
     <textarea input ng-model="model.description"
     type="text" class="form-control" id="exampleInputDescription" placeholder="Description" rows="5"></textarea>
 
     <a class="btn btn-success btn-block"
        ng-click="createReview(model.description, model.makeup.brand, model.makeup.type, model.makeup.productId)">Create</a>
 
+
+        </form>
+    </div>
 
 </div>
 

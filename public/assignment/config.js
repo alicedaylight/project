@@ -96,30 +96,30 @@
                     currentUser : checkLoggedIn
                 }
             })
-            .when("/website/:wid/page", {
-                templateUrl: "views/page/templates/page-list.view.client.html",
-                controller: "PageListController",
-                controllerAs: "model",
-                resolve: {
-                    currentUser : checkLoggedIn
-                }
-            })
-            .when("/website/:wid/page/new", {
-                templateUrl: "views/page/templates/page-new.view.client.html",
-                controller: "NewPageController",
-                controllerAs: "model",
-                resolve: {
-                    currentUser : checkLoggedIn
-                }
-            })
-            .when("/website/:wid/page/:pid", {
-                templateUrl: "views/page/templates/page-edit.view.client.html",
-                controller: "EditPageController",
-                controllerAs: "model",
-                resolve: {
-                    currentUser : checkLoggedIn
-                }
-            })
+            // .when("/website/:wid/page", {
+            //     templateUrl: "views/page/templates/page-list.view.client.html",
+            //     controller: "PageListController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         currentUser : checkLoggedIn
+            //     }
+            // })
+            // .when("/website/:wid/page/new", {
+            //     templateUrl: "views/page/templates/page-new.view.client.html",
+            //     controller: "NewPageController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         currentUser : checkLoggedIn
+            //     }
+            // })
+            // .when("/website/:wid/page/:pid", {
+            //     templateUrl: "views/page/templates/page-edit.view.client.html",
+            //     controller: "EditPageController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         currentUser : checkLoggedIn
+            //     }
+            // })
             // see all of the widgets from a certain page of a certain user
             .when("/website/:wid/page/:pid/widget", {
                 templateUrl: "views/widget/templates/widget-list.view.client.html",
@@ -129,8 +129,12 @@
                     currentUser : checkLoggedIn
                 }
             })
-            .when("/website/:wid/page/:pid/widget/new", {
-                templateUrl: "views/widget/templates/widget-chooser.view.client.html",
+
+            // #!/website/{{model.wid}}/page/{{model.pid}}/widget/create/IMAGE
+            .when("/image/new", {
+                templateUrl: "views/widget/templates/widget-image-new.view.client.html",
+
+                // templateUrl: "views/widget/templates/widget-chooser.view.client.html",
                 controller: "NewWidgetController",
                 controllerAs: "model",
                 resolve: {
@@ -138,7 +142,7 @@
                 }
             })
 
-            .when('/website/:wid/page/:pid/widget/create/:wtype', {
+            .when('/image/create/:wtype', {
                 templateUrl : "views/widget/templates/widget-new.view.client.html",
                 controller: "CreateWidgetController",
                 controllerAs: "model",
@@ -148,17 +152,43 @@
             })
 
 
-            .when("/website/:wid/page/:pid/widget/:wgid", {
-                templateUrl: "views/widget/templates/widget-edit.view.client.html",
+            .when("/image/edit", {
+                templateUrl: "views/widget/templates/widget-image-edit.view.client.html",
                 controller: "EditWidgetController",
                 controllerAs: "model",
                 resolve: {
                     currentUser : checkLoggedIn
                 }
             })
+            // .when("/website/:wid/page/:pid/widget/new", {
+            //     templateUrl: "views/widget/templates/widget-chooser.view.client.html",
+            //     controller: "NewWidgetController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         currentUser : checkLoggedIn
+            //     }
+            // })
+            //
+            // .when('/website/:wid/page/:pid/widget/create/:wtype', {
+            //     templateUrl : "views/widget/templates/widget-new.view.client.html",
+            //     controller: "CreateWidgetController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         currentUser : checkLoggedIn
+            //     }
+            // })
+            //
+            //
+            // .when("/website/:wid/page/:pid/widget/:wgid", {
+            //     templateUrl: "views/widget/templates/widget-edit.view.client.html",
+            //     controller: "EditWidgetController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         currentUser : checkLoggedIn
+            //     }
+            // })
 
             .otherwise({
-                // redirectTo : "/login"
                 redirectTo : "/home"
 
             });

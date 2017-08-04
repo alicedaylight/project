@@ -1,28 +1,28 @@
 <nav class="navbar navbar-fixed-top cl-blue-navbar">
     <div class="row container-fluid">
 
-        <div class="col-sm-4 hidden-xs">
-            <div class="navbar-text pull-left cl-text-white no-margin-left" >
-                <a href="#!/user/{{model.uid}}/website" class="cl-text-white">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </div>
-            <div class="navbar-header">
-                <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/new">
-                    Websites
-                </a>
-            </div>
-            <div class="navbar-text pull-right">
-                <a ng-click="model.createWebsite(model.name, model.description)" class="cl-text-white">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
+        <!--<div class="col-sm-4 hidden-xs">-->
+            <!--<div class="navbar-text pull-left cl-text-white no-margin-left" >-->
+                <!--<a href="#!/user/{{model.uid}}/website" class="cl-text-white">-->
+                    <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="navbar-header">-->
+                <!--<a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/new">-->
+                    <!--Websites-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="navbar-text pull-right">-->
+                <!--<a ng-click="model.createWebsite(model.name, model.description)" class="cl-text-white">-->
+                    <!--<span class="glyphicon glyphicon-plus"></span>-->
+                <!--</a>-->
+            <!--</div>-->
 
 
-        </div>
+        <!--</div>-->
 
         <!--check url-->
-        <div class="col-sm-8">
+        <!--<div class="col-sm-8">-->
             <!--<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>-->
 
             <div class="navbar-text pull-left cl-text-white no-margin-left">
@@ -44,29 +44,29 @@
             </div>
         </div>
 
-    </div>
+    <!--</div>-->
 </nav>
 
 <!--// ng-repeat of new website that you created-->
 <!--// same as website list-->
 <div class="row container-fluid">
-    <div class="col-sm-4 hidden-xs overflow-y">
+    <!--<div class="col-sm-4 hidden-xs overflow-y">-->
 
-        <div ng-repeat="website in model.websites" class="container">
+        <!--<div ng-repeat="website in model.websites" class="container">-->
 
-            <ul class="list-group borderless">
-                <li class="list-group-item">
-                    <a href="#!/website/{{model.wid}}">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                    <a href="#!/website/{{website._id}}/page">{{website.name}}</a>
-                </li>
+            <!--<ul class="list-group borderless">-->
+                <!--<li class="list-group-item">-->
+                    <!--<a href="#!/website/{{model.wid}}">-->
+                        <!--<span class="glyphicon glyphicon-cog pull-right"></span>-->
+                    <!--</a>-->
+                    <!--<a href="#!/website/{{website._id}}/page">{{website.name}}</a>-->
+                <!--</li>-->
 
-            </ul>
-        </div>
-    </div>
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
 
-    <div class="col-xs-12 col-sm-8 pull-right">
+    <!--<div class="col-xs-12 col-sm-8 pull-right">-->
         <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 
         <form>
@@ -139,7 +139,7 @@
             </div>
 
         </form>
-    </div>
+    <!--</div>-->
 
 </div>
 
