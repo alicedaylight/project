@@ -8,7 +8,7 @@
         </a>
         <div class="navbar-header">
             <a class="navbar-brand cl-text-white" href="#!/user/{{model.uid}}/website">
-                Website
+                Makeup Search
             </a>
         </div>
     </div>
@@ -23,14 +23,14 @@
     </div>
 </nav>
 
-<div ng-repeat="website in model.websites" class="container">
+<div ng-repeat="makeup in model.makeups" class="container">
 
     <ul class="list-group borderless">
         <li class="list-group-item">
             <a href="#!/website/{{website._id}}">
-            <span class="glyphicon glyphicon-pencil pull-right"></span>
+                <span class="glyphicon glyphicon-pencil pull-right"></span>
             </a>
-            <a href="#!/website/{{website._id}}/page">{{website.name}}</a>
+            <a href="#!/website/{{website._id}}/page">{{makeup.name}}</a>
         </li>
     </ul>
 </div>

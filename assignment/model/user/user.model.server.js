@@ -15,6 +15,7 @@ userModel.addWebsite = addWebsite;
 userModel.deleteWebsite = deleteWebsite;
 userModel.findUserByFacebookId = findUserByFacebookId;
 userModel.findUserByGoogleId = findUserByGoogleId;
+userModel.addReview = addReview;
 
 
 module.exports = userModel;
@@ -65,6 +66,15 @@ function addWebsite(userId, websiteId) {
         .findById(userId)
         .then(function (user) {
             user.websites.push(websiteId);
+            return user.save();
+        });
+}
+
+function addReview(userId, reviewId) {
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            user.websites.push(reviewId);
             return user.save();
         });
 }
