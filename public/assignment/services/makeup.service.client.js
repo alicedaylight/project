@@ -22,8 +22,14 @@
 
         return services;
 
-        function createReviewForUser(brand, type, productId, description) {
+        function createReviewForUser(makeup) {
 
+            var url = "      ";
+            return $http.post(url, makeup)
+                .then(function(response) {
+                    console.log(response);
+                    return response.data;
+                });
         }
 
         function findByIdBrandType(id, brand, type) {

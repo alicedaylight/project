@@ -40,11 +40,16 @@
                 });
         }
 
-        function createReview(description) {
+        function createReview(description, brand, type, productId) {
             MakeupService
-                .createReviewForUser()
-                .then(function(review){
-                    $location.url("/website/" + vm.wid + "/page");
+                .createReviewForUser({
+                    description: description,
+                    brand : brand,
+                    type : type,
+                    productId : productId
+                })
+                .then(function(){
+                    $location.url("#!/profile");
                 })
 
         }
