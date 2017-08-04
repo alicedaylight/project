@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         // .controller("MakeupListController", MakeupListController)
         .controller("MakeupSearchController", MakeupSearchController)
-        // .controller("EditMakeupController", EditMakeupController);
+        .controller("MakeupProductController", MakeupProductController);
 
     function MakeupListController($routeParams, MakeupService, currentUser) {
         var vm = this;
@@ -22,6 +22,34 @@
         }
     }
 
+    function MakeupProductController(MakeupService, $routeParams, $location) {
+        var brand = $routeParams.brand;
+        var type = $routeParams.type;
+        var productId = $routeParams.productId;
+
+        var vm = this;
+        init();
+
+        var createReview = createReview;
+
+        function init() {
+            MakeupService
+                .findByIdBrandType(productId, brand, type)
+                .then(function (makeup) {
+                    vm.makeup = makeup;
+                });
+        }
+
+        function createReview(description) {
+            MakeupService
+                .createReviewForUser()
+                .then(function(review){
+                    $location.url("/website/" + vm.wid + "/page");
+                })
+
+        }
+
+    }
 
     function MakeupSearchController($routeParams, MakeupService, $location) {
         // console.log("inside makeupsearch")
@@ -29,34 +57,25 @@
         vm.search = search;
 
         function search(brand, type) {
+            var makeupPromise;
 
-            // if ((brand === undefined || brand === null || brand === "") &&
-            //     (type === undefined || type === null || type === "") )  {
-            //     vm.error = "search fields cannot be empty.";
-            //     return;
-            // }
-
-            MakeupService
-                .searchByBrand(brand)
-                .then(function(makeups) {
-                    vm.makeups = makeups;
-                });
-
-            MakeupService
-                .searchByType(type)
-                .then(function(makeups) {
-                    vm.makeups = makeups;
-                });
-
-            MakeupService
-                .searchByBrandType(brand, type)
-                .then(function(makeups) {
-                    vm.makeups = makeups;
-                });
-
-
-            console.log("brand" + brand);
-
+            if (!brand && !type)  {
+                vm.error = "search fields cannot be empty.";
+                return;
+            }
+            if (brand && type) {
+                makeupPromise = MakeupService
+                    .searchByBrandType(brand, type);
+            } else if (!brand) {
+                makeupPromise = MakeupService
+                    .searchByType(type);
+            } else { // (!type) {
+                makeupPromise = MakeupService
+                    .searchByBrand(brand);
+            }
+            makeupPromise.then(function(makeups) {
+                vm.makeups = makeups;
+            });
         }
 
     }

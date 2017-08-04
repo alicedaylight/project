@@ -10,10 +10,26 @@
                 controller: "HomeController",
                 controllerAs: "model"
             })
+            .when("/makeup/search/new", {
+                templateUrl: "views/makeup/templates/makeup-new.view.client.html",
+                controller: "MakeupController",
+                controllerAs: "model"
+            })
+
+                
+
+            // .when("/makeup/search/new",)
 
             .when("/makeup/search", {
                 templateUrl: "views/makeup/templates/makeup-search.view.client.html",
                 controller: "MakeupSearchController",
+                controllerAs: "model"
+            })
+
+
+            .when("/makeup/brand/:brand/type/:type/:productId", {
+                templateUrl: "views/makeup/templates/makeup-product.view.client.html",
+                controller: "MakeupProductController",
                 controllerAs: "model"
             })
 
@@ -43,7 +59,7 @@
                 }
             })
 
-            .when("/profile/:uid", {
+            .when("/profile/:username", {
                 templateUrl: "views/user/templates/profile.public.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model",

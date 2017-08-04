@@ -1,18 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Product Details</title>
-    {{model.id}}
-    {{model.brand}}
-    {{model.name}}
-    {{model.price}}
-    {{model.image_link}}
-    {{model.description}}
-    {{model.rating}}
-    {{model.category}}
-</head>
-<body>
+<nav class="navbar navbar-fixed-top cl-blue-navbar">
+    <div class="row container-fluid">
 
-</body>
-</html>
+        MAKEUP PRODUCT PAGE
+        <!--check url-->
+        <div class="col-sm-8">
+            <!--<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>-->
+
+            <div class="navbar-text pull-left cl-text-white no-margin-left">
+            </div>
+            <div class="navbar-text pull-right thirty-margin-right">
+                <a ng-click="model.newWebsite(model.user.name, model.user.description)" a href="#!/website" class="cl-text-white">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+            <div class="navbar-text pull-left cl-text-white no-margin-left visible-xs">
+                <a href="#!/user/:uid/website" class="cl-text-white">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/new">
+                    New Website (Create Review)
+                </a>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<!--// ng-repeat of new website that you created-->
+<!--// same as website list-->
+<div class="row container-fluid">
+
+
+{{makeup.description}}
+
+    {{model.makeup.id}}
+    {{model.makeup.brand}}
+    {{model.makeup.name}}
+    {{model.makeup.price}}
+    <img class="img-responsive" src="{{model.makeup.image_link}}" />
+    {{model.makeup.description}}
+    {{model.makeup.rating}}
+    {{model.makeup.category}}
+
+
+
+
+    <label for="exampleInputDescription">Product Description</label>
+    <textarea input ng-model="model.description"
+    type="text" class="form-control" id="exampleInputDescription" placeholder="Description" rows="5"></textarea>
+
+    <a class="btn btn-success btn-block"
+       ng-click="createReview(model.description)">Create</a>
+
+
+</div>
+
+<nav class="navbar navbar-fixed-bottom cl-blue-navbar">
+    <div class="container-fuild">
+        <a href="#!/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>
+

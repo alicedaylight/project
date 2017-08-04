@@ -49,7 +49,12 @@
                 <a href="#!/website/{{model.wid}}/page/{{page._id}}">
                     <span class="glyphicon glyphicon-pencil pull-right"></span></a>
 
-                <a href="#!/website/{{model.wid}}/page/{{page._id}}/widget" >{{makeup.name}}</a>
+                <!--<a href="#!/website/{{model.wid}}/page/{{page._id}}/widget" >{{makeup.name}}</a>-->
+                <a href="#!/makeup/brand/{{makeup.brand}}/type/{{makeup.product_type}}/{{makeup.id}}" >{{makeup.name}}</a>
+
+
+                {{makeup.price}}
+                <!--{{model.image_link}}-->
             </li>
         </ul>
     </div>

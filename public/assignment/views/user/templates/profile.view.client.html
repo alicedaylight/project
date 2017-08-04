@@ -28,13 +28,18 @@
             <!--</ul>-->
         <!--</div>-->
 
-        <a href="/#!/profile" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+        <a href="/#!/profile/:username" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
             <span class="glyphicon glyphicon-eye-open"></span>
         </a>
 
         <a href="/#!/website/new" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
+
+        <a href="/#!/website/new" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+        </a>
+
     </div>
 </nav>
 
@@ -80,8 +85,7 @@
                         </li>
                     </ul>
 
-                    <!--website list-->
-
+                    <!--list of my reviews-->
                     <div ng-repeat="website in model.websites" class="container">
 
                         <ul class="list-group borderless">
@@ -90,6 +94,20 @@
                                     <span class="glyphicon glyphicon-pencil pull-left"></span>
                                 </a>
                                 <a href="#!/website/{{website._id}}/page">{{website.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <!--list of ppl I follow-->
+                    <div ng-repeat="user in model.users" class="container">
+
+                        <ul class="list-group borderless">
+                            <li class="list-group-item">
+                                <a href="#!/website/{{website._id}}">
+                                    <span class="glyphicon glyphicon-pencil pull-left"></span>
+                                </a>
+                                <a href="#!/website/{{website._id}}/page">{{user.name}}</a>
                             </li>
                         </ul>
                     </div>
@@ -145,35 +163,6 @@
         </div>
 
         <div class="col-lg-6">
-
-            <!--<div class="col-sm-6">-->
-            <!--<div class="team-member">-->
-            <!--<img src="img/team/kim.jpg" class="img-responsive img-circle" alt="">-->
-            <!--<h4>Kim K</h4>-->
-            <!--<p class="text-muted">Makeup Connoisseur</p>-->
-
-            <!--<div class="form-group row">-->
-            <!--<div class="col-xs-5">-->
-            <!--&lt;!&ndash;<a ng-click="model.updateUser(model.user)"&ndash;&gt;-->
-            <!--<a class="btn btn-success btn-block">Change Photo</a>-->
-
-            <!--</div>-->
-            <!--</div>-->
-
-            <!--<ul class="list-inline social-buttons">-->
-            <!--<li><a href="#"><i class="fa fa-twitter"></i></a>-->
-            <!--</li>-->
-            <!--<li><a href="#"><i class="fa fa-facebook"></i></a>-->
-            <!--</li>-->
-            <!--<li><a href="#"><i class="fa fa-linkedin"></i></a>-->
-            <!--</li>-->
-            <!--</ul>-->
-            <!--</div>-->
-            <!--</div>-->
-
-
-
-
 
         </div>
 

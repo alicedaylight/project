@@ -20,7 +20,7 @@
             }
     }
 
-    function NewWebsiteController(WebsiteService, $location, currentUser) {
+    function NewWebsiteController(WebsiteService, MakeupService, $location, currentUser) {
         var vm = this;
         vm.search = search;
 
@@ -48,7 +48,7 @@
                     vm.makeups = makeups;
                 });
 
-            MakeupSearvice
+            MakeupService
                 .searchByBrandType(brand, type)
                 .then(function(makeups) {
                     vm.makeups = makeups;
@@ -56,6 +56,8 @@
 
 
             console.log("brand" + brand);
+            console.log("type" + type);
+
 
         }
 

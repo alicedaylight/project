@@ -11,6 +11,8 @@ var userSchema = mongoose.Schema({
     role: {type: String, enum: ['USER', 'ADMIN']},
     websites: [{type: mongoose.Schema.Types.ObjectId, ref: "WebsiteModel"}],
     reviews : [{type: mongoose.Schema.Types.ObjectId, ref: "ReviewModel"}],
+    following : [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
+
     amazonProductId : String, // not sure what form this product id will be displayed in
     dateCreated: {type: Date, default: Date.now()},
     facebook: {

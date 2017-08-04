@@ -15,10 +15,29 @@
             "deleteMakeupsByWebsite" : deleteMakeupsByWebsite,
             "searchByBrand" : searchByBrand,
             "searchByType" : searchByType,
-            "searchByBrandType" : searchByBrandType
+            "searchByBrandType" : searchByBrandType,
+            "createReviewForUser" : createReviewForUser,
+            "findByIdBrandType" : findByIdBrandType
         };
 
         return services;
+
+        function createReviewForUser(brand, type, productId, description) {
+
+        }
+
+        function findByIdBrandType(id, brand, type) {
+            return searchByBrandType(brand, type)
+                .then(function(makeups) {
+                    var foundMakeup = null;
+                    makeups.forEach(function (makeup) {
+                        if (makeup.id == id) {
+                            foundMakeup = makeup;
+                        }
+                    });
+                    return foundMakeup;
+                });
+        }
 
         function searchByBrand(brand) {
             // var url = "/api/makeupSearchBrand";

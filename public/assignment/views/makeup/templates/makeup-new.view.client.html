@@ -1,26 +1,6 @@
 <nav class="navbar navbar-fixed-top cl-blue-navbar">
     <div class="row container-fluid">
 
-        <div class="col-sm-4 hidden-xs">
-            <div class="navbar-text pull-left cl-text-white no-margin-left" >
-                <a href="#!/user/{{model.uid}}/website" class="cl-text-white">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </div>
-            <div class="navbar-header">
-                <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/new">
-                    Websites
-                </a>
-            </div>
-            <div class="navbar-text pull-right">
-                <a ng-click="model.createWebsite(model.name, model.description)" class="cl-text-white">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
-
-
-        </div>
-
         <!--check url-->
         <div class="col-sm-8">
             <!--<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>-->
@@ -39,7 +19,7 @@
             </div>
             <div class="navbar-header">
                 <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/new">
-                    New Website (Search for Makeup)
+                    New Website (Create Review)
                 </a>
             </div>
         </div>
@@ -78,29 +58,32 @@
                 <img src="img/team/lipstick.jpg" id="productImage" class="img-responsive img-circle" alt="">
 
                 <!--<input ng-model="model.user.image"-->
-                       <!--type="text" class="form-control" id="productImage" placeholder="Image">-->
+                <!--type="text" class="form-control" id="productImage" placeholder="Image">-->
 
             </div>
 
-            <!--<div class="form-group">-->
-                <!--<label for="exampleInputName">Product Name</label>-->
-                <!--<input ng-model="model.user.name"-->
-                       <!--type="text" class="form-control" id="exampleInputName" placeholder="Name">-->
-            <!--</div>-->
+            <!--{{model.id}}-->
+            <!--{{model.brand}}-->
+            <!--{{model.name}}-->
+            <!--{{model.price}}-->
+            <!--{{model.image_link}}-->
+            <!--{{model.description}}-->
+            <!--{{model.rating}}-->
+            <!--{{model.category}}-->
 
             <div class="form-group">
                 <label for="productType">Product Type</label>
                 <select ng-model="model.type" multiple class="form-control" id="productType">
-                    <option>Blush</option>
-                    <option>Bronzer</option>
-                    <option>Eyebrow</option>
-                    <option>Eyeliner</option>
-                    <option>Eyeshadow</option>
-                    <option>Foundation</option>
-                    <option>LipLiner</option>
-                    <option>Lipstick</option>
-                    <option>Mascara</option>
-                    <option>Nail Polish</option>
+                    <option> Blush</option>
+                    <option> Bronzer</option>
+                    <option> Eyebrow</option>
+                    <option> Eyeliner</option>
+                    <option> Eyeshadow</option>
+                    <option> Foundation</option>
+                    <option> LipLiner</option>
+                    <option> Lipstick</option>
+                    <option> Mascara</option>
+                    <option> Nail Polish</option>
 
                 </select>
 
@@ -112,22 +95,25 @@
                     <option> butter london </option>
                     <option> cargo cosmetics </option>
                     <option> china glaze </option>
+                    <option> dalish </option>
                     <option> dr. hauschka </option>
                     <option> e.l.f. </option>
                     <option> essie </option>
                     <option> iman </option>
                     <option> l'oreal </option>
                     <option> marcelle </option>
-                    <option>maybelline </option>
+                    <option> maybelline </option>
                     <option> milani </option>
                     <option> mineral fusion </option>
                     <option> misa </option>
                     <option> mistura </option>
+                    <option> moov </option>
                     <option> nyx </option>
                     <option> orly </option>
                     <option> misa </option>
                     <option> pacifica </option>
                     <option> physicians formula </option>
+                    <option> piggy paint </option>
                     <option> pure anada </option>
                     <option> revlon </option>
                     <option> salon perfect </option>
@@ -143,12 +129,15 @@
             </div>
 
             <div class="form-group">
-                <a class="btn btn-primary btn-block"
-                   ng-click="model.search(model.brand, model.type)">Search</a>
-                <!--<label for="exampleInputDescription">Product Description</label>-->
-                <!--<textarea input ng-model="model.user.description"-->
-                          <!--type="text" class="form-control" id="exampleInputDescription" placeholder="Description" rows="5"></textarea>-->
+                <label for="exampleInputDescription">Product Description</label>
+                <textarea input ng-model="model.user.description"
+                type="text" class="form-control" id="exampleInputDescription" placeholder="Description" rows="5"></textarea>
 
+            </div>
+
+            <div class="form-group">
+                <a class="btn btn-primary btn-block"
+                   ng-click="model.search(model.type, model.brand)">Search</a>
             </div>
 
         </form>
