@@ -22,42 +22,73 @@
         }
     }
 
-    function MakeupProductController(MakeupService, $routeParams, $location) {
+    function MakeupProductController(MakeupService, ReviewService, $routeParams, $location) {
         var brand = $routeParams.brand;
         var type = $routeParams.type;
         var productId = $routeParams.productId;
 
-        var vm = this;
-        init();
 
-        var createReview = createReview;
+        var vm = this;
+        vm.createReviewForUser = createReviewForUser;
+        vm.createReviewForMakeup = createReviewForMakeup;
+
+        init();
 
         function init() {
             MakeupService
                 .findByIdBrandType(productId, brand, type)
                 .then(function (makeup) {
+                    console.log('makeup', makeup);
                     vm.makeup = makeup;
                 });
         }
 
-        function createReview(description, brand, type, productId) {
-            MakeupService
-                .createReviewForUser({
+
+        // eventually adds the review to the array of reviews inside of users
+        function createReviewForUser(description, brand, type, productId) {
+            if (description === undefined || description === null || description === "") {
+                vm.error = "Description cannot be empty.";
+                return;
+            } else {
+                var newReview = {
                     description: description,
                     brand : brand,
                     type : type,
                     productId : productId
-                })
-                .then(function(){
-                    $location.url("#!/profile");
-                })
+                };
+                return ReviewService
+                    .createReviewForUser(newReview)
+                    .then(function(){
+                        $location.url("#!/profile/#portfolio");
+                        // $location.url("#!/profile");
+                    });
+            }
+        }
+
+        // eventually adds the review to the array of reviews inside of makeup
+        function createReviewForMakeup(description, brand, type, productId) {
+            if (description === undefined || description === null || description === "") {
+                vm.error = "Description cannot be empty.";
+                return;
+            } else {
+                var newReview = {
+                    description: description,
+                    brand : brand,
+                    type : type,
+                    productId : productId
+                };
+                return MakeupService
+                    .createReviewForMakeup(newReview)
+                    .then(function(){
+                        $location.url("#!/profile/#portfolio");
+                    });
+            }
 
         }
 
     }
 
     function MakeupSearchController($routeParams, MakeupService, $location) {
-        // console.log("inside makeupsearch")
         var vm = this;
         vm.search = search;
 

@@ -47,12 +47,28 @@
 
             <h5>Enter Your Review Below</h5>
 
-    <label for="exampleInputDescription"></label>
-    <textarea input ng-model="model.description"
-    type="text" class="form-control" id="exampleInputDescription" placeholder="Description" rows="5"></textarea>
+    <!--<label for="exampleInputDescription"></label>-->
+    <!--<textarea input ng-model="model.description"-->
+    <!--type="text" class="form-control" id="exampleInputDescription" placeholder="Description" rows="5"></textarea>-->
 
-    <a class="btn btn-success btn-block"
-       ng-click="createReview(model.description, model.makeup.brand, model.makeup.type, model.makeup.productId)">Create</a>
+            <div ng-model="widget.text">
+                <text-angular ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]"
+                        ng-model="model.desc"
+                        type="text"
+                        place-holder="html content"
+                        id="text">
+                </text-angular>
+
+                <a ng-click="model.createReviewForUser(model.desc, model.makeup.brand, model.makeup.product_type, model.makeup.id)" a href="#!/profile"
+                   class="btn btn-success btn-block">
+                    Create New Review
+                </a>
+            </div>
+
+    <!--<a class="btn btn-success btn-block"-->
+       <!--ng-click="model.createReview(model.description, model.makeup.brand, model.makeup.type, model.makeup.productId)">Create</a>-->
 
 
         </form>

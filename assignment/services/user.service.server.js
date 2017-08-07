@@ -12,6 +12,7 @@ module.exports = function(app){
     passport.deserializeUser(deserializeUser); // when cookie comes back from client to unwrap cookie to get id
     var bcrypt = require("bcrypt-nodejs");
 
+
     app.post("/api/user", createUser);
     app.get("/api/user", findUserByUsername);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
@@ -21,13 +22,19 @@ module.exports = function(app){
     app.post  ('/api/user/login', passport.authenticate('local'), login);
     app.post  ('/api/user/logout', logout);
     app.post  ('/api/user/register', register);
+    app.post  ('/api/user/unregister', unregister);
+
 
 
     app.get('/api/user/loggedin', loggedIn);
+    app.get('/api/user/checkAdmin', checkAdmin);
+
 
     app.get("/api/user/:userId", findUserById);
+    app.get("/api/user/", isAdmin, findAllUsers);
+
     app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.delete("/api/user/:userId", isAdmin, deleteUser);
 
     app.get('/auth/google',
         passport.authenticate('google', { scope: ['profile'] }));
@@ -46,16 +53,30 @@ module.exports = function(app){
         callbackURL: process.env.GOOGLE_CALLBACK
     };
 
-    // passport.use(new GoogleStrategy(googleConfig,
-    //     function(accessToken, refreshToken, profile, cb) {
-    //         userModel.findUserByGoogleId({ googleId: profile.id }, function (err, user) {
-    //             return cb(err, user);
-    //         });
-    //     }
-    // ));
-
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
+    function isAdmin(req, res, next) {
+
+    }
+
+
+    function findUserById(req, res) {
+        var userId = req.params.userId;
+        userModel
+            .findUserById(userId)
+            .then(function (user) {
+                res.json(user);
+            });
+    }
+
+    function findAllUsers(req, res) {
+        userModel
+            .findAllUsers()
+            .then(function(users) {
+                res.json(users)
+            })
+
+    }
 
 
     function googleStrategy(token, refreshToken, profile, done) {
@@ -116,10 +137,27 @@ module.exports = function(app){
             });
     }
 
+    function unregister(req, res) {
+        userModel
+            .deleteUser(req.user._id)
+            .then(function (user) {
+                req.logout();
+                res.sendStatus(200);
+            });
+    }
+
     function logout(req, res) {
         req.logout();
         res.sendStatus(200);
 
+    }
+
+    function checkAdmin(req, res) {
+        if (req.isAuthenticated() && req.user.roles.indexOf('ADMIN') > -1) {
+            res.json(req.user);
+        } else {
+            res.send('0');
+        }
     }
 
     // way to validate our session
@@ -212,7 +250,9 @@ module.exports = function(app){
             .findUserById(userId)
             .then(function (user) {
                 res.json(user);
-            });
+            }).catch(function (err) {
+            res.status(500).send(err);
+        });
     }
 
     function updateUser(req, res) {

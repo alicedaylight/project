@@ -12,9 +12,12 @@ userModel.findUserByCredentials = findUserByCredentials;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.addWebsite = addWebsite;
-userModel.deleteWebsite = deleteWebsite;
 userModel.findUserByFacebookId = findUserByFacebookId;
 userModel.findUserByGoogleId = findUserByGoogleId;
+
+
+// keep
+userModel.deleteReview = deleteReview;
 userModel.addReview = addReview;
 
 
@@ -30,6 +33,7 @@ function findUserByGoogleId(googleId) {
 
 
 function createUser(user) {
+    user.roles = ['USER'];
     return userModel.create(user);
 }
 
@@ -74,17 +78,17 @@ function addReview(userId, reviewId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            user.websites.push(reviewId);
+            user.reviews.push(reviewId);
             return user.save();
         });
 }
 
-function deleteWebsite(userId, websiteId) {
+function deleteReview(userId, reviewId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            var index = user.websites.indexOf(websiteId);
-            user.websites.splice(index, 1);
+            var index = user.reviews.indexOf(reviewId);
+            user.reviews.splice(index, 1);
             return user.save();
         });
 }

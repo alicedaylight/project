@@ -10,15 +10,31 @@
                 controller: "HomeController",
                 controllerAs: "model"
             })
+
+
+            .when("/admin/user", {
+                templateUrl: "views/admin/templates/admin-users.view.client.html",
+                controller: "AdminUsersController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkAdmin
+                }
+            })
+
+            .when("/admin", {
+                templateUrl: "views/admin/templates/admin.view.client.html",
+                controller: "AdminController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkAdmin
+                }
+            })
             .when("/makeup/search/new", {
                 templateUrl: "views/makeup/templates/makeup-new.view.client.html",
                 controller: "MakeupController",
                 controllerAs: "model"
             })
 
-                
-
-            // .when("/makeup/search/new",)
 
             .when("/makeup/search", {
                 templateUrl: "views/makeup/templates/makeup-search.view.client.html",
@@ -48,8 +64,22 @@
                 // internally you are going to refer to this controller as the variable
                 // "model"
             })
+
+                // this is the previous profile view
+            // .when("/profile", {
+            //     templateUrl: "views/user/templates/profile.view.client.html",
+            //     controller: "ProfileController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         // my own function goes out to server is user logged in?
+            //         // no: reject, yes: resolve go through
+            //         currentUser : checkLoggedIn
+            //     }
+            // })
+
+
             .when("/profile", {
-                templateUrl: "views/user/templates/profile.view.client.html",
+                templateUrl: "views/user/templates/profile-responsive.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model",
                 resolve: {
@@ -64,8 +94,6 @@
                 controller: "ProfileController",
                 controllerAs: "model",
                 resolve: {
-                    // my own function goes out to server is user logged in?
-                    // no: reject, yes: resolve go through
                     currentUser : checkLoggedIn
                 }
             })
@@ -96,30 +124,7 @@
                     currentUser : checkLoggedIn
                 }
             })
-            // .when("/website/:wid/page", {
-            //     templateUrl: "views/page/templates/page-list.view.client.html",
-            //     controller: "PageListController",
-            //     controllerAs: "model",
-            //     resolve: {
-            //         currentUser : checkLoggedIn
-            //     }
-            // })
-            // .when("/website/:wid/page/new", {
-            //     templateUrl: "views/page/templates/page-new.view.client.html",
-            //     controller: "NewPageController",
-            //     controllerAs: "model",
-            //     resolve: {
-            //         currentUser : checkLoggedIn
-            //     }
-            // })
-            // .when("/website/:wid/page/:pid", {
-            //     templateUrl: "views/page/templates/page-edit.view.client.html",
-            //     controller: "EditPageController",
-            //     controllerAs: "model",
-            //     resolve: {
-            //         currentUser : checkLoggedIn
-            //     }
-            // })
+
             // see all of the widgets from a certain page of a certain user
             .when("/website/:wid/page/:pid/widget", {
                 templateUrl: "views/widget/templates/widget-list.view.client.html",
@@ -197,16 +202,27 @@
 
     function checkLoggedIn(UserService, $q, $location) {
         var deferred = $q.defer();
-        console.log('checkLoggedIn')
         UserService
             .loggedIn()
             .then(function (user) {
                 deferred.resolve(user);
-                console.log('checkLoggedIn success')
 
             }, function() {
                 deferred.reject();
-                $location.url('/login');
+                $location.url('/home');
+            });
+        return deferred.promise;
+    }
+
+    function checkAdmin(UserService, $q, $location) {
+        var deferred = $q.defer();
+        UserService
+            .checkAdmin()
+            .then(function (user) {
+                deferred.resolve(user);
+            }, function() {
+                deferred.reject();
+                $location.url('/home');
             });
         return deferred.promise;
     }
@@ -227,10 +243,5 @@
         return deferred.promise;
     }
 
-    // var adminLoggedIn
-    //write another api ./api/adminLoggedIn
 })();
 
-
-
-// new widget controller controls chooser widget

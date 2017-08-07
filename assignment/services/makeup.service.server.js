@@ -14,6 +14,31 @@ module.exports = function (app) {
     //
     // app.get("/api/makeupSearchTag",searchByType );
 
+    app.post('/api/reviews/makeup', createReviewsForMakeup);
+
+
+    function createReviewsForMakeup(req, res){
+        console.log(req.user);
+
+        var uid = req.user._id;
+        var review = req.body;
+        console.log(uid);
+
+        console.log(review);
+
+        makeupModel
+            .createReviewsForMakeup(uid, review)
+            .then(
+                function(review){
+                    res.json(review);
+                },
+                function(error){
+                    console.log(error);
+
+                    res.sendStatus(400).send(error);
+                }
+            );
+    }
 
 
     function searchByBrand(req, res) {

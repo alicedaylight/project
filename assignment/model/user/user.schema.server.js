@@ -8,9 +8,11 @@ var userSchema = mongoose.Schema({
     age : String,
     email: String,
     phone: String,
-    role: {type: String, enum: ['USER', 'ADMIN']},
+    roles: [{type: String,
+        default: 'USER',
+        enum: ['USER', 'ADMIN']}],
     websites: [{type: mongoose.Schema.Types.ObjectId, ref: "WebsiteModel"}],
-    reviews : [{type: mongoose.Schema.Types.ObjectId, ref: "ReviewModel"}],
+    reviews : [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}],
     following : [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
 
     amazonProductId : String, // not sure what form this product id will be displayed in

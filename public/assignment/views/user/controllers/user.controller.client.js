@@ -102,19 +102,20 @@
 
     // routeParams.. allow us to declare all of the 'when's' in config ngRoute
     //routeParams allow you to retrieve params from the route
-    function ProfileController($timeout, UserService, $location, currentUser, WebsiteService) {
+    function ProfileController($timeout, UserService, $location, currentUser, ReviewService) {
         var vm = this;
         //vm.uid = $routeParams.uid;
         vm.userId = currentUser._id;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
         vm.logout = logout;
+        vm.unregister = unregister;
 
         function logout() {
             UserService
                 .logout()
                 .then(function(){
-                    $location.url('/login');
+                    $location.url('/home');
                 });
         }
 
@@ -143,6 +144,16 @@
                 });
         }
 
+        function unregister() {
+            UserService
+                .unregister()
+                .then(function() {
+                    $location.url('/home');
+                })
+
+
+        }
+
 
         function userError(error) {
             vm.error = "User not found";
@@ -159,12 +170,12 @@
                 });
         }
 
-        WebsiteService
-            .findWebsitesByUser(vm.userId)
-            .then(renderWebsites);
+        ReviewService
+            .findAllReviewsForUser(vm.userId)
+            .then(renderReviews);
 
-        function renderWebsites(websites) {
-            vm.websites = websites;
+        function renderReviews(reviews) {
+            vm.reviews = reviews;
         }
 
     }

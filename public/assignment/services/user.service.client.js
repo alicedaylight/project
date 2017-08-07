@@ -15,9 +15,36 @@
             "login" : login,
             "loggedIn" : loggedIn,
             "logout" : logout,
-            "register" : register
+            "register" : register,
+            "checkAdmin" : checkAdmin,
+            "findAllUsers" : findAllUsers,
+            "unregister" : unregister
         };
         return services;
+
+        function unregister(userObj) {
+            var url = "/api/user/register";
+            return $http.post(url, userObj)
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+
+        function findAllUsers() {
+            var url = "/api/user";
+            return $http.get(url)
+                .then (function (response) {
+                    return response.data;
+                });
+        }
+
+        function checkAdmin() {
+            var url = "/api/user/checkAdmin";
+            return $http.get(url)
+                .then(function(response){
+                    return response.data;
+                });
+        }
 
         function register(userObj) {
             var url = "/api/user/register";

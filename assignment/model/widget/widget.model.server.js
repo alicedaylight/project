@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var widgetSchema = require('./widget.schema.server');
 var widgetModel = mongoose.model('Widget', widgetSchema);
-var pageModel = require('../page/page.model.server');
+// var pageModel = require('../page/page.model.server');
 
 module.exports = widgetModel;
 

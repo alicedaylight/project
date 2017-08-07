@@ -24,10 +24,10 @@
 <a class="page-scroll" href="#portfolio">Product Reviews</a>
 </li>
 <li>
-<a class="page-scroll" href="/#!/website/new">Search</a>
+<a class="page-scroll" href="#about">About</a>
 </li>
 <li>
-<a class="page-scroll" href="#team">Community</a>
+<a ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" class="page-scroll" href="#!/admin">Admin</a>
 </li>
 <li>
 <a class="page-scroll" href="#contact">Login</a>
@@ -59,37 +59,48 @@
 <div class="row">
 <div class="col-lg-12 text-center">
 <h2 class="section-heading">Services</h2>
-<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+<h3 class="section-subheading text-muted">New Features Comming Soon</h3>
 </div>
 </div>
 <div class="row text-center">
 <div class="col-md-4">
 <span class="fa-stack fa-4x">
 <i class="fa fa-circle fa-stack-2x text-primary"></i>
-<i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+<i class="fa fa-pencil-square-o fa-stack-1x fa-inverse"></i>
 </span>
-<h4 class="service-heading">E-Commerce</h4>
+<h4 class="service-heading">Create Reviews</h4>
 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
 </div>
 <div class="col-md-4">
 <span class="fa-stack fa-4x">
 <i class="fa fa-circle fa-stack-2x text-primary"></i>
-<i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+<i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>
 </span>
-<h4 class="service-heading">Responsive Design</h4>
+<h4 class="service-heading">Follow Other Makeup Lovers</h4>
 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
 </div>
 <div class="col-md-4">
 <span class="fa-stack fa-4x">
 <i class="fa fa-circle fa-stack-2x text-primary"></i>
-<i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+<i class="fa fa-heart-o fa-stack-1x fa-inverse"></i>
 </span>
-<h4 class="service-heading">Web Security</h4>
+<h4 class="service-heading">Find New Products</h4>
 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
 </div>
 </div>
 </div>
 </section>
+
+blush</option>-->
+<!--<option>bronzer</option>-->
+<!--<option>eyebrow</option>-->
+<!--<option>eyeliner</option>-->
+<!--<option>eyeshadow</option>-->
+<!--<option>foundation</option>-->
+<!--<option>lipLiner</option>-->
+<!--<option>lipstick</option>-->
+<!--<option>mascara</option>-->
+<!--<option>nail Polish</opti
 
 <!-- Portfolio Grid Section -->
 <section id="portfolio" class="bg-light-gray">
@@ -189,25 +200,86 @@
 </div>
 </section>
 
-
-<!--<input type="text"-->
-       <!--class="form-control"-->
-       <!--placeholder="username"-->
-       <!--ng-model="model.username"/>-->
-<!--<input type="password"-->
-       <!--class="form-control"-->
-       <!--placeholder="password"-->
-       <!--ng-model="model.password "/>-->
-<!--<a class="btn btn-primary btn-block"-->
-   <!--ng-click="model.login(model.username, model.password)">Login</a>-->
-<!--&lt;!&ndash;// this param model.username and model.password is passed into the login function-->
- <!--// inside of loginController &ndash;&gt;-->
-<!--<a class="btn btn-success btn-block"-->
-   <!--href="#!/register">Register</a>-->
-<!--<a href="/auth/facebook" class="btn btn-primary btn-block">-->
-    <!--<span class="fa fa-facebook"></span>-->
-    <!--Facebook-->
-<!--</a>-->
+<!-- About Section -->
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">About</h2>
+                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="timeline">
+                    <li>
+                        <div class="timeline-image">
+                            <img class="img-circle img-responsive" src="img/about/1.jpg" alt="">
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>2009-2011</h4>
+                                <h4 class="subheading">Our Humble Beginnings</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <img class="img-circle img-responsive" src="img/about/2.jpg" alt="">
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>March 2011</h4>
+                                <h4 class="subheading">An Agency is Born</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="timeline-image">
+                            <img class="img-circle img-responsive" src="img/about/3.jpg" alt="">
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>December 2012</h4>
+                                <h4 class="subheading">Transition to Full Service</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <img class="img-circle img-responsive" src="img/about/4.jpg" alt="">
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>July 2014</h4>
+                                <h4 class="subheading">Phase Two Expansion</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <h4>Be Part
+                                <br>Of Our
+                                <br>Story!</h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <!-- Contact Section -->
@@ -245,12 +317,12 @@
                             <!--<p class="help-block text-danger"></p>-->
                             <!--</div>-->
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
+                        <!--<div class="col-md-6">-->
+                            <!--<div class="form-group">-->
+                                <!--<textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>-->
+                                <!--<p class="help-block text-danger"></p>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <div class="clearfix"></div>
                         <div class="col-lg-12 text-center">
                             <div id="success"></div>
@@ -261,7 +333,7 @@
                                 Facebook
                             </a>
                         </div>
-                    </div>
+                    <!--</div>-->
                 </form>
             </div>
         </div>

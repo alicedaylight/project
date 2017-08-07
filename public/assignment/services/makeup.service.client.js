@@ -17,20 +17,34 @@
             "searchByType" : searchByType,
             "searchByBrandType" : searchByBrandType,
             "createReviewForUser" : createReviewForUser,
-            "findByIdBrandType" : findByIdBrandType
+            "findByIdBrandType" : findByIdBrandType,
+
+            // need below
+            "createReviewForMakeup" : createReviewForMakeup
         };
 
         return services;
 
-        function createReviewForUser(makeup) {
+        function createReviewForMakeup(review) {
+            var url = "/api/reviews/makeup";
 
-            var url = "      ";
-            return $http.post(url, makeup)
+            return $http.post(url, review)
                 .then(function(response) {
                     console.log(response);
                     return response.data;
                 });
         }
+
+
+        // function createReviewForUser(makeup) {
+        //
+        //     var url = "      ";
+        //     return $http.post(url, makeup)
+        //         .then(function(response) {
+        //             console.log(response);
+        //             return response.data;
+        //         });
+        // }
 
         function findByIdBrandType(id, brand, type) {
             return searchByBrandType(brand, type)
@@ -96,7 +110,6 @@
 
         }
 
-
         function findMakeupById(makeupId) {
             var url = '/api/makeup/' +makeupId;
             return $http.get(url)
@@ -114,7 +127,6 @@
                 });
 
         }
-
 
         function deleteMakeup(makeupId) {
             var url = '/api/makeup/' +makeupId;
