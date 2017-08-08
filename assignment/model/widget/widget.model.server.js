@@ -15,7 +15,7 @@ widgetModel.deleteWidgetsByPage = deleteWidgetsByPage;
 
 function createWidget(pageId, widget) {
     widget._page = pageId;
-    console.log(widget);
+    // console.log(widget);
     return widgetModel
         .create(widget)
         .then(function (widget) {

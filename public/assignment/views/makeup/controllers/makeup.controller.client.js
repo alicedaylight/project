@@ -45,16 +45,18 @@
 
 
         // eventually adds the review to the array of reviews inside of users
-        function createReviewForUser(description, brand, type, productId) {
+        function createReviewForUser(description, brand, type, productId, name, score) {
             if (description === undefined || description === null || description === "") {
                 vm.error = "Description cannot be empty.";
                 return;
             } else {
                 var newReview = {
-                    description: description,
+                    desc: description,
                     brand : brand,
                     type : type,
-                    productId : productId
+                    name : name,
+                    score : score
+                    // productId : productId
                 };
                 return ReviewService
                     .createReviewForUser(newReview)

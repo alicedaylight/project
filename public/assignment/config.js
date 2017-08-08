@@ -80,6 +80,16 @@
             //     }
             // })
 
+            .when("/review", {
+                templateUrl: "views/review/templates/review-new.view.client.html",
+                controller: "NewReviewController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkLoggedIn
+                }
+
+            })
+
 
             .when("/profile", {
                 templateUrl: "views/user/templates/profile-responsive.view.client.html",

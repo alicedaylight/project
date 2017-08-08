@@ -38,13 +38,13 @@ module.exports = function(app) {
 
 
     function createReviewForUser(req, res){
-        console.log(req.user);
+        console.log("review server side req.user", req.user);
 
         var uid = req.user._id;
         var review = req.body;
-        console.log(uid);
-
-        console.log(review);
+        // console.log(uid);
+        //
+        // console.log(review);
 
         reviewModel
             .createReviewForUser(uid, review)

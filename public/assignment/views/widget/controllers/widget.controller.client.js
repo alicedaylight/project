@@ -98,7 +98,6 @@
                 formatted : vm.widgetFormatted
             };
 
-            console.log(newWidget);
             WidgetService
                 .createWidget(vm.pid, newWidget)
                 .then(

@@ -102,7 +102,7 @@
 
     // routeParams.. allow us to declare all of the 'when's' in config ngRoute
     //routeParams allow you to retrieve params from the route
-    function ProfileController($timeout, UserService, $location, currentUser, ReviewService) {
+    function ProfileController($timeout, UserService, $location, currentUser, ReviewService, WebsiteService) {
         var vm = this;
         //vm.uid = $routeParams.uid;
         vm.userId = currentUser._id;
@@ -175,6 +175,17 @@
         function renderReviews(reviews) {
             vm.reviews = reviews;
         }
+
+
+
+        WebsiteService
+            .findWebsitesByUser(vm.userId)
+            .then(renderWebsites);
+
+        function renderWebsites(websites) {
+            vm.websites = websites;
+        }
+
 
     }
 })();

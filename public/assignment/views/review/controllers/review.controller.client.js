@@ -5,46 +5,48 @@
         .controller("NewReviewController", NewReviewController)
         .controller("EditReviewController", EditReviewController);
 
-    function ReviewListController(WebsiteService, currentUser) {
+    function ReviewListController(ReviewService, currentUser) {
         var vm = this;
 
         vm.uid = currentUser._id;
 
 
-        WebsiteService
-            .findWebsitesByUser(vm.uid)
-            .then(renderWebsites);
+        ReviewService
+            .findReviewsByUser(vm.uid)
+            .then(renderReviews);
 
-        function renderWebsites(websites) {
-            vm.websites = websites;
+        function renderReviews(reviews) {
+            vm.reviews = reviews;
         }
     }
 
-    function NewReviewController(WebsiteService, $location, currentUser) {
+    function NewReviewController(ReviewService, $location, currentUser) {
         var vm = this;
         vm.uid = currentUser._id;
         // vm.wid = $routeParams.wid;
         // vm.pid = $routeParams.pid;
-        vm.newWebsite = newWebsite;
+        vm.newReview = newReview;
 
-        function newWebsite(name, description) {
+        function newReview(name, description) {
+            console.log("name: " + name);
             if (name === undefined || name === null || name === "") {
                 vm.error = "Name cannot be empty.";
                 return;
+            } else {
+                var newReview = {
+                    name: name,
+                    desc: description
+                };
+                return ReviewService
+                    .createReview(vm.uid, newReview)
+                    .then(function (review) {
+                        $location.url("/review");
+                    });
             }
-            var newWebsite = {
-                name: name,
-                desc: description
-            };
-            return WebsiteService
-                .createWebsite(vm.uid, newWebsite)
-                .then (function (website) {
-                    $location.url("/website");
-                });
         }
     }
 
-    function EditReviewController($routeParams, WebsiteService, $location, currentUser) {
+    function EditReviewController($routeParams, ReviewService, $location, currentUser) {
         var vm = this;
         vm.uid = currentUser._id;
         vm.wid = $routeParams.wid;
@@ -54,50 +56,70 @@
         // config is right side from routeParam
 
         //event handler that listens for an incoming click
-        vm.updateWebsite = updateWebsite;
-        vm.deleteWebsite = deleteWebsite;
+        vm.updateReview = updateReview;
+        vm.deleteReview = deleteReview;
 
-        // displays all of the websites on the lefthand side of the page (same as website-list)
+        // displays all of the reviews on the lefthand side of the page (same as review-list)
 
-        vm.websites = WebsiteService.findWebsitesByUser(vm.uid);
+        vm.reviews = ReviewService.findReviewsByUser(vm.uid);
 
-        WebsiteService
-            .findWebsiteById(vm.wid)
-            .then(renderWebsite, websiteError);
+        ReviewService
+            .findReviewById(vm.wid)
+            .then(renderReview, reviewError);
 
-        function renderWebsite(website) {
-            vm.website = website;
+        function renderReview(review) {
+            vm.review = review;
         }
 
-        function websiteError(error) {
-            vm.error = "Website not found";
+        function reviewError(error) {
+            vm.error = "Review not found";
         }
 
-        function updateWebsite(website) {
-            if (website.name === undefined || website.name === null || website.name === "") {
+        function updateReview(review) {
+            if (review.name === undefined || review.name === null || review.name === "") {
                 vm.error = "Name cannot be empty.";
                 return;
             }
-            WebsiteService
-                .updateWebsite(website._id, website)
+            ReviewService
+                .updateReview(review._id, review)
 
-                .then(function(website) {
-                    $location.url("/website");
+                .then(function(review) {
+                    $location.url("/review");
                 });
 
         }
 
-        function deleteWebsite(websiteId) {
-            WebsiteService
-                .deleteWebsiteFromUser(vm.uid, vm.wid)
+        function deleteReview(reviewId) {
+            ReviewService
+                .deleteReviewFromUser(vm.uid, vm.wid)
                 .then(function() {
-                    $location.url("/website");
+                    $location.url("/review");
                 }, function () {
                     vm.error = "Unable to delete you";
                 });
         }
     }
 
-
-
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -80,7 +80,7 @@
         }
 
         function createWidget(pageId, widget) {
-            var url = '/api/page/' +pageId + '/widget';
+            var url = '/api/createImage';
 
             return $http.post(url, widget)
                 .then(function(response) {

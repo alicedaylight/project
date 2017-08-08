@@ -4,7 +4,7 @@ module.exports = function (app) {
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
 
-    app.post('/api/page/:pid/widget', createWidget);
+    app.post('/api/createImage', createWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
     app.get("/api/page/:pid/widget", findAllWidgetsForPage);
     app.get("/api/widget/:wgid", findWidgetById);
