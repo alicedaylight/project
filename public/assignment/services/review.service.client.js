@@ -7,7 +7,9 @@
 
         var services = {
             "createReviewForUser" : createReviewForUser,
-            "findAllReviewsForUser" : findAllReviewsForUser
+            "findAllReviewsForUser" : findAllReviewsForUser,
+            "updateReview" : updateReview,
+            "deleteReviewFromUser" : deleteReviewFromUser
 
         };
 
@@ -22,6 +24,24 @@
                     console.log(response);
                     return response.data;
                 });
+        }
+
+        function deleteReviewFromUser(userId, reviewId) {
+            var url ="/api/review/" + userId + "/" + reviewId;
+            return $http.delete(url)
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+
+        function updateReview(reviewId, review) {
+            var url = "/api/review/" + reviewId;
+
+            return $http.put(url, review)
+                .then(function(response) {
+                    return response.data;
+                });
+
         }
 
         //

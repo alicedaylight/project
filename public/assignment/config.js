@@ -14,7 +14,6 @@
                 }
             })
 
-
             .when("/admin/user", {
                 templateUrl: "views/admin/templates/admin-users.view.client.html",
                 controller: "AdminUsersController",
@@ -32,6 +31,16 @@
                     currentUser : checkAdmin
                 }
             })
+
+            // .when("/profile/user/:username", {
+            //     templateUrl: "views/user/templates/profile.public.view.client.html",
+            //     controller: "UserController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         currentUser : checkLoggedIn
+            //     }
+            // })
+
             .when("/makeup/search/new", {
                 templateUrl: "views/makeup/templates/makeup-new.view.client.html",
                 controller: "MakeupController",

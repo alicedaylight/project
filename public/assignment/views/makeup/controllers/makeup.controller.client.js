@@ -62,7 +62,6 @@
                     .createReviewForUser(newReview)
                     .then(function(){
                         $location.url("#!/profile/#portfolio");
-                        // $location.url("#!/profile");
                     });
             }
         }
@@ -74,10 +73,12 @@
                 return;
             } else {
                 var newReview = {
-                    description: description,
+                    desc: description,
                     brand : brand,
                     type : type,
-                    productId : productId
+                    name : name,
+                    score : score
+                    // productId : productId
                 };
                 return MakeupService
                     .createReviewForMakeup(newReview)

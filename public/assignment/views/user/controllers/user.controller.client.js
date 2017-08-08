@@ -110,6 +110,8 @@
         vm.deleteUser = deleteUser;
         vm.logout = logout;
         vm.unregister = unregister;
+        vm.updateReview = updateReview;
+        vm.deleteReview = deleteReview;
 
         function logout() {
             UserService
@@ -187,57 +189,29 @@
         }
 
 
+        function updateReview(review) {
+            if(review.name === undefined || review.name === null || review.name === "") {
+                vm.error = "Name cannot be empty.";
+                return;
+            }
+
+            ReviewService
+                .updateReview(review._id, review)
+                .then(function(review) {
+                    $location.url("/profile")
+                });
+        }
+
+        function deleteReview(reviewId) {
+            ReviewService
+                .deleteReviewFromUser(vm.userId, reviewId)
+                .then(function() {
+                    $location.url("/profile");
+                }, function() {
+                    vm.error = "Unable to delete you";
+                })
+        }
+
+
     }
 })();
-//if you use the #! standard... google says you will provide me a server side equivalance
-// that I can index
-// this is because previously all pages were static and google could index it by following the
-// links (b/c all pages were ascii pages)
-// now.. because pages are dynamically loaded.. only the index page is ever fully loaded
-// and google says if if you use the #! ... server side rendered the old way.. you don't have
-// to render it.. I only want to use it for indexing
-// if you don't want to be indexed in google (you really want to)
-
-//
-// //not who the $scope belongs to
-// // who is the $scope bound to
-// // which controller controls the $scope
-// // especially if you have a controller nested inside of another controller
-// // {{message}} is a variable.. which is the controller that is feeding the data for
-// // this particular variable
-//
-// // best practise to nameSpace variable
-// // explicity say who is responsible for providing the data
-// // give name to controller that can be used inside of your view
-// // common name is keyworld model (lowercase)
-// // best practise is not to use the scope at all, instead of binding variables and functions
-// // to scope.. best practise to narrow the scope so only this controller is responsible
-// // for feeding you the data not everyone else
-// // declare a local variable that is bounds it to an instance of the controller
-// // var model = this;
-// // instead of bounding to the $scope, we are bounding to a local instance of
-// // this controller
-//
-// // declared on the contoller instance and not on the scope
-// // in the view.. the function is still being declared on the scope.. so it won't work
-// //tell view instead of bounding to the scope, i want you to bound to the instance
-// // of the controller
-//
-// // refer to instnce of controller by name by using angular
-// // ng-controller="loginController as model"
-// // instead of
-// //ng-controller="loginController"
-//
-// // or "loginController as vm"
-// // everythig else in the page that vm.message... vm.login
-//
-// // narrowing the scope as opposed to letting controllers upstream in higher scope
-// // variables in higher scope are availible to lower scope
-
-// client side services used by controller
-// server side receive http request.. process something and return back reponse
-// client side services will receive responses and send it to the controller
-// controller calls client side fires up request handled by server side services
-// app.post.. and when they get api (app.get), findUserBy call for example findWebsiteForUsers... it will do something
-// and then it will return the result
-//

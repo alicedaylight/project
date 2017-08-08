@@ -8,6 +8,36 @@ module.exports = function(app) {
     app.get('/api/reviews', findAllReviews);
     app.post('/api/reviews/user', createReviewForUser);
     app.get('/api/reviews/user', findAllReviewsForUser);
+    app.delete('/api/review/:userId/:reviewId', deleteReviewFromUser);
+    app.put('/api/review/:reviewId', updateReview);
+
+
+   function updateReview(req, res) {
+       var rid = req.params.reviewId;
+       var review = req.body;
+       reviewModel
+           .updateReview(rid, review)
+           .then(
+               function(review){
+                   res.json(review);
+               },
+               function (error) {
+                   res.sendStatus(400).send(error);
+               }
+           );
+   }
+
+
+   function deleteReviewFromUser(req, res) {
+       var reviewId = req.params.reviewId;
+       var userId = req.params.userId;
+       reviewModel
+           .deleteReviewFromUser(userId, reviewId)
+           .then(function(status) {
+               res.send(status);
+           })
+
+   }
 
     function findAllReviews(req, res) {
         reviewModel

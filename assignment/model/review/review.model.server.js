@@ -6,9 +6,29 @@ var userModel = require('../user/user.model.server');
 reviewModel.createReviewForUser = createReviewForUser;
 reviewModel.findAllReviews = findAllReviews;
 reviewModel.findAllReviewsForUser = findAllReviewsForUser;
+reviewModel.updateReview = updateReview;
+reviewModel.deleteReviewFromUser = deleteReviewFromUser;
 
 module.exports = reviewModel;
 
+
+function updateReview(reviewId, review) {
+    return reviewModel.update({
+        _id : reviewId
+    }, {
+        name : review.name,
+        desc : review.desc
+    });
+}
+
+function deleteReviewFromUser(userId, reviewId) {
+    return reviewModel
+        .remove({_id : reviewId})
+        .then(function(status) {
+            return userModel
+                .deleteReview(userId, reviewId);
+        });
+}
 
 function createReviewForUser(userId, review) {
     // reference back to parent is the username you gave me
