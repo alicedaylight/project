@@ -8,7 +8,10 @@
             .when("/home", {
                 templateUrl: "views/user/templates/home.view.client.html",
                 controller: "HomeController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkCurrentUser
+                }
             })
 
 
@@ -205,43 +208,60 @@
         UserService
             .loggedIn()
             .then(function (user) {
-                deferred.resolve(user);
-
-            }, function() {
-                deferred.reject();
-                $location.url('/home');
+                if(user === '0') {
+                    deferred.reject();
+                    $location.url('/home/#contact')
+                } else {
+                    deferred.resolve(user);
+                }
             });
         return deferred.promise;
     }
+
+    // works
+    // function checkAdmin(UserService, $q, $location) {
+    //     var deferred = $q.defer();
+    //     UserService
+    //         .checkAdmin()
+    //         .then(function (user) {
+    //             deferred.resolve(user);
+    //         }, function() {
+    //             deferred.reject();
+    //             $location.url('/home');
+    //         });
+    //     return deferred.promise;
+    // }
 
     function checkAdmin(UserService, $q, $location) {
         var deferred = $q.defer();
         UserService
             .checkAdmin()
-            .then(function (user) {
-                deferred.resolve(user);
-            }, function() {
-                deferred.reject();
-                $location.url('/home');
-            });
-        return deferred.promise;
-    }
-
-
-    function checkCurrentUser(userService, $q) {
-        var deferred = $q.defer(); // defer wrong
-        userService
-            .loggedIn()
-            .then(function(user){
+            .then(function(user) {
                 if(user === '0') {
-                    deferred.resolve({});
+                    deferred.reject();
+                    $location.url('/home')
                 } else {
                     deferred.resolve(user);
                 }
             });
-
         return deferred.promise;
     }
+
+    function checkCurrentUser(UserService, $q, $location) {
+        var deferred = $q.defer();
+        UserService
+            .loggedIn()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.resolve({});
+                    // $location.url('/home/#contact')
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+    }
+
 
 })();
 

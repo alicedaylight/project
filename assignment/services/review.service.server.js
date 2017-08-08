@@ -19,7 +19,6 @@ module.exports = function(app) {
 
     function findAllReviewsForUser(req, res){
         // var uid = req.params.uid;
-        console.log('rewvie service')
         reviewModel
             .findAllReviewsForUser(req.user._id)
             .then(

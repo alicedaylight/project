@@ -7,12 +7,12 @@
         .controller("HomeController", HomeController);
 
     // same as login
-    function HomeController($location, UserService) {
-        console.log("inside home controller");
-        // vm is a variable bound to the controller instance that allow controllers and views to exchange data and events
+    function HomeController($location, UserService, currentUser) {
+    // function HomeController($location, UserService) {
+
         var vm = this;
-        // declares a variable named "login" on the left hand side of the assignment
-        // assigns the function login (below) to this variable
+        vm.currentUser = currentUser;
+
         vm.login = login;
 
         function login(username, password) {
@@ -149,9 +149,7 @@
                 .unregister()
                 .then(function() {
                     $location.url('/home');
-                })
-
-
+                });
         }
 
 

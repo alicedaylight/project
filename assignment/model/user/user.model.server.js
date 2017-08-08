@@ -33,7 +33,11 @@ function findUserByGoogleId(googleId) {
 
 
 function createUser(user) {
-    user.roles = ['USER'];
+    if (user.roles) {
+        user.roles = user.roles.split(',');
+    } else {
+        user.roles = ['USER'];
+    }
     return userModel.create(user);
 }
 
@@ -56,6 +60,10 @@ function findUserByCredentials(username, password) {
 function updateUser(userId, newUser) {
     delete  newUser.username;
     delete  newUser.password;
+
+    if(typeof  newUser.roles === 'string') {
+        newUser.roles = newUser.roles.split(',');
+    }
     return userModel.update({_id: userId}, {$set: newUser});
 }
 

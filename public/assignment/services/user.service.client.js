@@ -23,7 +23,7 @@
         return services;
 
         function unregister(userObj) {
-            var url = "/api/user/register";
+            var url = "/api/user/unregister";
             return $http.post(url, userObj)
                 .then(function(response) {
                     return response.data;
@@ -31,7 +31,7 @@
         }
 
         function findAllUsers() {
-            var url = "/api/user";
+            var url = "/api/alluser";
             return $http.get(url)
                 .then (function (response) {
                     return response.data;

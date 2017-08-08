@@ -1,22 +1,25 @@
 module.exports = function(app){
-
     var userModel = require('../model/user/user.model.server');
     var passport = require('passport');
+
+    // handle authentication
     var LocalStrategy = require('passport-local').Strategy;
-    var FacebookStrategy = require('passport-facebook').Strategy;
-    var GoogleStrategy = require('passport-google-oauth20').Strategy;
-
-
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser); // choose what to put in cookie
     passport.deserializeUser(deserializeUser); // when cookie comes back from client to unwrap cookie to get id
+
+
+    var FacebookStrategy = require('passport-facebook').Strategy;
+    var GoogleStrategy = require('passport-google-oauth20').Strategy;
     var bcrypt = require("bcrypt-nodejs");
 
 
-    app.post("/api/user", createUser);
+
+    app.post("/api/user", isAdmin, createUser);
     app.get("/api/user", findUserByUsername);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
+    //covered
     // app.get("/api/user", findUserByCredentials);
 
     app.post  ('/api/user/login', passport.authenticate('local'), login);
@@ -28,13 +31,7 @@ module.exports = function(app){
 
     app.get('/api/user/loggedin', loggedIn);
     app.get('/api/user/checkAdmin', checkAdmin);
-
-
     app.get("/api/user/:userId", findUserById);
-    app.get("/api/user/", isAdmin, findAllUsers);
-
-    app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", isAdmin, deleteUser);
 
     app.get('/auth/google',
         passport.authenticate('google', { scope: ['profile'] }));
@@ -46,6 +43,11 @@ module.exports = function(app){
             res.redirect('/');
         });
 
+    app.get("/api/alluser/", isAdmin, findAllUsers);
+    app.put("/api/user/:userId", isAdmin, updateUser);
+    app.delete("/api/user/:userId", isAdmin, deleteUser);
+
+
 
     var googleConfig = {
         clientID: process.env.GOOGLE_CLIENTID,
@@ -56,7 +58,11 @@ module.exports = function(app){
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
     function isAdmin(req, res, next) {
-
+        if (req.isAuthenticated() && req.user.roles.indexOf('ADMIN') !== -1) {
+            next();
+        } else {
+            res.sendStatus(401);
+        }
     }
 
 
@@ -73,9 +79,14 @@ module.exports = function(app){
         userModel
             .findAllUsers()
             .then(function(users) {
-                res.json(users)
-            })
-
+                if(users) {
+                    res.json(users)
+                } else {
+                    res.status(404).send("Users not found");
+                }
+            }, function (err) {
+                res.status(404).send("Users not found");
+            });
     }
 
 
@@ -174,13 +185,13 @@ module.exports = function(app){
     // intercept the post request and parse from the body the username and passpord attribute
     function localStrategy(username, password, done) {
         userModel
+        // .findUserByCredentials(username, password)
             .findUserByUsername(username)
             .then(function(user) {
                 if(user) {
-                    if(bcrypt.compareSync(password,user.password))
-                    {
+                    if(bcrypt.compareSync(password,user.password)) {
                         done(null, user);
-                    }else{
+                    } else {
                         done(null, false, {msg:'Incorrect password!'});
                     }
 
@@ -195,7 +206,7 @@ module.exports = function(app){
     }
 
     function login(req, res) {
-
+        // sends back the user that's been found.. echo it back to client
         res.json(req.user);
     }
 
@@ -258,10 +269,6 @@ module.exports = function(app){
     function updateUser(req, res) {
         var userId = req.params.userId;
         var updatedUser = req.body;
-        // if (updatedUser.newPassword) {
-        //     updatedUser.password = bcrypt.hashSync(updatedUser.newPassword);
-        //     delete updatedUser.newPassword;
-        // }
         userModel
             .updateUser(userId, updatedUser)
             .then(function (status) {
