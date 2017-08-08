@@ -16,7 +16,7 @@
             "searchByBrand" : searchByBrand,
             "searchByType" : searchByType,
             "searchByBrandType" : searchByBrandType,
-            "createReviewForUser" : createReviewForUser,
+            // "createReviewForUser" : createReviewForUser,
             "findByIdBrandType" : findByIdBrandType,
 
             // need below
@@ -34,6 +34,19 @@
                     return response.data;
                 });
         }
+
+        // function createReviewForUser(description, brand, type, productId) {
+        //     ReviewService
+        //         .createReviewForUser({
+        //             description : description,
+        //             brand : brand,
+        //             type : type,
+        //             productId : productId
+        //         })
+        //         .then(function() {
+        //             $location.url('#!/profile');
+        //         })
+        //     }
 
 
         // function createReviewForUser(makeup) {
