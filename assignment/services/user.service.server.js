@@ -4,20 +4,42 @@ module.exports = function(app){
 
     // handle authentication
     var LocalStrategy = require('passport-local').Strategy;
+    var GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+    // var FacebookStrategy = require('passport-facebook').Strategy;
+    var googleConfig = {
+        clientID: process.env.GOOGLE_CLIENTID,
+        clientSecret: process.env.GOOGLE_SECRET,
+        callbackURL: process.env.GOOGLE_CALLBACK
+    };
+
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+
     passport.use(new LocalStrategy(localStrategy));
+
     passport.serializeUser(serializeUser); // choose what to put in cookie
     passport.deserializeUser(deserializeUser); // when cookie comes back from client to unwrap cookie to get id
 
 
-    var FacebookStrategy = require('passport-facebook').Strategy;
-    var GoogleStrategy = require('passport-google-oauth20').Strategy;
     var bcrypt = require("bcrypt-nodejs");
 
+
+    app.get('/auth/google',
+        passport.authenticate('google',
+            { scope: ['profile', 'email']
+        }));
+
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/#!/profile',
+            failureRedirect: '/#!/home'
+        }));
 
 
     app.post("/api/user", isAdmin, createUser);
     app.get("/api/user", findUserByUsername);
-    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    // app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
     //covered
     // app.get("/api/user", findUserByCredentials);
@@ -26,36 +48,13 @@ module.exports = function(app){
     app.post  ('/api/user/logout', logout);
     app.post  ('/api/user/register', register);
     app.post  ('/api/user/unregister', unregister);
-
-
-
     app.get('/api/user/loggedin', loggedIn);
     app.get('/api/user/checkAdmin', checkAdmin);
     app.get("/api/user/:userId", findUserById);
-
-    app.get('/auth/google',
-        passport.authenticate('google', { scope: ['profile'] }));
-
-    app.get('/auth/google/callback',
-        passport.authenticate('google', { failureRedirect: '/login' }),
-        function(req, res) {
-            // Successful authentication, redirect home.
-            res.redirect('/');
-        });
-
     app.get("/api/alluser/", isAdmin, findAllUsers);
     app.put("/api/user/:userId", isAdmin, updateUser);
     app.delete("/api/user/:userId", isAdmin, deleteUser);
 
-
-
-    var googleConfig = {
-        clientID: process.env.GOOGLE_CLIENTID,
-        clientSecret: process.env.GOOGLE_SECRET,
-        callbackURL: process.env.GOOGLE_CALLBACK
-    };
-
-    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
     function isAdmin(req, res, next) {
         if (req.isAuthenticated() && req.user.roles.indexOf('ADMIN') !== -1) {
