@@ -1,5 +1,21 @@
 <div class="container-fluid">
-    <h1>Admin</h1>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <a class="cl-text-white navbar-brand cl-text-bold" href="#!/profile">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+
+            <a class="cl-text-white navbar-brand cl-text-bold">
+                ADMIN
+                <!--<h1>Admin</h1>-->
+            </a>
+
+            <a ng-click="model.newPage(model.page.name, model.page.description)" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+    </nav>
 
     <ul class="list-group">
         <li class="list-group-item">
@@ -16,3 +32,11 @@
         </li>
     </ul>
 </div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fuild">
+        <a href="#!/profile" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="cl-text-blue glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>

@@ -44,15 +44,15 @@ module.exports = function(app){
     //covered
     // app.get("/api/user", findUserByCredentials);
 
-    app.post  ('/api/user/login', passport.authenticate('local'), login);
-    app.post  ('/api/user/logout', logout);
-    app.post  ('/api/user/register', register);
-    app.post  ('/api/user/unregister', unregister);
+    app.post('/api/user/login', passport.authenticate('local'), login);
+    app.post('/api/user/logout', logout);
+    app.post('/api/user/register', register);
+    app.post('/api/user/unregister', unregister);
     app.get('/api/user/loggedin', loggedIn);
     app.get('/api/user/checkAdmin', checkAdmin);
     app.get("/api/user/:userId", findUserById);
     app.get("/api/alluser/", isAdmin, findAllUsers);
-    app.put("/api/user/:userId", isAdmin, updateUser);
+    app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", isAdmin, deleteUser);
 
 

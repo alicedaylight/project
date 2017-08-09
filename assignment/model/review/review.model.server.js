@@ -4,6 +4,7 @@ var reviewModel = mongoose.model('Review', reviewSchema);
 var userModel = require('../user/user.model.server');
 
 reviewModel.createReviewForUser = createReviewForUser;
+reviewModel.addReviewToLikes = addReviewToLikes;
 reviewModel.findAllReviews = findAllReviews;
 reviewModel.findAllReviewsForUser = findAllReviewsForUser;
 reviewModel.updateReview = updateReview;
@@ -40,6 +41,12 @@ function createReviewForUser(userId, review) {
             return userModel // return as a promise
                 .addReview(userId, review._id)
         });
+}
+
+function addReviewToLikes(userId, review) {
+    review._user = userId;
+    return userModel
+        .addLike(userId, review._id)
 }
 
 function findAllReviewsForUser(userId) {

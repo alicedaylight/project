@@ -9,7 +9,8 @@
             "createReviewForUser" : createReviewForUser,
             "findAllReviewsForUser" : findAllReviewsForUser,
             "updateReview" : updateReview,
-            "deleteReviewFromUser" : deleteReviewFromUser
+            "deleteReviewFromUser" : deleteReviewFromUser,
+            "addReviewToLikes" : addReviewToLikes
 
         };
 
@@ -21,9 +22,18 @@
 
             return $http.post(url, review)
                 .then(function(response) {
-                    console.log(response);
+                    // console.log(response);
                     return response.data;
                 });
+        }
+
+        function addReviewToLikes(userId, review) {
+            var url = "/api/reviews/user/likes";
+
+            return $http.post(url, review)
+                .then(function(response) {
+                    return response.data;
+                })
         }
 
         function deleteReviewFromUser(userId, reviewId) {

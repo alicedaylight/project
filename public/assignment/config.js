@@ -41,16 +41,19 @@
             //     }
             // })
 
-            .when("/makeup/search/new", {
-                templateUrl: "views/makeup/templates/makeup-new.view.client.html",
-                controller: "MakeupController",
-                controllerAs: "model"
-            })
+            // .when("/makeup/search/new", {
+            //     templateUrl: "views/makeup/templates/makeup-new.view.client.html",
+            //     controller: "MakeupController",
+            //     controllerAs: "model"
+            // })
 
             .when("/makeup/search/all/:productId", {
                 templateUrl: "views/makeup/templates/makeup-allreviews.view.client.html",
-                controller: "MakeupController",
-                controllerAs: "model"
+                controller: "MakeupReviewsController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkLoggedIn
+                }
             })
 
 

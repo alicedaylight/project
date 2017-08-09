@@ -1,27 +1,3 @@
-<!--<nav class="navbar navbar-fixed-top cl-blue-navbar">-->
-<!--<div class="row container-fluid">-->
-
-<!--<div class="col-sm-8">-->
-<!--&lt;!&ndash;<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>&ndash;&gt;-->
-
-<!--<div class="navbar-text pull-left cl-text-white no-margin-left">-->
-<!--</div>-->
-
-<!--<div class="navbar-header">-->
-<!--<a class="cl-text-white navbar-brand cl-text-bold" href="#!/makeup/search">-->
-<!--Product Details-->
-<!--</a>-->
-<!--</div>-->
-
-<!--<div class="navbar-text pull-right">-->
-<!--<a ng-click="model.newWebsite(model.user.name, model.user.description)" a href="#!/makeup/search" class="cl-text-white">-->
-<!--<span class="glyphicon glyphicon-ok"></span>-->
-<!--</a>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
-<!--</nav>-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}">
@@ -29,10 +5,10 @@
         </a>
 
         <a class="cl-text-white navbar-brand cl-text-bold">
-            All Reviews for Makeup
+            All Reviews for _________ Makeup
         </a>
 
-        <a href="#!/makeup/search" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+        <a href="#!/profile" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
             <span class="glyphicon glyphicon-ok"></span>
         </a>
     </div>
@@ -42,66 +18,66 @@
 <div class="row container-fluid">
 
     <div class="container">
-        <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
-        <form class="cl-form-bottom-padding">
-            <h1>{{model.makeup.name}}</h1>
-            <h4>Brand: {{model.makeup.brand}}</h4>
-            <h5>{{model.makeup.price}}</h5>
-            <h5>{{model.makeup.rating}}</h5>
-            <h5>{{model.makeup.category}}</h5>
-
-            <img class="img-responsive" src="{{model.makeup.image_link}}"/>
-            <h6>Product Description: </h6>
-            {{model.makeup.description}}
-
-            <h5>Create Your Review Below</h5>
-
-            <div>
-                <div class="form-group">
-                    <label for="reviewName">Review Name</label>
-                    <textarea input ng-model="model.name" class="form-control" id="reviewName" rows="1"></textarea>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-xs-3">
-                        <label for="score">Rating</label>
-                        <!--<input class="form-control" placeholder="Age" id= "age" type="text">-->
-                        <select ng-model="model.score" multiple class="form-control" id="score">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+        <section id="portfolio" class="bg-light-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">All Reviews</h2>
+                        <h3 class="section-subheading text-muted">Click the thumbs up to like this review</h3>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="reviewDescription">Review Description</label>
-                    <textarea input ng-model="model.desc" class="form-control" id="reviewDescription" rows="5"></textarea>
-                </div>
+                <div class="row">
+                    <h4>hello</h4>
+                    <!--<div class="form-group row">-->
+                        <!--<div class="col-lg-3"><a ng-click="model.addReviewToLikes(model.description, model.brand, model.type, model.productId, model.name, model.score, model.reviewId)" class="btn btn-success btn-block">LIKE</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
-                <div class="form-group">
-                    <a ng-click="model.createReviewForUser(model.desc, model.makeup.brand, model.makeup.product_type, model.makeup.id, model.name, model.score)"
-                       class="btn btn-success btn-block">
-                        CREATE NEW REVIEW
-                    </a>
-                </div>
-
-                <div class="form-group">
-                    <a ng-click="model.viewAllReviewsForMakeup(model.desc, model.makeup.brand, model.makeup.product_type, model.makeup.id, model.name, model.score)"
-                       class="btn btn-primary btn-block">
-                        View All Reviews For this Product
+                    <a ng-click="addReviewToLikes()">
+                        <span class="glyphicon glyphicon-thumbs-up pull-right"></span>
                     </a>
 
+                    <div ng-repeat="review in model.reviews" class="container">
+                        <!--<a href="#!/website/{{website._id}}/page">{{review.desc}} </a>-->
+                        <!--<a href="#!/website/{{website._id}}/page">{{review.name}} </a>-->
+
+
+                        <ul class="list-group borderless">
+                            <li class="list-group-item">
+
+                                <a ng-click="model.updateReview(review)">
+                                    <span class="glyphicon glyphicon-ok pull-right"></span>
+                                </a>
+                                <a ng-click="model.deleteReview(review._id)">
+                                    <span class="glyphicon glyphicon-remove pull-right"></span>
+                                </a>
+                                <a href="/makeup/brand/{{model.brand}}/type/{{model.type}}/{{model.product_id}}">
+                                    <span class="glyphicon glyphicon-eye-open pull-right"></span>
+                                </a>
+
+
+                                <label>Review Name  Makeup Brand: {{review.brand}}  Makeup Type: {{review.type}}</label>
+                                <!--<img class="img-responsive" src="{{model.makeup.image_link}}"/>-->
+
+                                <div class="form-group">
+                                    <label for="reviewName"></label>
+                                    <textarea input ng-model="review.name" class="form-control" id="reviewName" rows="1"></textarea>
+                                </div>
+
+                                Review Description
+                                <div class="form-group">
+                                    <label for="reviewDescription"></label>
+                                    <textarea input ng-model="review.desc" class="form-control" id="reviewDescription" rows="5"></textarea>
+                                </div>
+
+
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-
-            <!--<a class="btn btn-success btn-block"-->
-            <!--ng-click="model.createReview(model.description, model.makeup.brand, model.makeup.type, model.makeup.productId)">Create</a>-->
-
-
-        </form>
+        </section>
     </div>
 
 </div>
@@ -113,13 +89,4 @@
         </a>
     </div>
 </nav>
-
-
-<!--<nav class="navbar navbar-fixed-bottom cl-blue-navbar">-->
-<!--<div class="container-fuild">-->
-<!--<a href="#!/profile" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">-->
-<!--<span class="glyphicon glyphicon-user"></span>-->
-<!--</a>-->
-<!--</div>-->
-<!--</nav>-->
 

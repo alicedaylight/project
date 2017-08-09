@@ -19,6 +19,7 @@ userModel.findUserByGoogleId = findUserByGoogleId;
 // keep
 userModel.deleteReview = deleteReview;
 userModel.addReview = addReview;
+userModel.addLike = addLike;
 
 
 module.exports = userModel;
@@ -90,6 +91,15 @@ function addReview(userId, reviewId) {
             user.reviews.push(reviewId);
             return user.save();
         });
+}
+
+function addLike(userId, reviewId) {
+    return userModel
+        .findById(userId)
+        .then(function(user){
+            user.likes.push(reviewId);
+            return user.save();
+        })
 }
 
 function deleteReview(userId, reviewId) {

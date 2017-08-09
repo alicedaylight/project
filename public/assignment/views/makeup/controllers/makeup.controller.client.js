@@ -3,23 +3,39 @@
         .module("WebAppMaker")
         // .controller("MakeupListController", MakeupListController)
         .controller("MakeupSearchController", MakeupSearchController)
-        .controller("MakeupProductController", MakeupProductController);
+        .controller("MakeupProductController", MakeupProductController)
+        .controller("MakeupReviewsController", MakeupReviewsController);
 
-    function MakeupListController($routeParams, MakeupService, currentUser) {
+    function MakeupReviewsController(MakeupService, ReviewService, $routeParams, $location, currentUser) {
+        var brand = $routeParams.brand;
+        var type = $routeParams.type;
+        var productId = $routeParams.productId;
+
         var vm = this;
-
         vm.uid = currentUser._id;
-        vm.wid = $routeParams.wid;
-        vm.pid = $routeParams.pid;
+        vm.addReviewToLikes = addReviewToLikes;
 
-        MakeupService
-            .findAllMakeupsForWebsite(vm.wid)
-            .then(renderMakeups);
+        init();
 
-        function renderMakeups(makeups) {
-            vm.makeups = makeups;
+        function init() {
+            MakeupService
+                .findByIdBrandType(productId, brand, type)
+                .then(function (makeup) {
+                    vm.makeup = makeup;
+                });
+        }
+
+
+        function addReviewToLikes(description, brand, type, productId, name, score, review) {
+            ReviewService
+                // only need to pass in the reviewId since the review has already been created
+                .addReviewToLikes(vm.uid, review)
+                .then(function(){
+                    $location.url("/profile");
+                })
 
         }
+
     }
 
     function MakeupProductController(MakeupService, ReviewService, $routeParams, $location, currentUser) {
@@ -107,6 +123,23 @@
         }
 
     }
+
+    // function MakeupListController($routeParams, MakeupService, currentUser) {
+    //     var vm = this;
+    //
+    //     vm.uid = currentUser._id;
+    //     vm.wid = $routeParams.wid;
+    //     vm.pid = $routeParams.pid;
+    //
+    //     MakeupService
+    //         .findAllMakeupsForWebsite(vm.wid)
+    //         .then(renderMakeups);
+    //
+    //     function renderMakeups(makeups) {
+    //         vm.makeups = makeups;
+    //
+    //     }
+    // }
 
     function MakeupSearchController($routeParams, MakeupService, $location) {
         var vm = this;

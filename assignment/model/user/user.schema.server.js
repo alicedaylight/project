@@ -13,8 +13,10 @@ var userSchema = mongoose.Schema({
         enum: ['USER', 'ADMIN']}],
     websites: [{type: mongoose.Schema.Types.ObjectId, ref: "WebsiteModel"}],
     reviews : [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}],
-    following : [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
-    followers : [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
+    likes : [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}],
+
+    // following : [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
+    // followers : [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
 
     amazonProductId : String, // not sure what form this product id will be displayed in
     dateCreated: {type: Date, default: Date.now()},
