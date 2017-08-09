@@ -20,6 +20,7 @@ userModel.findUserByGoogleId = findUserByGoogleId;
 userModel.deleteReview = deleteReview;
 userModel.addReview = addReview;
 userModel.addLike = addLike;
+userModel.deleteLike = deleteLike;
 
 
 module.exports = userModel;
@@ -110,4 +111,14 @@ function deleteReview(userId, reviewId) {
             user.reviews.splice(index, 1);
             return user.save();
         });
+}
+
+function deleteLike(userId, reviewId) {
+    return userModel
+        .findById(userId)
+        .then(function(user) {
+            var index = user.likes.indexOf(reviewId);
+            user.likes.splice(index, 1);
+            return user.save();
+        })
 }

@@ -112,6 +112,7 @@
         vm.unregister = unregister;
         vm.updateReview = updateReview;
         vm.deleteReview = deleteReview;
+        vm.removeReviewFromLikes = removeReviewFromLikes;
 
         function logout() {
             UserService
@@ -178,6 +179,14 @@
                 .findAllReviewsForUser(vm.userId)
                 .then(renderReviews);
         }
+
+        function findAllLikesForUser() {
+            ReviewService
+                .findAllLikesForUser(vm.userId)
+                .then(renderReviews);
+        }
+
+
         // ReviewService
         //     .findAllReviewsForUser(vm.userId)
         //     .then(renderReviews);
@@ -218,8 +227,17 @@
                     findAllReviewsForUser();
                     // $location.url("/profile");
                 }, function() {
+                    vm.error = "Unable to delete the review";
+                })
+        }
 
-                    vm.error = "Unable to delete you";
+        function removeReviewFromLikes(reviewId) {
+            ReviewService
+                .removeReviewFromLikes(vm.userId, reviewId)
+                .then(function() {
+                    findAllLikesForUser();
+                }, function() {
+                    vm.error = "Unable to remove the liked review"
                 })
         }
 

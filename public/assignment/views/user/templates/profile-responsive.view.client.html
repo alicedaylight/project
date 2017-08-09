@@ -87,7 +87,7 @@
             </div>
 
 
-            <div class="col-md-4">
+            <div class="col-sm-4">
                 <div class="team-member">
 
                     <div class="form-group row">
@@ -390,38 +390,32 @@
                 <h3 class="section-subheading text-muted">Below are the reviews that you've liked </h3>
             </div>
                     <div class="row">
-                        <div ng-repeat="review in model.reviews" class="container">
-                            <!--<a href="#!/website/{{website._id}}/page">{{review.desc}} </a>-->
+                        <!--<div ng-repeat="review in model.reviews" class="container">-->
+                        <div ng-repeat="like in model.likes" class="container">
+
+                        <!--<a href="#!/website/{{website._id}}/page">{{review.desc}} </a>-->
                             <!--<a href="#!/website/{{website._id}}/page">{{review.name}} </a>-->
 
 
                             <ul class="list-group borderless">
                                 <li class="list-group-item">
 
-                                    <!--<a ng-click="model.updateReview(review)">-->
-                                        <!--<span class="glyphicon glyphicon-ok pull-right"></span>-->
-                                    <!--</a>-->
-                                    <!--<a ng-click="model.deleteReview(review._id)">-->
-                                        <!--<span class="glyphicon glyphicon-remove pull-right"></span>-->
-                                    <!--</a>-->
-                                    <!--&lt;!&ndash;<a href="#!/makeup/search/all/:productId">&ndash;&gt;-->
-                                    <a ng-click="model.removeReviewFromLikes()">
+                                    <a ng-click="model.removeReviewFromLikes(review._id)">
                                         <span class="glyphicon glyphicon-thumbs-down pull-right"></span>
                                     </a>
-
 
                                     <label>Review Name  Makeup Brand: {{review.brand}}  Makeup Type: {{review.type}}</label>
                                     <!--<img class="img-responsive" src="{{model.makeup.image_link}}"/>-->
 
                                     <div class="form-group">
-                                        <label for="reviewName"></label>
-                                        <textarea input ng-model="review.name" class="form-control" id="reviewName" rows="1"></textarea>
+                                        <label for="likeName"></label>
+                                        <textarea input ng-model="review.name" class="form-control" id="likeName" rows="1"></textarea>
                                     </div>
 
                                     Review Description
                                     <div class="form-group">
-                                        <label for="reviewDescription"></label>
-                                        <textarea input ng-model="review.desc" class="form-control" id="reviewDescription" rows="5"></textarea>
+                                        <label for="likeDescription"></label>
+                                        <textarea input ng-model="review.desc" class="form-control" id="likeDescription" rows="5"></textarea>
                                     </div>
 
 
@@ -435,17 +429,17 @@
 
 
 
-<div id="map"></div>
-<script>
-    var map;
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
-        });
-    }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy1ii9-egIOTp5l5FXjrS1oBG9Rmdeieo&callback=initMap"
-        async defer></script>
+<!--<div id="map"></div>-->
+<!--<script>-->
+    <!--var map;-->
+    <!--function initMap() {-->
+        <!--map = new google.maps.Map(document.getElementById('map'), {-->
+            <!--center: {lat: -34.397, lng: 150.644},-->
+            <!--zoom: 8-->
+        <!--});-->
+    <!--}-->
+<!--</script>-->
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy1ii9-egIOTp5l5FXjrS1oBG9Rmdeieo&callback=initMap"-->
+        <!--async defer></script>-->
 
 

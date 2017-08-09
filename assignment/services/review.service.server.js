@@ -6,9 +6,10 @@ module.exports = function(app) {
     app.post('/api/reviews/user', createReviewForUser);
     app.post('/api/reviews/user/likes', addReviewToLikes);
     app.get('/api/reviews/user', findAllReviewsForUser);
+    app.get('/api/likes/user', findAllLikesForUser);
     app.delete('/api/review/:userId/:reviewId', deleteReviewFromUser);
+    app.delete('/api/like/:userId/:reviewId', removeReviewFromLikes);
     app.put('/api/review/:reviewId', updateReview);
-
 
 
     function updateReview(req, res) {
@@ -35,7 +36,16 @@ module.exports = function(app) {
            .then(function(status) {
                res.send(status);
            })
+   }
 
+   function removeReviewFromLikes(req, res) {
+        var reviewId = req.params.reviewId;
+        var userId = req.params.userId;
+        reviewModel
+            .removeReviewFromLikes(userId, reviewId)
+            .then(function(status) {
+                res.send(status);
+            })
    }
 
     function findAllReviews(req, res) {
@@ -58,9 +68,24 @@ module.exports = function(app) {
                 }
             )
             .catch(function (err) {
-                console.log('review.service.server err', err);
                 res.sendStatus(500);
 
+            })
+    }
+
+    function findAllLikesForUser(req, res) {
+        reviewModel
+            .findAllLikesForUser(req.user._id)
+            .then(
+                function(likes) {
+                    res.json(likes);
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            )
+            .catch(function(err) {
+                res.sendStatus(500);
             })
     }
 

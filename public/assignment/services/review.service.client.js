@@ -10,7 +10,9 @@
             "findAllReviewsForUser" : findAllReviewsForUser,
             "updateReview" : updateReview,
             "deleteReviewFromUser" : deleteReviewFromUser,
-            "addReviewToLikes" : addReviewToLikes
+            "removeReviewFromLikes" : removeReviewFromLikes,
+            "addReviewToLikes" : addReviewToLikes,
+            "findAllLikesForUser" : findAllLikesForUser
 
         };
 
@@ -44,6 +46,14 @@
                 });
         }
 
+        function removeReviewFromLikes(userId, reviewId) {
+            var url = "/api/like/" + userId + "/" + reviewId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         function updateReview(reviewId, review) {
             var url = "/api/review/" + reviewId;
 
@@ -72,6 +82,15 @@
                     return response.data;
                 });
 
+        }
+
+        function findAllLikesForUser() {
+            var url = "/api/likes/user";
+
+            return $http.get(url)
+                .then(function(response) {
+                    return response.data;
+                })
         }
     }
 })();

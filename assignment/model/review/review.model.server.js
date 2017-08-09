@@ -7,8 +7,10 @@ reviewModel.createReviewForUser = createReviewForUser;
 reviewModel.addReviewToLikes = addReviewToLikes;
 reviewModel.findAllReviews = findAllReviews;
 reviewModel.findAllReviewsForUser = findAllReviewsForUser;
+reviewModel.findAllLikesForUser = findAllLikesForUser;
 reviewModel.updateReview = updateReview;
 reviewModel.deleteReviewFromUser = deleteReviewFromUser;
+reviewModel.removeReviewFromLikes = removeReviewFromLikes;
 
 module.exports = reviewModel;
 
@@ -29,6 +31,15 @@ function deleteReviewFromUser(userId, reviewId) {
             return userModel
                 .deleteReview(userId, reviewId);
         });
+}
+
+function removeReviewFromLikes(userId, reviewId) {
+    return reviewModel
+        .remove({_id : reviewId})
+        .then(function(status) {
+            return userModel
+                .deleteLike(userId, reviewId);
+        })
 }
 
 function createReviewForUser(userId, review) {
@@ -63,7 +74,19 @@ function findAllReviewsForUser(userId) {
             console.log('review.model.server.js err', err);
             return err;
         });
+}
 
+function findAllLikesForUser(userId) {
+    return userModel
+        .findOne({_id: userId})
+        .populate('likes')
+        .exec()
+        .then(function(user) {
+            return user.likes;
+        })
+        .catch(function(err) {
+            return err;
+        })
 }
 
 function findAllWebsitesForUser(userId) {
