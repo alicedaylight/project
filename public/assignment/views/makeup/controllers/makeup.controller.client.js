@@ -22,15 +22,16 @@
         }
     }
 
-    function MakeupProductController(MakeupService, ReviewService, $routeParams, $location) {
+    function MakeupProductController(MakeupService, ReviewService, $routeParams, $location, currentUser) {
         var brand = $routeParams.brand;
         var type = $routeParams.type;
         var productId = $routeParams.productId;
 
 
         var vm = this;
+        vm.uid = currentUser._id;
         vm.createReviewForUser = createReviewForUser;
-        vm.createReviewForMakeup = createReviewForMakeup;
+        // vm.createReviewForMakeup = createReviewForMakeup;
         vm.viewAllReviewsForMakeup = viewAllReviewsForMakeup;
 
         init();
@@ -60,7 +61,7 @@
                     // productId : productId
                 };
                 ReviewService
-                    .createReviewForUser(newReview)
+                    .createReviewForUser(vm.uid, newReview)
                     .then(function(){
                         $location.url("/profile#portfolio");
                     });
@@ -73,28 +74,28 @@
             }
         }
 
-        // eventually adds the review to the array of reviews inside of makeup
-        function createReviewForMakeup(description, brand, type, productId) {
-            if (description === undefined || description === null || description === "") {
-                vm.error = "Description cannot be empty.";
-                return;
-            } else {
-                var newReview = {
-                    desc: description,
-                    brand : brand,
-                    type : type,
-                    name : name,
-                    score : score
-                    // productId : productId
-                };
-                MakeupService
-                    .createReviewForMakeup(newReview)
-                    .then(function(){
-                        $location.url("/profile#portfolio");
-                    });
-            }
-
-        }
+        // // eventually adds the review to the array of reviews inside of makeup
+        // function createReviewForMakeup(description, brand, type, productId, score) {
+        //     if (description === undefined || description === null || description === "") {
+        //         vm.error = "Description cannot be empty.";
+        //         return;
+        //     } else {
+        //         var newReview = {
+        //             desc: description,
+        //             brand : brand,
+        //             type : type,
+        //             name : name,
+        //             score : score
+        //             // productId : productId
+        //         };
+        //         MakeupService
+        //             .createReviewForMakeup(newReview)
+        //             .then(function(){
+        //                 $location.url("/profile#portfolio");
+        //             });
+        //     }
+        //
+        // }
 
         function viewAllReviewsForMakeup(description, brand, type, productId) {
             MakeupService

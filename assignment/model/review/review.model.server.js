@@ -36,7 +36,7 @@ function createReviewForUser(userId, review) {
     review._user = userId;
     return reviewModel.create(review)
         .then(function(review) {
-            console.log('createReviewForUser: review, ', userId, review);
+            // console.log('createReviewForUser: review, ', userId, review);
             return userModel // return as a promise
                 .addReview(userId, review._id)
         });

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var reviewSchema = mongoose.Schema({
-    // name : {type : String, required : true},
+    _user : {type : mongoose.Schema.Types.ObjectId, ref : 'User'},
     desc : String,
     brand : String,
     score : Number,

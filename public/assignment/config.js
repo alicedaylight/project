@@ -64,7 +64,10 @@
             .when("/makeup/brand/:brand/type/:type/:productId", {
                 templateUrl: "views/makeup/templates/makeup-product.view.client.html",
                 controller: "MakeupProductController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkLoggedIn
+                }
             })
 
             .when("/login", {

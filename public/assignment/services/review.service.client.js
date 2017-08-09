@@ -15,7 +15,7 @@
 
         return services;
 
-        function createReviewForUser(review) {
+        function createReviewForUser(userId, review) {
 
             var url = "/api/reviews/user";
 

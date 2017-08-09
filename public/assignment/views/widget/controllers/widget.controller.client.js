@@ -102,7 +102,6 @@
                 .createWidget(vm.pid, newWidget)
                 .then(
                     function(widget) {
-                        // vm.message = "Sucessfully created new widget!";
                         // $location.url("/website/" + vm.wid + "/page/" + vm.pid + "/widget");
                         $location.url("#!/profile");
 
