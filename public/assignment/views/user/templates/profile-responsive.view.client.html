@@ -186,9 +186,10 @@
                             <span class="glyphicon glyphicon-eye-open pull-right"></span>
                         </a>
 
-                        <!--<a>{{review.name}}</a>-->
-                        <!--<a href="#!/website/{{website._id}}/page">Review Name</a>-->
-                        <a>Review Name</a>
+
+                        <label>Review Name  Makeup Brand: {{review.brand}}  Makeup Type: {{review.type}}</label>
+                        <!--<a>{{review.brand}}</a>-->
+
                         <div class="form-group">
                             <label for="reviewName"></label>
                             <textarea input ng-model="review.name" class="form-control" id="reviewName" rows="1"></textarea>
@@ -197,7 +198,7 @@
                         Review Description
                         <div class="form-group">
                             <label for="reviewDescription"></label>
-                            <textarea input ng-model="review.desc" class="form-control" id="reviewDescription" rows="1"></textarea>
+                            <textarea input ng-model="review.desc" class="form-control" id="reviewDescription" rows="5"></textarea>
                         </div>
 
 

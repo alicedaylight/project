@@ -47,6 +47,12 @@
                 controllerAs: "model"
             })
 
+            .when("/makeup/search/all/:productId", {
+                templateUrl: "views/makeup/templates/makeup-allreviews.view.client.html",
+                controller: "MakeupController",
+                controllerAs: "model"
+            })
+
 
             .when("/makeup/search", {
                 templateUrl: "views/makeup/templates/makeup-search.view.client.html",

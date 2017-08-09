@@ -31,6 +31,7 @@
         var vm = this;
         vm.createReviewForUser = createReviewForUser;
         vm.createReviewForMakeup = createReviewForMakeup;
+        vm.viewAllReviewsForMakeup = viewAllReviewsForMakeup;
 
         init();
 
@@ -92,6 +93,15 @@
                         $location.url("/profile#portfolio");
                     });
             }
+
+        }
+
+        function viewAllReviewsForMakeup(description, brand, type, productId) {
+            MakeupService
+                .viewAllReviews(productId)
+                .then(function() {
+                    $location.url("/makeup/search/all/" +productId);
+                })
 
         }
 

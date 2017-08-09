@@ -136,13 +136,6 @@
                 });
         }
 
-        // WebsiteService
-        //     .findWebsitesByUser(vm.uid)
-        //     .then(renderWebsites);
-        //
-        // function renderWebsites(websites) {
-        //     vm.websites = websites;
-        // }
     }
 
 })();
