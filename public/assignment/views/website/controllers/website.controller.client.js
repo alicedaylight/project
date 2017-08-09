@@ -20,83 +20,68 @@
             }
     }
 
-    function NewWebsiteController(WebsiteService, MakeupService, $location, currentUser) {
-        // console.log("inside makeupsearch")
+    function NewWebsiteController(WebsiteService, $location, currentUser) {
         var vm = this;
-        vm.search = search;
+        vm.uid = currentUser._id;
+        // vm.wid = $routeParams.wid;
+        // vm.pid = $routeParams.pid;
+        vm.newWebsite = newWebsite;
 
-        function search(brand, type) {
-            var makeupPromise;
-
-            if (!brand && !type)  {
-                vm.error = "search fields cannot be empty.";
+        function newWebsite(name, description) {
+            console.log("name: " + name);
+            if (name === undefined || name === null || name === "") {
+                vm.error = "Name cannot be empty.";
                 return;
+            } else {
+                var newWebsite = {
+                    name: name,
+                    desc: description
+                };
+                return WebsiteService
+                    .createWebsite(vm.uid, newWebsite)
+                    .then(function (website) {
+                        $location.url("/profile#team");
+                    });
             }
-            if (brand && type) {
-                makeupPromise = MakeupService
-                    .searchByBrandType(brand, type);
-            } else if (!brand) {
-                makeupPromise = MakeupService
-                    .searchByType(type);
-            } else { // (!type) {
-                makeupPromise = MakeupService
-                    .searchByBrand(brand);
-            }
-            makeupPromise.then(function(makeups) {
-                vm.makeups = makeups;
-            });
-        }
-        // var vm = this;
-        // vm.search = search;
-        //
-        // function search(brand, type) {
-        //     //     if (brand === undefined || brand === null || brand === "") {
-        //     //         vm.error = "Brand cannot be empty.";
-        //     //         return;
-        //     //     }
-        //
-        //     //     if (type === undefined || type === null || type === "") {
-        //     //         vm.error = "Type cannot be empty.";
-        //     //         return;
-        //     //     }
-        //
-        //
-        //     MakeupService
-        //         .searchByBrand(brand)
-        //         .then(function(makeups) {
-        //             vm.makeups = makeups;
-        //         });
-        //
-        //     MakeupService
-        //         .searchByType(type)
-        //         .then(function(makeups) {
-        //             vm.makeups = makeups;
-        //         });
-        //
-        //     MakeupService
-        //         .searchByBrandType(brand, type)
-        //         .then(function(makeups) {
-        //             vm.makeups = makeups;
-        //         });
-        //
-        //
-        //     console.log("brand" + brand);
-        //     console.log("type" + type);
-        //
-        //
-        // }
-
-
-
-        // to load left side of the view
-        WebsiteService
-            .findWebsitesByUser(vm.uid)
-            .then(renderWebsites);
-
-        function renderWebsites(websites) {
-            vm.websites = websites;
         }
     }
+    // function NewWebsiteController(WebsiteService, MakeupService, $location, currentUser) {
+    //     // console.log("inside makeupsearch")
+    //     var vm = this;
+    //     vm.search = search;
+    //
+    //     function search(brand, type) {
+    //         var makeupPromise;
+    //
+    //         if (!brand && !type)  {
+    //             vm.error = "search fields cannot be empty.";
+    //             return;
+    //         }
+    //         if (brand && type) {
+    //             makeupPromise = MakeupService
+    //                 .searchByBrandType(brand, type);
+    //         } else if (!brand) {
+    //             makeupPromise = MakeupService
+    //                 .searchByType(type);
+    //         } else { // (!type) {
+    //             makeupPromise = MakeupService
+    //                 .searchByBrand(brand);
+    //         }
+    //         makeupPromise.then(function(makeups) {
+    //             vm.makeups = makeups;
+    //         });
+    //     }
+    //
+    //
+    //     // to load left side of the view
+    //     WebsiteService
+    //         .findWebsitesByUser(vm.uid)
+    //         .then(renderWebsites);
+    //
+    //     function renderWebsites(websites) {
+    //         vm.websites = websites;
+    //     }
+    // }
 
     function EditWebsiteController($routeParams, WebsiteService, $location, currentUser) {
         var vm = this;
@@ -136,7 +121,7 @@
                 .updateWebsite(website._id, website)
 
                 .then(function(website) {
-                    $location.url("/website");
+                    $location.url("/profile#team");
                 });
 
         }
@@ -145,7 +130,7 @@
             WebsiteService
                 .deleteWebsiteFromUser(vm.uid, vm.wid)
                 .then(function() {
-                    $location.url("/website");
+                    $location.url("/profile#team");
                 }, function () {
                     vm.error = "Unable to delete you";
                 });

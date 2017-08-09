@@ -14,10 +14,13 @@ module.exports = function (app) {
     //
     // app.get("/api/makeupSearchTag",searchByType );
 
-    app.post('/api/reviews/makeup', createReviewsForMakeup);
+    app.post('/api/reviews/makeup', createReviewForMakeup);
 
 
-    function createReviewsForMakeup(req, res){
+    // not sure if I need to pass in the uid
+    // since I am trying to push the reviewId into the array of reviews
+    // inside of makeup
+    function createReviewForMakeup(req, res){
         console.log(req.user);
 
         var uid = req.user._id;
@@ -27,7 +30,7 @@ module.exports = function (app) {
         console.log(review);
 
         makeupModel
-            .createReviewsForMakeup(uid, review)
+            .createReviewForMakeup(uid, review)
             .then(
                 function(review){
                     res.json(review);

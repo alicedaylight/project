@@ -1,9 +1,6 @@
 module.exports = function(app) {
     var reviewModel = require('../model/review/review.model.server');
 
-    console.log("Review service server")
-
-
 
     app.get('/api/reviews', findAllReviews);
     app.post('/api/reviews/user', createReviewForUser);
@@ -48,7 +45,6 @@ module.exports = function(app) {
     }
 
     function findAllReviewsForUser(req, res){
-        // var uid = req.params.uid;
         reviewModel
             .findAllReviewsForUser(req.user._id)
             .then(
@@ -72,9 +68,6 @@ module.exports = function(app) {
 
         var uid = req.user._id;
         var review = req.body;
-        // console.log(uid);
-        //
-        // console.log(review);
 
         reviewModel
             .createReviewForUser(uid, review)

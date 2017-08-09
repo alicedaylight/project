@@ -1,34 +1,32 @@
 <nav class="navbar navbar-fixed-top cl-blue-navbar">
     <div class="row container-fluid">
 
-        <!--<div class="col-sm-4 hidden-xs">-->
-            <!--<div class="navbar-text pull-left cl-text-white no-margin-left" >-->
-                <!--<a href="#!/user/{{model.uid}}/website" class="cl-text-white">-->
-                    <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-                <!--</a>-->
-            <!--</div>-->
-            <!--<div class="navbar-header">-->
-                <!--<a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/new">-->
-                    <!--Websites-->
-                <!--</a>-->
-            <!--</div>-->
-            <!--<div class="navbar-text pull-right">-->
-                <!--<a ng-click="model.createWebsite(model.name, model.description)" class="cl-text-white">-->
-                    <!--<span class="glyphicon glyphicon-plus"></span>-->
-                <!--</a>-->
-            <!--</div>-->
-
-
-        <!--</div>-->
+        <div class="col-sm-4 hidden-xs">
+            <div class="navbar-text pull-left cl-text-white no-margin-left" >
+                <a href="#!/user/{{model.uid}}/website" class="cl-text-white">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/new">
+                    Websites
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a ng-click="model.createWebsite(model.name, model.description)" class="cl-text-white">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+        </div>
 
         <!--check url-->
-        <!--<div class="col-sm-8">-->
-            <!--<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>-->
+        <div class="col-sm-8">
+            <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 
             <div class="navbar-text pull-left cl-text-white no-margin-left">
             </div>
             <div class="navbar-text pull-right thirty-margin-right">
-                <a ng-click="model.newWebsite(model.user.name, model.user.description)" a href="#!/website" class="cl-text-white">
+                <a ng-click="model.newWebsite(model.name, model.description)" a href="#!/website" class="cl-text-white">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -39,107 +37,55 @@
             </div>
             <div class="navbar-header">
                 <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/new">
-                    New Website (Search for Makeup)
+                    New Website
                 </a>
             </div>
         </div>
 
-    <!--</div>-->
+    </div>
 </nav>
 
 <!--// ng-repeat of new website that you created-->
 <!--// same as website list-->
 <div class="row container-fluid">
-    <!--<div class="col-sm-4 hidden-xs overflow-y">-->
 
-        <!--<div ng-repeat="website in model.websites" class="container">-->
+    <div class="col-sm-4 hidden-xs overflow-y">
 
-            <!--<ul class="list-group borderless">-->
-                <!--<li class="list-group-item">-->
-                    <!--<a href="#!/website/{{model.wid}}">-->
-                        <!--<span class="glyphicon glyphicon-cog pull-right"></span>-->
-                    <!--</a>-->
-                    <!--<a href="#!/website/{{website._id}}/page">{{website.name}}</a>-->
-                <!--</li>-->
+        <div ng-repeat="website in model.websites" class="container">
 
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
 
-    <!--<div class="col-xs-12 col-sm-8 pull-right">-->
+            <ul class="list-group borderless">
+                <li class="list-group-item">
+                    <a href="#!/website/{{model.wid}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                    <a href="#!/website/{{website._id}}/page">{{website.name}}</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-8 pull-right">
         <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 
         <form>
             <div class="form-group">
-                <label for="productImage">Product Image</label>
-                <img src="img/team/lipstick.jpg" id="productImage" class="img-responsive img-circle" alt="">
-            </div>
-
-            <div class="form-group">
-                <label for="productType">Product Type</label>
-                <select ng-model="model.type" multiple class="form-control" id="productType">
-                    <option>blush</option>
-                    <option>bronzer</option>
-                    <option>eyebrow</option>
-                    <option>eyeliner</option>
-                    <option>eyeshadow</option>
-                    <option>foundation</option>
-                    <option>lipLiner</option>
-                    <option>lipstick</option>
-                    <option>mascara</option>
-                    <option>nail Polish</option>
-
-                </select>
-
-                <label for="productBrand">Product Brand</label>
-                <select ng-model="model.brand" multiple class="form-control" id="productBrand">
-                    <option>almay</option>
-                    <option>anna sui </option>
-                    <option>benefit </option>
-                    <option>butter london </option>
-                    <option>cargo cosmetics </option>
-                    <option>china glaze </option>
-                    <option>dr. hauschka </option>
-                    <option>e.l.f. </option>
-                    <option>essie </option>
-                    <option>iman </option>
-                    <option>l'oreal </option>
-                    <option>marcelle </option>
-                    <option>maybelline </option>
-                    <option>milani </option>
-                    <option>mineral fusion </option>
-                    <option>misa </option>
-                    <option>mistura </option>
-                    <option>nyx </option>
-                    <option>orly </option>
-                    <option>misa </option>
-                    <option>pacifica </option>
-                    <option>physicians formula </option>
-                    <option>pure anada </option>
-                    <option>revlon </option>
-                    <option>salon perfect </option>
-                    <option>sante </option>
-                    <option>sinful colours </option>
-                    <option>smashbox </option>
-                    <option>stila </option>
-                    <option>suncoat </option>
-                    <option>wet n wild </option>
-                    <option>zorah </option>
-                </select>
+                <label for="exampleInputName">Name</label>
+                <input ng-model="model.name"
+                       type="text" class="form-control" id="exampleInputName" placeholder="Name">
 
             </div>
-
             <div class="form-group">
-                <a class="btn btn-primary btn-block"
-                   ng-click="model.search(model.brand, model.type)">Search</a>
-                <!--<label for="exampleInputDescription">Product Description</label>-->
-                <!--<textarea input ng-model="model.user.description"-->
-                          <!--type="text" class="form-control" id="exampleInputDescription" placeholder="Description" rows="5"></textarea>-->
+                <label for="exampleInputDescription">Description</label>
+                <textarea input ng-model="model.description"
+                          type="text" class="form-control" id="exampleInputDescription" placeholder="Description" rows="5"></textarea>
 
             </div>
 
         </form>
-    <!--</div>-->
+    </div>
 
 </div>
 

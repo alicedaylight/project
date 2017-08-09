@@ -13,6 +13,27 @@ makeupModel.deleteMakeupFromWebsite = deleteMakeupFromWebsite;
 makeupModel.deleteMakeupsByWebsite = deleteMakeupsByWebsite;
 makeupModel.addWidget = addWidget;
 makeupModel.deleteWidget = deleteWidget;
+makeupModel.createReviewForMakeup = createReviewForMakeup;
+makeupModel.addReview = addReview;
+
+
+function addReview(userId, reviewId) {
+    return makeupModel
+        .findById(userId)
+        .then(function (user) {
+            user.makeups.push(reviewId);
+            return user.save();
+        });
+}
+
+function createReviewForMakeup(userId, review) {
+    review._user = userId;
+    return makeupModel.create(review)
+        .then(function(review) {
+            return makeupModel
+                .addReview(userId, review._id)
+    });
+}
 
 function createMakeup(websiteId, makeup) {
     makeup._website = websiteId;

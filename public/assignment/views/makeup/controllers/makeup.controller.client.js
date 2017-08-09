@@ -63,6 +63,12 @@
                     .then(function(){
                         $location.url("/profile#portfolio");
                     });
+
+                MakeupService
+                    .createReviewForMakeup(newReview)
+                    .then(function(){
+                        $location.url("/profile#portfolio");
+                    });
             }
         }
 
@@ -80,7 +86,7 @@
                     score : score
                     // productId : productId
                 };
-                return MakeupService
+                MakeupService
                     .createReviewForMakeup(newReview)
                     .then(function(){
                         $location.url("/profile#portfolio");
