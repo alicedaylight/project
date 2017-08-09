@@ -182,13 +182,22 @@
                         <a ng-click="model.deleteReview(review._id)">
                             <span class="glyphicon glyphicon-remove pull-right"></span>
                         </a>
+                        <a href="/makeup/brand/{{model.brand}}/type/{{model.type}}/{{model.product_id}}">
+                            <span class="glyphicon glyphicon-eye-open pull-right"></span>
+                        </a>
 
-                        <a>{{review.name}}</a>
-
-                        <!--<textarea cols="20" rows="20" style="display:none;">-->
+                        <!--<a>{{review.name}}</a>-->
+                        <!--<a href="#!/website/{{website._id}}/page">Review Name</a>-->
+                        <a>Review Name</a>
                         <div class="form-group">
                             <label for="reviewName"></label>
-                            <textarea input ng-model="review.desc" class="form-control" id="reviewName" rows="1"></textarea>
+                            <textarea input ng-model="review.name" class="form-control" id="reviewName" rows="1"></textarea>
+                        </div>
+
+                        Review Description
+                        <div class="form-group">
+                            <label for="reviewDescription"></label>
+                            <textarea input ng-model="review.desc" class="form-control" id="reviewDescription" rows="1"></textarea>
                         </div>
 
 

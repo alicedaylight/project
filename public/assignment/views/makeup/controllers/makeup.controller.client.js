@@ -83,7 +83,7 @@
                 return MakeupService
                     .createReviewForMakeup(newReview)
                     .then(function(){
-                        $location.url("#!/profile/#portfolio");
+                        $location.url("/profile#portfolio");
                     });
             }
 

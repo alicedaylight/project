@@ -64,6 +64,7 @@ function updateUser(userId, newUser) {
     if(typeof  newUser.roles === 'string') {
         newUser.roles = newUser.roles.split(',');
     }
+    console.log("model updateuser",  newUser);
     return userModel.update({_id: userId}, {$set: newUser});
 }
 
@@ -100,4 +101,3 @@ function deleteReview(userId, reviewId) {
             return user.save();
         });
 }
-

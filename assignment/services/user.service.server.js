@@ -28,7 +28,7 @@ module.exports = function(app){
     app.get('/auth/google',
         passport.authenticate('google',
             { scope: ['profile', 'email']
-        }));
+            }));
 
     app.get('/auth/google/callback',
         passport.authenticate('google', {
@@ -211,6 +211,7 @@ module.exports = function(app){
 
     function createUser(req, res){
         var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
         userModel
             .createUser(user)
             .then(function (user) {
@@ -267,7 +268,10 @@ module.exports = function(app){
 
     function updateUser(req, res) {
         var userId = req.params.userId;
+
         var updatedUser = req.body;
+        // updatedUser.password = bcrypt.hashSync(updatedUser.password);
+
         userModel
             .updateUser(userId, updatedUser)
             .then(function (status) {
@@ -306,5 +310,3 @@ module.exports = function(app){
     }
 
 };
-
-
