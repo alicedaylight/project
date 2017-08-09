@@ -58,10 +58,10 @@
                     score : score
                     // productId : productId
                 };
-                return ReviewService
+                ReviewService
                     .createReviewForUser(newReview)
                     .then(function(){
-                        $location.url("#!/profile/#portfolio");
+                        $location.url("/profile#portfolio");
                     });
             }
         }

@@ -123,7 +123,9 @@
 
         function init() {
             renderUser(currentUser);
+            findAllReviewsForUser();
         }
+
         init();
 
         function renderUser(user) {
@@ -170,10 +172,16 @@
                 });
         }
 
-        ReviewService
-            .findAllReviewsForUser(vm.userId)
-            .then(renderReviews);
 
+        function findAllReviewsForUser() {
+            ReviewService
+                .findAllReviewsForUser(vm.userId)
+                .then(renderReviews);
+        }
+        // ReviewService
+        //     .findAllReviewsForUser(vm.userId)
+        //     .then(renderReviews);
+        //
         function renderReviews(reviews) {
             vm.reviews = reviews;
         }
@@ -197,8 +205,9 @@
 
             ReviewService
                 .updateReview(review._id, review)
-                .then(function(review) {
-                    $location.url("/profile")
+                .then(function() {
+                    findAllReviewsForUser();
+                    // $location.url("/profile")
                 });
         }
 
@@ -206,8 +215,10 @@
             ReviewService
                 .deleteReviewFromUser(vm.userId, reviewId)
                 .then(function() {
-                    $location.url("/profile");
+                    findAllReviewsForUser();
+                    // $location.url("/profile");
                 }, function() {
+
                     vm.error = "Unable to delete you";
                 })
         }
