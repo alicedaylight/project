@@ -1,6 +1,8 @@
 module.exports = function (app) {
     var makeupModel = require('../model/makeup/makeup.model.server');
-    var http = require('http');
+    // var http = require('http');
+
+    console.log("makeup service server")
 
     app.post("/api/website/:websiteId/makeup", createMakeup);
     app.get("/api/website/:websiteId/makeup", findAllMakeupsForWebsite);
@@ -8,6 +10,8 @@ module.exports = function (app) {
     app.put("/api/makeup/:makeupId", updateMakeup);
     app.delete("/api/website/:websiteId/makeup/:makeupId", deleteMakeupFromWebsite);
     app.delete("/api/website/:websiteId/makeup", deleteMakeupsByWebsite);
+
+    app.get("/api/makeup/search/:productId", findMakeupByProductId);
 
     app.get("/api/makeupSearchBrand",searchByBrand );
     // app.get("/api/makeupSearchType",searchByType );
@@ -17,17 +21,25 @@ module.exports = function (app) {
     app.post('/api/reviews/makeup', createReviewForMakeup);
 
 
-    // not sure if I need to pass in the uid
-    // since I am trying to push the reviewId into the array of reviews
-    // inside of makeup
+    function findMakeupByProductId(req, res) {
+        var productId = req.params.productId;
+        makeupModel
+            .findMakeupByProductId(productId)
+            .then(function (makeups) {
+                res.send(makeups);
+            });
+
+    }
+
+
     function createReviewForMakeup(req, res){
-        console.log(req.user);
+        // console.log(req.user);
 
         var uid = req.user._id;
         var review = req.body;
-        console.log(uid);
+        // console.log(uid);
 
-        console.log(review);
+        // console.log(review);
 
         makeupModel
             .createReviewForMakeup(uid, review)
@@ -37,7 +49,6 @@ module.exports = function (app) {
                 },
                 function(error){
                     console.log(error);
-
                     res.sendStatus(400).send(error);
                 }
             );
@@ -101,6 +112,7 @@ module.exports = function (app) {
                 res.send(makeup);
             });
     }
+
 
     function updateMakeup(req, res) {
         var makeupId = req.params.makeupId;

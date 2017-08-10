@@ -28,34 +28,18 @@
                 </div>
 
                 <div class="row">
-                    <h4>hello</h4>
-                    <!--<div class="form-group row">-->
-                        <!--<div class="col-lg-3"><a ng-click="model.addReviewToLikes(model.description, model.brand, model.type, model.productId, model.name, model.score, model.reviewId)" class="btn btn-success btn-block">LIKE</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
+                    <!--<h4>hello</h4>-->
+                    <!--<a ng-click="model.addReviewToLikes(model.review)">-->
+                        <!--<span class="glyphicon glyphicon-thumbs-up pull-right"></span>-->
+                    <!--</a>-->
 
-                    <a ng-click="addReviewToLikes()">
-                        <span class="glyphicon glyphicon-thumbs-up pull-right"></span>
-                    </a>
-
-                    <div ng-repeat="review in model.reviews" class="container">
-                        <!--<a href="#!/website/{{website._id}}/page">{{review.desc}} </a>-->
-                        <!--<a href="#!/website/{{website._id}}/page">{{review.name}} </a>-->
-
-
+                    <div ng-repeat="review in model.makeup.reviews" class="container">
                         <ul class="list-group borderless">
                             <li class="list-group-item">
 
-                                <a ng-click="model.updateReview(review)">
-                                    <span class="glyphicon glyphicon-ok pull-right"></span>
+                                <a ng-click="model.addReviewToLikes(review)">
+                                    <span class="glyphicon glyphicon-thumbs-up pull-right"></span>
                                 </a>
-                                <a ng-click="model.deleteReview(review._id)">
-                                    <span class="glyphicon glyphicon-remove pull-right"></span>
-                                </a>
-                                <a href="/makeup/brand/{{model.brand}}/type/{{model.type}}/{{model.product_id}}">
-                                    <span class="glyphicon glyphicon-eye-open pull-right"></span>
-                                </a>
-
 
                                 <label>Review Name  Makeup Brand: {{review.brand}}  Makeup Type: {{review.type}}</label>
                                 <!--<img class="img-responsive" src="{{model.makeup.image_link}}"/>-->

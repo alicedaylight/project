@@ -171,6 +171,7 @@
 
         <div class="row">
             <div ng-repeat="review in model.reviews" class="container">
+                {{review}}
                 <!--<a href="#!/website/{{website._id}}/page">{{review.desc}} </a>-->
                 <!--<a href="#!/website/{{website._id}}/page">{{review.name}} </a>-->
 
@@ -185,7 +186,8 @@
                             <span class="glyphicon glyphicon-remove pull-right"></span>
                         </a>
                         <!--<a href="#!/makeup/search/all/:productId">-->
-                        <a href="#!/makeup/search/all/157">
+                        <!--<a href="#!/makeup/search/all/157">-->
+                        <a ng-click="model.findAllReviewsForMakeup(review.productId)">
                         <span class="glyphicon glyphicon-eye-open pull-right"></span>
                         </a>
 

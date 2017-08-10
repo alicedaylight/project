@@ -1,6 +1,10 @@
 var mongoose = require("mongoose");
 var reviewSchema = require('./review.schema.server');
 var reviewModel = mongoose.model('Review', reviewSchema);
+
+var makeupSchema = require('../makeup/makeup.schema.server');
+var makeupModel = mongoose.model('Makeup', makeupSchema);
+
 var userModel = require('../user/user.model.server');
 
 reviewModel.createReviewForUser = createReviewForUser;
@@ -48,9 +52,15 @@ function createReviewForUser(userId, review) {
     review._user = userId;
     return reviewModel.create(review)
         .then(function(review) {
-            // console.log('createReviewForUser: review, ', userId, review);
-            return userModel // return as a promise
-                .addReview(userId, review._id)
+            userModel
+                .addReview(userId, review._id);
+            return review;
+        })
+        .then(function (review) {
+            // add review to makeup
+            makeupModel
+                .addReview(review);
+
         });
 }
 
@@ -61,17 +71,17 @@ function addReviewToLikes(userId, review) {
 }
 
 function findAllReviewsForUser(userId) {
-    console.log('model.server.js', userId);
+    // console.log('model.server.js', userId);
     return userModel
         .findOne({_id :userId})
         .populate('reviews')
         .exec()
         .then(function (user) {
-            console.log('populate reviews', userId, user);
+            // console.log('populate reviews', userId, user);
             return user.reviews;
         })
         .catch(function (err) {
-            console.log('review.model.server.js err', err);
+            // console.log('review.model.server.js err', err);
             return err;
         });
 }

@@ -23,6 +23,15 @@
                 }
             })
 
+            .when("/makeup/search/all/none", {
+                templateUrl: "views/makeup/templates/makeup.none.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser : checkCurrentUser
+                }
+            })
+
             .when("/admin", {
                 templateUrl: "views/admin/templates/admin.view.client.html",
                 controller: "AdminController",
@@ -47,7 +56,7 @@
             //     controllerAs: "model"
             // })
 
-            .when("/makeup/search/all/:productId", {
+            .when("/makeup/product/reviews/:productId", {
                 templateUrl: "views/makeup/templates/makeup-allreviews.view.client.html",
                 controller: "MakeupReviewsController",
                 controllerAs: "model",

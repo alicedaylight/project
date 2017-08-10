@@ -15,15 +15,39 @@ makeupModel.addWidget = addWidget;
 makeupModel.deleteWidget = deleteWidget;
 makeupModel.createReviewForMakeup = createReviewForMakeup;
 makeupModel.addReview = addReview;
+makeupModel.findMakeupByProductId = findMakeupByProductId;
 
-
-function addReview(userId, reviewId) {
+function findMakeupByProductId(productId) {
     return makeupModel
-        .findById(userId)
-        .then(function (user) {
-            user.makeups.push(reviewId);
-            return user.save();
-        });
+        .findOne({productId : productId})
+        .populate('reviews')
+        .exec();
+}
+
+function findOrCreateMakeupFromReview(review) {
+    return makeupModel
+        .findOne({productId: review.productId})
+        .exec()
+        .then(function (makeup) {
+            if (!makeup) {
+                return makeupModel.create({productId: review.productId})
+            }
+            return makeup;
+        })
+        .catch(function (err) {
+            console.log('findOrCreate err', err);
+        })
+}
+
+function addReview(review) {
+    return findOrCreateMakeupFromReview(review)
+        .then(function (makeup) {
+            makeup.reviews.push(review._id);
+            return makeup.save();
+        })
+        .catch(function (err) {
+            console.log('addReview err', err);
+        })
 }
 
 function createReviewForMakeup(userId, review) {

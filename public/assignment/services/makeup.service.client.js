@@ -19,10 +19,21 @@
             "findByIdBrandType" : findByIdBrandType,
 
             // need below
-            "createReviewForMakeup" : createReviewForMakeup
+            "createReviewForMakeup" : createReviewForMakeup,
+            "findMakeupByProductId" : findMakeupByProductId
         };
 
         return services;
+
+        function findMakeupByProductId(productId) {
+            // var url = '/api/makeup/' +makeupId;
+
+            var url = '/api/makeup/search/' + productId;
+            return $http.get(url)
+                .then(function(response) {
+                    return response.data;
+                });
+        }
 
         function createReviewForMakeup(review) {
             var url = "/api/reviews/makeup";

@@ -19,14 +19,21 @@
 
         function init() {
             MakeupService
-                .findByIdBrandType(productId, brand, type)
+                .findMakeupByProductId(productId)
                 .then(function (makeup) {
                     vm.makeup = makeup;
-                });
+                    console.log('makeup', vm.makeup);
+                })
+
+            // MakeupService
+            //     .findByIdBrandType(productId, brand, type)
+            //     .then(function (makeup) {
+            //         vm.makeup = makeup;
+            //     });
         }
 
 
-        function addReviewToLikes(description, brand, type, productId, name, score, review) {
+        function addReviewToLikes(review) {
             ReviewService
                 // only need to pass in the reviewId since the review has already been created
                 .addReviewToLikes(vm.uid, review)
@@ -73,8 +80,8 @@
                     brand : brand,
                     type : type,
                     name : name,
-                    score : score
-                    // productId : productId
+                    score : score,
+                    productId : productId
                 };
                 ReviewService
                     .createReviewForUser(vm.uid, newReview)
@@ -82,11 +89,11 @@
                         $location.url("/profile#portfolio");
                     });
 
-                MakeupService
-                    .createReviewForMakeup(newReview)
-                    .then(function(){
-                        $location.url("/profile#portfolio");
-                    });
+                // MakeupService
+                //     .createReviewForMakeup(newReview)
+                //     .then(function(){
+                //         $location.url("/profile#portfolio");
+                //     });
             }
         }
 

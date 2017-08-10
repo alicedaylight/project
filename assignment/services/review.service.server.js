@@ -102,7 +102,8 @@ module.exports = function(app) {
                     res.json(review);
                 },
                 function(error){
-                    res.sendStatus(400).send(error);
+                    console.log('createReviewForUser err', error);
+                    res.status(400).send(error);
                 }
             );
     }

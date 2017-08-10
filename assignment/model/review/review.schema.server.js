@@ -7,7 +7,8 @@ var reviewSchema = mongoose.Schema({
     score : Number,
     type : String,
     name : String,
-    _makeup : {type : mongoose.Schema.Types.ObjectId, ref : 'Makeup'},
+    productId : Number,
+    // _makeup : {type : mongoose.Schema.Types.ObjectId, ref : 'Makeup'},
     dateCreated: {type: Date, default: Date.now()}
 }, {collection: "review"});
 

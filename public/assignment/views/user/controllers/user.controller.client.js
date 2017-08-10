@@ -102,7 +102,7 @@
 
     // routeParams.. allow us to declare all of the 'when's' in config ngRoute
     //routeParams allow you to retrieve params from the route
-    function ProfileController($timeout, UserService, $location, currentUser, ReviewService, WebsiteService) {
+    function ProfileController($timeout, UserService, $location, currentUser, ReviewService, WebsiteService, MakeupService) {
         var vm = this;
         //vm.uid = $routeParams.uid;
         vm.userId = currentUser._id;
@@ -113,6 +113,8 @@
         vm.updateReview = updateReview;
         vm.deleteReview = deleteReview;
         vm.removeReviewFromLikes = removeReviewFromLikes;
+        vm.findAllReviewsForMakeup = findAllReviewsForMakeup;
+
 
         function logout() {
             UserService
@@ -241,6 +243,17 @@
                 })
         }
 
-
+        function findAllReviewsForMakeup(productId) {
+            // if the reviews array for makeup is empty, direct to a page that says empty
+            // if (makeup.reviews[0] === "") {
+            //     $location.url("/makeup/search/all/none")
+            // } else {
+            // vm.productId = productId;
+            //     MakeupService
+            //         .findAllReviewsForMakeup(productId)
+            //         .then(function() {
+                        $location.url("/makeup/product/reviews/" + productId);
+                    // })
+            }
     }
 })();

@@ -31,7 +31,7 @@
 
         function addReviewToLikes(userId, review) {
             var url = "/api/reviews/user/likes";
-
+        console.log("add review to likes", review);
             return $http.post(url, review)
                 .then(function(response) {
                     return response.data;
