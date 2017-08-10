@@ -5,11 +5,11 @@ module.exports = function(app) {
 
 
     app.get('/api/reviews', findAllReviews);
-    app.post('/api/reviews/user', createReviewForUser);
+    app.post('/api/reviews/user/:productId', createReviewForUser);
     app.post('/api/reviews/user/likes', addReviewToLikes);
     app.get('/api/reviews/user', findAllReviewsForUser);
     app.get('/api/likes/user', findAllLikesForUser);
-    app.delete('/api/review/:userId/:reviewId', deleteReviewFromUser);
+    app.delete('/api/review/:userId/:reviewId/:productId', deleteReviewFromUser);
     app.delete('/api/like/:userId/:reviewId', removeReviewFromLikes);
     app.put('/api/review/:reviewId', updateReview);
     app.get('/api/reviews/liked', findAllLikedReviewsForUser);
@@ -50,8 +50,10 @@ module.exports = function(app) {
    function deleteReviewFromUser(req, res) {
        var reviewId = req.params.reviewId;
        var userId = req.params.userId;
+       var productId = req.params.productId;
+
        reviewModel
-           .deleteReviewFromUser(userId, reviewId)
+           .deleteReviewFromUser(userId, reviewId, productId)
            .then(function(status) {
                res.send(status);
            })
@@ -113,9 +115,10 @@ module.exports = function(app) {
         // console.log("review server side req.user", req.user);
         var uid = req.user._id;
         var review = req.body;
+        var productId = req.params.productId;
 
         reviewModel
-            .createReviewForUser(uid, review)
+            .createReviewForUser(uid, review, productId)
             .then(
                 function(review){
                     res.json(review);

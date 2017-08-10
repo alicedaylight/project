@@ -16,6 +16,8 @@ makeupModel.deleteWidget = deleteWidget;
 makeupModel.createReviewForMakeup = createReviewForMakeup;
 makeupModel.addReview = addReview;
 makeupModel.findMakeupByProductId = findMakeupByProductId;
+makeupModel.deleteReview = deleteReview;
+
 
 function findMakeupByProductId(productId) {
     // need to add logic here that if the review already exists in the liked array
@@ -59,6 +61,16 @@ function createReviewForMakeup(userId, review) {
             return makeupModel
                 .addReview(userId, review._id)
     });
+}
+
+function deleteReview(productId, reviewId) {
+    return makeupModel
+        .findOne({productId : productId})
+        .then(function (makeup) {
+            var index = makeup.reviews.indexOf(reviewId);
+            makeup.reviews.splice(index, 1);
+            return makeup.save();
+        });
 }
 
 function createMakeup(websiteId, makeup) {

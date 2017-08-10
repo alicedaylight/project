@@ -28,12 +28,18 @@ function updateReview(reviewId, review) {
     });
 }
 
-function deleteReviewFromUser(userId, reviewId) {
+function deleteReviewFromUser(userId, reviewId, productId) {
     return reviewModel
         .remove({_id : reviewId})
         .then(function(status) {
             return userModel
                 .deleteReview(userId, reviewId);
+        })
+        // I added this part below to remove the review from the review array in user
+        // and also remove the review from the makeup array
+        .then(function() {
+            makeupModel
+                .deleteReview(productId, reviewId);
         });
 }
 
@@ -46,10 +52,12 @@ function removeReviewFromLikes(userId, reviewId) {
         })
 }
 
-function createReviewForUser(userId, review) {
+function createReviewForUser(userId, review, productId) {
     // reference back to parent is the username you gave me
-    // stored in the scehma as a userId which is objectId
+    // stored in the schema as a userId which is objectId
     review._user = userId;
+    review._productId = productId;
+
     return reviewModel.create(review)
         .then(function(review) {
             userModel

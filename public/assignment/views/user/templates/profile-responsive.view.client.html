@@ -182,7 +182,7 @@
                         <a ng-click="model.updateReview(review)">
                             <span class="glyphicon glyphicon-ok pull-right"></span>
                         </a>
-                        <a ng-click="model.deleteReview(review._id)">
+                        <a ng-click="model.deleteReview(review._id, review.productId)">
                             <span class="glyphicon glyphicon-remove pull-right"></span>
                         </a>
                         <!--<a href="#!/makeup/search/all/:productId">-->
@@ -395,14 +395,15 @@
                         <!--<div ng-repeat="review in model.reviews" class="container">-->
                         <div ng-repeat="like in model.likes" class="container">
 
-                        <!--<a href="#!/website/{{website._id}}/page">{{review.desc}} </a>-->
+
+                            <!--<a href="#!/website/{{website._id}}/page">{{review.desc}} </a>-->
                             <!--<a href="#!/website/{{website._id}}/page">{{review.name}} </a>-->
 
 
                             <ul class="list-group borderless">
                                 <li class="list-group-item">
 
-                                    <a ng-click="model.removeReviewFromLikes(review._id)">
+                                    <a ng-click="model.removeReviewFromLikes(like._id)">
                                         <span class="glyphicon glyphicon-thumbs-down pull-right"></span>
                                     </a>
 

@@ -9,3 +9,4 @@ var makeupSchema = mongoose.Schema({
 }, {collection: "makeup"});
 
 module.exports = makeupSchema;
+

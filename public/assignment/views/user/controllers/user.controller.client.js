@@ -234,15 +234,13 @@
                 });
         }
 
-        function deleteReview(reviewId) {
+        function deleteReview(reviewId, productId) {
             ReviewService
-                .deleteReviewFromUser(vm.userId, reviewId)
+                .deleteReviewFromUser(vm.userId, reviewId, productId)
                 .then(function() {
                     findAllReviewsForUser();
                     // $location.url("/profile");
-                }, function() {
-                    vm.error = "Unable to delete the review";
-                })
+                });
         }
 
         function removeReviewFromLikes(reviewId) {
@@ -250,9 +248,7 @@
                 .removeReviewFromLikes(vm.userId, reviewId)
                 .then(function() {
                     findAllLikesForUser();
-                }, function() {
-                    vm.error = "Unable to remove the liked review"
-                })
+                });
         }
 
         function findAllReviewsForMakeup(productId) {

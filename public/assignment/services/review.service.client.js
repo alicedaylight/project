@@ -28,9 +28,9 @@
                 })
         }
 
-        function createReviewForUser(userId, review) {
+        function createReviewForUser(userId, review, productId) {
 
-            var url = "/api/reviews/user";
+            var url = "/api/reviews/user/" + productId;
 
             return $http.post(url, review)
                 .then(function(response) {
@@ -48,8 +48,8 @@
                 })
         }
 
-        function deleteReviewFromUser(userId, reviewId) {
-            var url ="/api/review/" + userId + "/" + reviewId;
+        function deleteReviewFromUser(userId, reviewId, productId) {
+            var url ="/api/review/" + userId + "/" + reviewId + "/" + productId;
             return $http.delete(url)
                 .then(function(response) {
                     return response.data;

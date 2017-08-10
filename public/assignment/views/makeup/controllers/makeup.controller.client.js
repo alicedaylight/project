@@ -50,7 +50,6 @@
         var type = $routeParams.type;
         var productId = $routeParams.productId;
 
-
         var vm = this;
         vm.uid = currentUser._id;
         vm.createReviewForUser = createReviewForUser;
@@ -84,41 +83,12 @@
                     productId : productId
                 };
                 ReviewService
-                    .createReviewForUser(vm.uid, newReview)
+                    .createReviewForUser(vm.uid, newReview, productId)
                     .then(function(){
                         $location.url("/profile#portfolio");
                     });
-
-                // MakeupService
-                //     .createReviewForMakeup(newReview)
-                //     .then(function(){
-                //         $location.url("/profile#portfolio");
-                //     });
             }
         }
-
-        // // eventually adds the review to the array of reviews inside of makeup
-        // function createReviewForMakeup(description, brand, type, productId, score) {
-        //     if (description === undefined || description === null || description === "") {
-        //         vm.error = "Description cannot be empty.";
-        //         return;
-        //     } else {
-        //         var newReview = {
-        //             desc: description,
-        //             brand : brand,
-        //             type : type,
-        //             name : name,
-        //             score : score
-        //             // productId : productId
-        //         };
-        //         MakeupService
-        //             .createReviewForMakeup(newReview)
-        //             .then(function(){
-        //                 $location.url("/profile#portfolio");
-        //             });
-        //     }
-        //
-        // }
 
         function viewAllReviewsForMakeup(description, brand, type, productId) {
             MakeupService
