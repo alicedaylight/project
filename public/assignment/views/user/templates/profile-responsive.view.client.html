@@ -69,11 +69,6 @@
                     <h4>{{model.user.username}}</h4>
                 <p class="text-muted">{{model.user.firstName}}</p>
 
-                <!--<div class="form-group row">-->
-                        <!--<a href="#!/image/new" class="btn btn-success btn-block">Change Photo</a>-->
-                        <!--<a href="#!/image/edit" class="btn btn-primary btn-block">Edit Photo</a>-->
-
-                <!--</div>-->
 
                 <ul class="list-inline social-buttons">
                     <li><a href="#"><i class="fa fa-twitter"></i></a>
@@ -86,74 +81,73 @@
             </div>
             </div>
 
-
-            <div class="col-sm-4">
-                <div class="team-member">
-
-                    <div class="form-group row">
-                        <div class="col-lg-3">
-                            <label for="username">Username</label>
-                            <input ng-model="model.user.username"
-                                   type="text"
-                                   class="form-control"
-                                   placeholder="alicedaylight"
-                                   id="username" required>
-                        </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="list-inline">
+                            <li>
+                                <label for="username">Username</label>
+                                <input ng-model="model.user.username"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="alicedaylight"
+                                       id="username" required>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <label for="email">Email</label>
+                                <input ng-model="model.user.email"
+                                       type="email"
+                                       class="form-control"
+                                       placeholder="alicedaylight@gmail.com"
+                                       id="email" required>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <label for="fName">First Name</label>
+                                <input ng-model="model.user.firstName"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Alice"
+                                       id="fName" required>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <label for="lName">Last Name</label>
+                                <input ng-model="model.user.lastName"
+                                       type="text" class="form-control"
+                                       placeholder="Day" id="lName" required>
+                            </li>
+                        </ul>
+                        <!--<p class="copyright text-muted small">Copyright &copy; Alice Day 2017. All Rights Reserved</p>-->
                     </div>
+                </div>
+            </div>
 
-                    <div class="form-group row">
-                        <div class="col-lg-3">
-                            <label for="email">Email</label>
-                            <input ng-model="model.user.email" type="email" class="form-control" placeholder="alicedaylight@gmail.com" id="email" required>
-                        </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="list-inline">
+                            <li>
+                                <a ng-click="model.updateUser(model.user)" class="btn btn-success btn-block">UPDATE</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a ng-click="model.unregister()" class="btn btn-danger btn-block">UNREGISTER</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a class="btn btn-danger btn-block" ng-click="model.logout()">LOGOUT</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a class="btn btn-primary btn-block" href="#!/website">My Websites</a>
+                            </li>
+                        </ul>
+                        <!--<p class="copyright text-muted small">Copyright &copy; Alice Day 2017. All Rights Reserved</p>-->
                     </div>
-
-                    <div class="form-group row">
-                        <div class="col-lg-3">
-                            <label for="fName">First Name</label>
-                            <input ng-model="model.user.firstName" type="text" class="form-control" placeholder="Alice" id="fName" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-3">
-                            <label for="lName">Last Name</label>
-                            <input ng-model="model.user.lastName" type="text" class="form-control" placeholder="Day" id="lName" required>
-                        </div>
-                    </div>
-
-
                 </div>
             </div>
-
-
-
-            <div class="col-md-4">
-                <div class="team-member">
-            <div class="form-group row">
-                <div class="col-lg-3"><a ng-click="model.updateUser(model.user)" class="btn btn-success btn-block">UPDATE</a>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-lg-3"><a ng-click="model.unregister()" class="btn btn-danger btn-block">UNREGISTER</a>
-                </div>
-            </div>
-                    <div class="form-group row">
-                        <div class="col-lg-3">
-                            <a class="btn btn-danger btn-block" ng-click="model.logout()">LOGOUT</a>
-                        </div>
-                    </div>
-            <div class="form-group row">
-                <div class="col-lg-3"><a class="btn btn-primary btn-block" href="#!/website">My Websites</a>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-lg-3">
-                    <a class="btn btn-primary btn-block" href="#!/review">My Reviews</a>
-                </div>
-            </div>
-                </div>
-            </div>
-
 
         </div>
     </div>
@@ -328,51 +322,7 @@
                     </li>
                 </ul>
             </div>
-            <!--<div class="col-sm-4">-->
-                <!--<div class="team-member">-->
-                    <!--<img src="img/team/1.jpg" class="img-responsive img-circle" alt="">-->
-                    <!--<h4>Kay Garland</h4>-->
-                    <!--<p class="text-muted">Lead Designer</p>-->
-                    <!--<ul class="list-inline social-buttons">-->
-                        <!--<li><a href="#"><i class="fa fa-twitter"></i></a>-->
-                        <!--</li>-->
-                        <!--<li><a href="#"><i class="fa fa-facebook"></i></a>-->
-                        <!--</li>-->
-                        <!--<li><a href="#"><i class="fa fa-linkedin"></i></a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-4">-->
-                <!--<div class="team-member">-->
-                    <!--<img src="img/team/2.jpg" class="img-responsive img-circle" alt="">-->
-                    <!--<h4>Larry Parker</h4>-->
-                    <!--<p class="text-muted">Lead Marketer</p>-->
-                    <!--<ul class="list-inline social-buttons">-->
-                        <!--<li><a href="#"><i class="fa fa-twitter"></i></a>-->
-                        <!--</li>-->
-                        <!--<li><a href="#"><i class="fa fa-facebook"></i></a>-->
-                        <!--</li>-->
-                        <!--<li><a href="#"><i class="fa fa-linkedin"></i></a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-4">-->
-                <!--<div class="team-member">-->
-                    <!--<img src="img/team/3.jpg" class="img-responsive img-circle" alt="">-->
-                    <!--<h4>Diana Pertersen</h4>-->
-                    <!--<p class="text-muted">Lead Developer</p>-->
-                    <!--<ul class="list-inline social-buttons">-->
-                        <!--<li><a href="#"><i class="fa fa-twitter"></i></a>-->
-                        <!--</li>-->
-                        <!--<li><a href="#"><i class="fa fa-facebook"></i></a>-->
-                        <!--</li>-->
-                        <!--<li><a href="#"><i class="fa fa-linkedin"></i></a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</div>-->
+
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -431,18 +381,10 @@
 </section>
 
 
+<footer>
+    <div class="footer">
 
-<!--<div id="map"></div>-->
-<!--<script>-->
-    <!--var map;-->
-    <!--function initMap() {-->
-        <!--map = new google.maps.Map(document.getElementById('map'), {-->
-            <!--center: {lat: -34.397, lng: 150.644},-->
-            <!--zoom: 8-->
-        <!--});-->
-    <!--}-->
-<!--</script>-->
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy1ii9-egIOTp5l5FXjrS1oBG9Rmdeieo&callback=initMap"-->
-        <!--async defer></script>-->
+    </div>
 
+</footer>
 

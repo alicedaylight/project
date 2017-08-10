@@ -13,6 +13,20 @@ body {
 .text-primary {
   color: #fed136;
 }
+
+.banner {
+  padding: 100px 0;
+  /*color: #f8f8f8;*/
+  background: url(../img/sorrow.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.list-inline {
+  padding-left: 0;
+  margin-left: -5px;
+  list-style: none;
+}
+
 p {
   font-size: 14px;
   line-height: 1.75;
