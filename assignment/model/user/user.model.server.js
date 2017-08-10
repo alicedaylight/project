@@ -14,6 +14,7 @@ userModel.deleteUser = deleteUser;
 userModel.addWebsite = addWebsite;
 userModel.findUserByFacebookId = findUserByFacebookId;
 userModel.findUserByGoogleId = findUserByGoogleId;
+userModel.findAllLikesForUser = findAllLikesForUser;
 
 
 // keep
@@ -24,6 +25,16 @@ userModel.deleteLike = deleteLike;
 
 
 module.exports = userModel;
+
+function findAllLikesForUser(userId) {
+    return userModel
+        .findOne({_id: userId})
+        .populate('likes')
+        .exec()
+        .then(function(user) {
+            return user.likes;
+        });
+}
 
 function findUserByFacebookId(facebookId) {
     return userModel.findOne({'facebook.id': facebookId});

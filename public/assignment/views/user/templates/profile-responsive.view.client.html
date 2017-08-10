@@ -171,7 +171,7 @@
 
         <div class="row">
             <div ng-repeat="review in model.reviews" class="container">
-                {{review}}
+                <!--{{review}}-->
                 <!--<a href="#!/website/{{website._id}}/page">{{review.desc}} </a>-->
                 <!--<a href="#!/website/{{website._id}}/page">{{review.name}} </a>-->
 
@@ -406,18 +406,18 @@
                                         <span class="glyphicon glyphicon-thumbs-down pull-right"></span>
                                     </a>
 
-                                    <label>Review Name  Makeup Brand: {{review.brand}}  Makeup Type: {{review.type}}</label>
+                                    <label>Review Name  Makeup Brand: {{like.brand}}  Makeup Type: {{like.type}}</label>
                                     <!--<img class="img-responsive" src="{{model.makeup.image_link}}"/>-->
 
                                     <div class="form-group">
                                         <label for="likeName"></label>
-                                        <textarea input ng-model="review.name" class="form-control" id="likeName" rows="1"></textarea>
+                                        <textarea input ng-model="like.name" class="form-control" id="likeName" rows="1"></textarea>
                                     </div>
 
                                     Review Description
                                     <div class="form-group">
                                         <label for="likeDescription"></label>
-                                        <textarea input ng-model="review.desc" class="form-control" id="likeDescription" rows="5"></textarea>
+                                        <textarea input ng-model="like.desc" class="form-control" id="likeDescription" rows="5"></textarea>
                                     </div>
 
 

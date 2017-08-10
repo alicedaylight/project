@@ -1,6 +1,8 @@
 module.exports = function(app) {
     var reviewModel = require('../model/review/review.model.server');
 
+    var userModel = require('../model/user/user.model.server');
+
 
     app.get('/api/reviews', findAllReviews);
     app.post('/api/reviews/user', createReviewForUser);
@@ -10,6 +12,23 @@ module.exports = function(app) {
     app.delete('/api/review/:userId/:reviewId', deleteReviewFromUser);
     app.delete('/api/like/:userId/:reviewId', removeReviewFromLikes);
     app.put('/api/review/:reviewId', updateReview);
+    app.get('/api/reviews/liked', findAllLikedReviewsForUser);
+
+    function findAllLikedReviewsForUser(req, res) {
+        var userId = req.user._id;
+
+        userModel
+            .findAllLikesForUser(userId)
+            .then(
+                function(likes) {
+                    res.json(likes);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
+    }
+
 
 
     function updateReview(req, res) {

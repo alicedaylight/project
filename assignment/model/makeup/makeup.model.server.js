@@ -18,6 +18,8 @@ makeupModel.addReview = addReview;
 makeupModel.findMakeupByProductId = findMakeupByProductId;
 
 function findMakeupByProductId(productId) {
+    // need to add logic here that if the review already exists in the liked array
+    // do not add it again (so to avoid duplicates)
     return makeupModel
         .findOne({productId : productId})
         .populate('reviews')

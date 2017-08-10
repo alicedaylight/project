@@ -12,11 +12,21 @@
             "deleteReviewFromUser" : deleteReviewFromUser,
             "removeReviewFromLikes" : removeReviewFromLikes,
             "addReviewToLikes" : addReviewToLikes,
-            "findAllLikesForUser" : findAllLikesForUser
+            "findAllLikesForUser" : findAllLikesForUser,
+            "findAllLikedReviewsForUser" : findAllLikedReviewsForUser
 
         };
 
         return services;
+
+        function findAllLikedReviewsForUser() {
+            var url ="/api/reviews/liked";
+
+            return $http.get(url)
+                .then(function(response) {
+                    return response.data;
+                })
+        }
 
         function createReviewForUser(userId, review) {
 

@@ -105,6 +105,8 @@
     function ProfileController($timeout, UserService, $location, currentUser, ReviewService, WebsiteService, MakeupService) {
         var vm = this;
         //vm.uid = $routeParams.uid;
+        vm.user = currentUser;
+        console.log("current user is: ", currentUser);
         vm.userId = currentUser._id;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
@@ -127,6 +129,7 @@
         function init() {
             renderUser(currentUser);
             findAllReviewsForUser();
+            findAllLikedReviewsForUser();
         }
 
         init();
@@ -180,6 +183,15 @@
             ReviewService
                 .findAllReviewsForUser(vm.userId)
                 .then(renderReviews);
+        }
+
+        function findAllLikedReviewsForUser() {
+            ReviewService
+                .findAllLikedReviewsForUser()
+                .then(function (likes) {
+                    vm.likes = likes;
+                    console.log('likes', likes);
+                })
         }
 
         function findAllLikesForUser() {
