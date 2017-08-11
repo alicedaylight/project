@@ -21,10 +21,8 @@
                     <a class="page-scroll" href="#services">Services</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#portfolio">Product Reviews</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#about">About</a>
+                    <a ng-show="!model.currentUser._id" class="page-scroll" href="#!/register">Register</a>
+
                 </li>
                 <li>
                     <a ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" class="page-scroll" href="#!/admin">Admin</a>
@@ -48,228 +46,45 @@
         <div class="intro-text">
             <div class="intro-lead-in">New Reviews Everyday!</div>
             <div class="intro-heading">MAKEUP DIARY</div>
-            <!--<a class="page-scroll btn btn-xl" href="#!/register">Register</a>-->
-            <a ng-show="!model.currentUser._id" class="page-scroll btn btn-xl" href="#!/register">Register</a>
-            <!--<a ng-show="model.currentUser._id" class="page-scroll btn btn-xl" href="#!/profile">Profile</a>-->
+            <!--<a ng-show="!model.currentUser._id" class="page-scroll btn btn-xl" href="#!/register">Register</a>-->
 
-            <!--<a href="#services" class="page-scroll btn btn-xl">Create An Account</a>-->
         </div>
     </div>
 </header>
 
 <!-- Services Section -->
 <section id="services">
-<div class="container">
-<div class="row">
-<div class="col-lg-12 text-center">
-<h2 class="section-heading">Services</h2>
-<h3 class="section-subheading text-muted">New Features Comming Soon</h3>
-</div>
-</div>
-<div class="row text-center">
-<div class="col-md-4">
-<span class="fa-stack fa-4x">
-<i class="fa fa-circle fa-stack-2x text-primary"></i>
-<i class="fa fa-pencil-square-o fa-stack-1x fa-inverse"></i>
-</span>
-<h4 class="service-heading">Create Reviews</h4>
-<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-</div>
-<div class="col-md-4">
-<span class="fa-stack fa-4x">
-<i class="fa fa-circle fa-stack-2x text-primary"></i>
-<i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>
-</span>
-<h4 class="service-heading">Like Other Makeup Posts</h4>
-<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-</div>
-<div class="col-md-4">
-<span class="fa-stack fa-4x">
-<i class="fa fa-circle fa-stack-2x text-primary"></i>
-<i class="fa fa-heart-o fa-stack-1x fa-inverse"></i>
-</span>
-<h4 class="service-heading">Explore New Products</h4>
-<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-</div>
-</div>
-</div>
-</section>
-
-
-<!-- Portfolio Grid Section -->
-<section id="portfolio" class="bg-light-gray">
-<div class="container">
-<div class="row">
-<div class="col-lg-12 text-center">
-<h2 class="section-heading">Categories</h2>
-<h3 class="section-subheading text-muted">Select a product from a category and start reviewing!</h3>
-</div>
-</div>
-<div class="row">
-<div class="col-md-4 col-sm-6 portfolio-item">
-<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-<div class="portfolio-hover">
-<div class="portfolio-hover-content">
-<i class="fa fa-plus fa-3x"></i>
-</div>
-</div>
-<img src="img/portfolio/skincare.png" class="img-responsive" alt="">
-</a>
-<div class="portfolio-caption">
-<h4>SKINCARE</h4>
-<p class="text-muted">Primers, Base, Skincare</p>
-</div>
-</div>
-<div class="col-md-4 col-sm-6 portfolio-item">
-<a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-<div class="portfolio-hover">
-<div class="portfolio-hover-content">
-<i class="fa fa-plus fa-3x"></i>
-</div>
-</div>
-<img src="img/portfolio/startup-framework.png" class="img-responsive" alt="">
-</a>
-<div class="portfolio-caption">
-<h4>HAIR</h4>
-<p class="text-muted">Hairspray, Shampoo</p>
-</div>
-</div>
-<div class="col-md-4 col-sm-6 portfolio-item">
-<a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-<div class="portfolio-hover">
-<div class="portfolio-hover-content">
-<i class="fa fa-plus fa-3x"></i>
-</div>
-</div>
-<img src="img/portfolio/treehouse.png" class="img-responsive" alt="">
-</a>
-<div class="portfolio-caption">
-<h4>LIPS</h4>
-<p class="text-muted">Lipstick, Lipgloss, Lipstain</p>
-</div>
-</div>
-<div class="col-md-4 col-sm-6 portfolio-item">
-<a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-<div class="portfolio-hover">
-<div class="portfolio-hover-content">
-<i class="fa fa-plus fa-3x"></i>
-</div>
-</div>
-<img src="img/portfolio/golden.png" class="img-responsive" alt="">
-</a>
-<div class="portfolio-caption">
-<h4>EYES</h4>
-<p class="text-muted">Mascara, EyeLiner, Eyeshadow</p>
-</div>
-</div>
-<div class="col-md-4 col-sm-6 portfolio-item">
-<a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-<div class="portfolio-hover">
-<div class="portfolio-hover-content">
-<i class="fa fa-plus fa-3x"></i>
-</div>
-</div>
-<img src="img/portfolio/escape.png" class="img-responsive" alt="">
-</a>
-<div class="portfolio-caption">
-<h4>FOUNDATION</h4>
-<p class="text-muted">Liquid, Cream, Cushion, Mineral</p>
-</div>
-</div>
-<div class="col-md-4 col-sm-6 portfolio-item">
-<a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-<div class="portfolio-hover">
-<div class="portfolio-hover-content">
-<i class="fa fa-plus fa-3x"></i>
-</div>
-</div>
-<img src="img/portfolio/dreams.png" class="img-responsive" alt="">
-</a>
-<div class="portfolio-caption">
-<h4>CHEEK</h4>
-<p class="text-muted">Blush, Highlighter, Bronzer</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- About Section -->
-<section id="about">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">About</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h2 class="section-heading">Services</h2>
+                <h3 class="section-subheading text-muted">New Features Comming Soon</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="timeline">
-                    <li>
-                        <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="img/about/1.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2009-2011</h4>
-                                <h4 class="subheading">Our Humble Beginnings</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="img/about/2.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>March 2011</h4>
-                                <h4 class="subheading">An Agency is Born</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="img/about/3.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>December 2012</h4>
-                                <h4 class="subheading">Transition to Full Service</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="img/about/4.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>July 2014</h4>
-                                <h4 class="subheading">Phase Two Expansion</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image">
-                            <h4>Be Part
-                                <br>Of Our
-                                <br>Story!</h4>
-                        </div>
-                    </li>
-                </ul>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-pencil-square-o fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="service-heading">Create Reviews</h4>
+                <p class="text-muted">Create insiteful reviews for your favorite makeup products.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="service-heading">Like Other Makeup Reviews</h4>
+                <p class="text-muted">Like other makeup reviews to add them to your profile page.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-heart-o fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="service-heading">Explore New Products</h4>
+                <p class="text-muted">Use our search tool to create reviews for thousands of your favorite makeup products from all categories and brands.</p>
             </div>
         </div>
     </div>
@@ -309,10 +124,6 @@
                             <div id="success"></div>
                             <a class="btn btn-xl"
                                ng-click="model.login(model.username, model.password)">Login</a>
-                            <!--<a href="/auth/facebook" class="btn btn-xl">-->
-                                <!--<span class="fa fa-facebook"></span>-->
-                                <!--Facebook-->
-                            <!--</a>-->
                             <a href="/auth/google" class="btn btn-xl">
                                 <span class="fa fa-google-plus"></span>
                                 Google

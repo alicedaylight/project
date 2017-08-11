@@ -70,6 +70,7 @@
                 <p class="text-muted">{{model.user.firstName}}</p>
 
 
+
                 <ul class="list-inline social-buttons">
                     <li><a href="#"><i class="fa fa-twitter"></i></a>
                     </li>
@@ -140,9 +141,9 @@
                                 <a class="btn btn-danger btn-block" ng-click="model.logout()">LOGOUT</a>
                             </li>
                             <li class="footer-menu-divider">&sdot;</li>
-                            <li>
-                                <a class="btn btn-primary btn-block" href="#!/website">My Websites</a>
-                            </li>
+                            <!--<li>-->
+                                <!--<a class="btn btn-primary btn-block" href="#!/website">My Websites</a>-->
+                            <!--</li>-->
                         </ul>
                         <!--<p class="copyright text-muted small">Copyright &copy; Alice Day 2017. All Rights Reserved</p>-->
                     </div>
@@ -165,10 +166,6 @@
 
         <div class="row">
             <div ng-repeat="review in model.reviews" class="container">
-                <!--{{review}}-->
-                <!--<a href="#!/website/{{website._id}}/page">{{review.desc}} </a>-->
-                <!--<a href="#!/website/{{website._id}}/page">{{review.name}} </a>-->
-
 
                 <ul class="list-group borderless">
                     <li class="list-group-item">
@@ -206,91 +203,91 @@
             </div>
 
 
-            <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="img/portfolio/skincare.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>SKINCARE</h4>
-                    <p class="text-muted">Primers, Base, Skincare</p>
-                </div>
-            </div>
+            <!--<div class="col-md-4 col-sm-6 portfolio-item">-->
+                <!--<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">-->
+                    <!--<div class="portfolio-hover">-->
+                        <!--<div class="portfolio-hover-content">-->
+                            <!--<i class="fa fa-plus fa-3x"></i>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<img src="img/portfolio/skincare.png" class="img-responsive" alt="">-->
+                <!--</a>-->
+                <!--<div class="portfolio-caption">-->
+                    <!--<h4>SKINCARE</h4>-->
+                    <!--<p class="text-muted">Primers, Base, Skincare</p>-->
+                <!--</div>-->
+            <!--</div>-->
 
-            <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="img/portfolio/startup-framework.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>HAIR</h4>
-                    <p class="text-muted">Hairspray, Shampoo</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="img/portfolio/treehouse.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>LIPS</h4>
-                    <p class="text-muted">Lipstick, Lipgloss, Lipstain</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="img/portfolio/golden.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>EYES</h4>
-                    <p class="text-muted">Mascara, EyeLiner, Eyeshadow</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="img/portfolio/escape.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>FOUNDATION</h4>
-                    <p class="text-muted">Liquid, Cream, Cushion, Mineral</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="img/portfolio/dreams.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>CHEEK</h4>
-                    <p class="text-muted">Blush, Highlighter, Bronzer</p>
-                </div>
-            </div>
+            <!--<div class="col-md-4 col-sm-6 portfolio-item">-->
+                <!--<a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">-->
+                    <!--<div class="portfolio-hover">-->
+                        <!--<div class="portfolio-hover-content">-->
+                            <!--<i class="fa fa-plus fa-3x"></i>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<img src="img/portfolio/startup-framework.png" class="img-responsive" alt="">-->
+                <!--</a>-->
+                <!--<div class="portfolio-caption">-->
+                    <!--<h4>HAIR</h4>-->
+                    <!--<p class="text-muted">Hairspray, Shampoo</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4 col-sm-6 portfolio-item">-->
+                <!--<a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">-->
+                    <!--<div class="portfolio-hover">-->
+                        <!--<div class="portfolio-hover-content">-->
+                            <!--<i class="fa fa-plus fa-3x"></i>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<img src="img/portfolio/treehouse.png" class="img-responsive" alt="">-->
+                <!--</a>-->
+                <!--<div class="portfolio-caption">-->
+                    <!--<h4>LIPS</h4>-->
+                    <!--<p class="text-muted">Lipstick, Lipgloss, Lipstain</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4 col-sm-6 portfolio-item">-->
+                <!--<a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">-->
+                    <!--<div class="portfolio-hover">-->
+                        <!--<div class="portfolio-hover-content">-->
+                            <!--<i class="fa fa-plus fa-3x"></i>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<img src="img/portfolio/golden.png" class="img-responsive" alt="">-->
+                <!--</a>-->
+                <!--<div class="portfolio-caption">-->
+                    <!--<h4>EYES</h4>-->
+                    <!--<p class="text-muted">Mascara, EyeLiner, Eyeshadow</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4 col-sm-6 portfolio-item">-->
+                <!--<a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">-->
+                    <!--<div class="portfolio-hover">-->
+                        <!--<div class="portfolio-hover-content">-->
+                            <!--<i class="fa fa-plus fa-3x"></i>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<img src="img/portfolio/escape.png" class="img-responsive" alt="">-->
+                <!--</a>-->
+                <!--<div class="portfolio-caption">-->
+                    <!--<h4>FOUNDATION</h4>-->
+                    <!--<p class="text-muted">Liquid, Cream, Cushion, Mineral</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4 col-sm-6 portfolio-item">-->
+                <!--<a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">-->
+                    <!--<div class="portfolio-hover">-->
+                        <!--<div class="portfolio-hover-content">-->
+                            <!--<i class="fa fa-plus fa-3x"></i>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<img src="img/portfolio/dreams.png" class="img-responsive" alt="">-->
+                <!--</a>-->
+                <!--<div class="portfolio-caption">-->
+                    <!--<h4>CHEEK</h4>-->
+                    <!--<p class="text-muted">Blush, Highlighter, Bronzer</p>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
 </section>
@@ -326,7 +323,7 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+                <!--<p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>-->
             </div>
         </div>
     </div>

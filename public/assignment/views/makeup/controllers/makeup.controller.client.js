@@ -34,6 +34,7 @@
 
 
         function addReviewToLikes(review) {
+            console.log("!!!!!!!!!!!!!!!!!!review: ",review);
             ReviewService
                 // only need to pass in the reviewId since the review has already been created
                 .addReviewToLikes(vm.uid, review)

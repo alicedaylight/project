@@ -34,7 +34,6 @@
 
             return $http.post(url, review)
                 .then(function(response) {
-                    // console.log(response);
                     return response.data;
                 });
         }

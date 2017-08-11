@@ -112,7 +112,6 @@ module.exports = function(app) {
 
 
     function createReviewForUser(req, res){
-        // console.log("review server side req.user", req.user);
         var uid = req.user._id;
         var review = req.body;
         var productId = req.params.productId;
@@ -124,6 +123,9 @@ module.exports = function(app) {
                     res.json(review);
                 },
                 function(error){
+                    // the error from the console is coming from this line
+                    //createReviewForUser err { MongoError: E11000 duplicate key error collection:
+                    // cs5610.review index: _id_ dup key: { : ObjectId('598d087c0e5ca80b422a0fec') }
                     console.log('createReviewForUser err', error);
                     res.status(400).send(error);
                 }
@@ -134,6 +136,8 @@ module.exports = function(app) {
     function addReviewToLikes(req, res) {
         var uid = req.user._id;
         var review = req.body;
+        console.log("SERVER SIDE ~~~~~~~~~~", review)
+
 
         reviewModel
             .addReviewToLikes(uid, review)

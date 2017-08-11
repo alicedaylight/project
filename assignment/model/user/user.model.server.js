@@ -106,6 +106,7 @@ function addReview(userId, reviewId) {
 }
 
 function addLike(userId, reviewId) {
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!review id ", reviewId);
     return userModel
         .findById(userId)
         .then(function(user){

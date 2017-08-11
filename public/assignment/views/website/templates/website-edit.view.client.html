@@ -1,66 +1,131 @@
-<nav class="navbar navbar-fixed-top cl-blue-navbar">
+<!--<nav class="navbar navbar-fixed-top cl-blue-navbar">-->
+    <!--<div class="row container-fluid">-->
+        <!--<div class="col-sm-4 hidden-xs">-->
+            <!--<div class="navbar-text pull-left cl-text-white no-margin-left">-->
+                <!--<a href="#!/user/{{model.uid}}/website" class="cl-text-white">-->
+                    <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="navbar-header">-->
+                <!--<a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website">-->
+                    <!--Posts-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="navbar-text pull-right thirty-margin-right">-->
+                <!--<a href="#!/user/{{model.uid}}/website" class="cl-text-white">-->
+                    <!--<span class="glyphicon glyphicon-plus"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="col-sm-8 ">-->
+            <!--<div class="navbar-text pull-left cl-text-whit no-margin-left">-->
+            <!--</div>-->
+            <!--<div class="navbar-text pull-right thirty-margin-right">-->
+                <!--<a ng-click="model.updateWebsite(model.website)" class="cl-text-white">-->
+                    <!--<span class="glyphicon glyphicon-ok"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="navbar-text pull-left cl-text-white no-margin-left visible-xs">-->
+                <!--<a href="#!/user/{{model.uid}}/website" class="cl-text-white">-->
+                    <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="navbar-header">-->
+                <!--<a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.name}}">-->
+                    <!--Edit Post-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
+<!--</nav>-->
+
+
+<!--<div class="row container-fluid">-->
+    <!--<div class="col-sm-4 hidden-xs overflow-y">-->
+        <!--<div ng-repeat="website in model.websites" class="container">-->
+
+            <!--<ul class="list-group borderless">-->
+                <!--<li class="list-group-item">-->
+                    <!--<a href="#!/user/{{model.uid}}/website/{{model.wid}}">-->
+                        <!--<span class="glyphicon glyphicon-cog pull-right"></span>-->
+                    <!--</a>-->
+                    <!--<a href="#!/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>-->
+                <!--</li>-->
+
+            <!--</ul>-->
+        <!--</div>-->
+
+    <!--</div>-->
+
+    <!--<div class="col-xs-12 col-sm-8 pull-right">-->
+        <!--&lt;!&ndash;<div ng-show="model.updated" class="alert alert-success" role="alert">{{model.updated}}</div>&ndash;&gt;-->
+        <!--<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>-->
+
+        <!--<form>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="exampleInputName">Product Name</label>-->
+                <!--<input ng-model="model.website.name"-->
+                       <!--class="form-control" id="exampleInputName">-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="productCategory">Product Category</label>-->
+                <!--<textarea input ng-model="model.user.description"-->
+                          <!--type="text" class="form-control" id="productCategory" rows="5"></textarea>-->
+
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="exampleInputDescription">Product Description</label>-->
+                <!--<textarea input ng-model="model.website.desc" class="form-control" id="exampleInputDescription" rows="5"></textarea>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<a href="#!/user/:uid/website" class="btn btn-danger btn-block">Delete</a>&ndash;&gt;-->
+            <!--<a ng-click="model.deleteWebsite(model.website._id)" class="btn btn-danger btn-block">Delete</a>-->
+            <!--&lt;!&ndash;// model.website.id&ndash;&gt;-->
+
+        <!--</form>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<nav class="navbar navbar-fixed-bottom cl-blue-navbar">-->
+    <!--<div class="container-fuild">-->
+        <!--<a href="#!/profile" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">-->
+            <!--<span class="glyphicon glyphicon-user"></span>-->
+        <!--</a>-->
+    <!--</div>-->
+<!--</nav>-->
+
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
-        <div class="col-sm-4 hidden-xs">
-            <div class="navbar-text pull-left cl-text-white no-margin-left">
-                <a href="#!/user/{{model.uid}}/website" class="cl-text-white">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </div>
-            <div class="navbar-header">
-                <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website">
-                    Posts
-                </a>
-            </div>
-            <div class="navbar-text pull-right thirty-margin-right">
-                <a href="#!/user/{{model.uid}}/website" class="cl-text-white">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
+
+        <div class="navbar-text pull-left cl-text-white no-margin-left" >
+            <a href="#!/user/{{model.uid}}/website" class="cl-text-blue">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="cl-text-white navbar-brand cl-text-bold" href="#!/profile">
+                Edit Posts
+            </a>
         </div>
 
-        <div class="col-sm-8 ">
-            <div class="navbar-text pull-left cl-text-whit no-margin-left">
-            </div>
-            <div class="navbar-text pull-right thirty-margin-right">
-                <a ng-click="model.updateWebsite(model.website)" class="cl-text-white">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </div>
-            <div class="navbar-text pull-left cl-text-white no-margin-left visible-xs">
-                <a href="#!/user/{{model.uid}}/website" class="cl-text-white">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </div>
-            <div class="navbar-header">
-                <a class="cl-text-white navbar-brand cl-text-bold" href="#!/user/{{model.uid}}/website/{{model.name}}">
-                    Edit Post
-                </a>
-            </div>
+        <div class="navbar-text pull-right thirty-margin-right">
+            <a ng-click="model.updateWebsite(model.website)" class="cl-text-blue">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
         </div>
-
+        <div class="navbar-text pull-left cl-text-white no-margin-left visible-xs">
+            <a href="#!/profile" class="cl-text-blue">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
     </div>
 </nav>
 
 
 <div class="row container-fluid">
-    <div class="col-sm-4 hidden-xs overflow-y">
-        <div ng-repeat="website in model.websites" class="container">
-
-            <ul class="list-group borderless">
-                <li class="list-group-item">
-                    <a href="#!/user/{{model.uid}}/website/{{model.wid}}">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                    <a href="#!/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>
-                </li>
-
-            </ul>
-        </div>
-
-    </div>
-
     <div class="col-xs-12 col-sm-8 pull-right">
-        <!--<div ng-show="model.updated" class="alert alert-success" role="alert">{{model.updated}}</div>-->
         <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 
         <form>
@@ -68,14 +133,9 @@
             <div class="form-group">
                 <label for="exampleInputName">Product Name</label>
                 <input ng-model="model.website.name"
-                         class="form-control" id="exampleInputName">
+                       class="form-control" id="exampleInputName">
             </div>
-            <div class="form-group">
-                <label for="productCategory">Product Category</label>
-                <textarea input ng-model="model.user.description"
-                          type="text" class="form-control" id="productCategory" rows="5"></textarea>
 
-            </div>
             <div class="form-group">
                 <label for="exampleInputDescription">Product Description</label>
                 <textarea input ng-model="model.website.desc" class="form-control" id="exampleInputDescription" rows="5"></textarea>
@@ -85,14 +145,20 @@
             <!--// model.website.id-->
 
         </form>
+
     </div>
+
 </div>
 
-<nav class="navbar navbar-fixed-bottom cl-blue-navbar">
+<nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fuild">
         <a href="#!/profile" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
             <span class="glyphicon glyphicon-user"></span>
         </a>
     </div>
 </nav>
+
+
+
+
 

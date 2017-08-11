@@ -73,7 +73,8 @@ function createReviewForUser(userId, review, productId) {
 }
 
 function addReviewToLikes(userId, review) {
-    review._user = userId;
+    console.log("INside !!!!!!!!!!!!!!!ADD", userId, review);
+    // review._user = userId;
     return userModel
         .addLike(userId, review._id)
 }
