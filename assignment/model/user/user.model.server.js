@@ -77,7 +77,7 @@ function updateUser(userId, newUser) {
     if(typeof  newUser.roles === 'string') {
         newUser.roles = newUser.roles.split(',');
     }
-    console.log("model updateuser",  newUser);
+    // console.log("model updateuser",  newUser);
     return userModel.update({_id: userId}, {$set: newUser});
 }
 

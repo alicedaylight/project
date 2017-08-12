@@ -5,8 +5,8 @@ module.exports = function(app) {
 
 
     app.get('/api/reviews', findAllReviews);
-    app.post('/api/reviews/user/:productId', createReviewForUser);
     app.post('/api/reviews/user/likes', addReviewToLikes);
+    app.post('/api/reviews/user/:productId', createReviewForUser);
     app.get('/api/reviews/user', findAllReviewsForUser);
     app.get('/api/likes/user', findAllLikesForUser);
     app.delete('/api/review/:userId/:reviewId/:productId', deleteReviewFromUser);
@@ -115,7 +115,7 @@ module.exports = function(app) {
         var uid = req.user._id;
         var review = req.body;
         var productId = req.params.productId;
-
+        console.log('createReviewForUser');
         reviewModel
             .createReviewForUser(uid, review, productId)
             .then(
@@ -136,7 +136,7 @@ module.exports = function(app) {
     function addReviewToLikes(req, res) {
         var uid = req.user._id;
         var review = req.body;
-        console.log("SERVER SIDE ~~~~~~~~~~", review)
+        console.log("SERVER SIDE ~~~~~~~~~~", review);
 
 
         reviewModel
