@@ -61,7 +61,7 @@
 
         function searchByBrand(brand) {
             // var url = "/api/makeupSearchBrand";
-            var url =  "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + brand;
+            var url =  "https://makeup-api.herokuapp.com/api/v1/products.json?brand=" + brand;
 
             return $http.get(url, brand)
             // "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + brand
@@ -72,7 +72,7 @@
         }
 
         function searchByType(type) {
-            var url =  "http://makeup-api.herokuapp.com/api/v1/products.json?product_type=" + type;
+            var url =  "https://makeup-api.herokuapp.com/api/v1/products.json?product_type=" + type;
 
             return $http.get(url, type)
             // "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + brand
@@ -83,7 +83,7 @@
         }
 
         function searchByBrandType(brand, type) {
-            var url = "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + brand + "&product_type=" + type;
+            var url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=" + brand + "&product_type=" + type;
             return $http.get(url, type)
                 .then(function(response) {
                     console.log(response);
